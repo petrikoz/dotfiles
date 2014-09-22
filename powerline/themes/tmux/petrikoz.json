@@ -1,0 +1,44 @@
+{
+  "default_module": "powerline.segments.common",
+  "segments": {
+    "left": [
+      {
+        "name": "virtualenv",
+        "before": "ⓔ "
+      },
+      {
+        "name": "branch",
+        "before": " "
+      }
+    ],
+    "right": [
+      {
+        "name": "uptime",
+        "before": "⇑  ",
+        "priority": 50
+      },
+      {
+        "name": "system_load",
+        "priority": 50
+      },
+      {
+        "name": "date"
+      },
+      {
+        "name": "date",
+        "before": "⌚ ",
+        "args": {
+          "format": "%H:%M",
+          "istime": true
+        }
+      },
+      {
+        "name": "hostname",
+        "before": " ",
+        "args": {
+          "only_if_ssh": true
+        }
+      }
+    ]
+  }
+}
