@@ -7,3 +7,7 @@
 .zsh/history
 .zsh/custom/*
 !.zsh/custom/petrikoz.zsh-theme
+
+# TMUX
+.tmux/*
+!.tmux/conf
