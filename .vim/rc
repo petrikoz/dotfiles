@@ -1,0 +1,131 @@
+" Vundle. Plugin manager.
+  " Brief help:
+  " :PluginList          - list configured bundles
+  " :PluginInstall(!)    - install(update) bundles
+  " :PluginSearch(!) foo - search(or refresh cache first) for foo
+  " :PluginClean(!)      - confirm(or auto-ap prove) removal of unused bundles
+  " for more details see :h vundle  or https://github.com/gmarik/vundle
+  set nocompatible  " be iMproved, required
+  filetype off  " required
+  " set the runtime path to include Vundle and initialize
+  set rtp+=~/.vim/bundle/Vundle.vim
+  call vundle#begin()
+  " alternatively, pass a path where Vundle should install plugins
+  "call vundle#begin('~/some/path/here')
+
+  " let Vundle manage Vundle, required
+  Plugin 'gmarik/Vundle.vim'
+
+  " Keep Plugin commands between vundle#begin/end.
+
+  " Common
+    Plugin 'tpope/vim-sensible'
+  " Interface
+    " Pretty and functionality statusline.
+    Plugin 'bling/vim-airline'
+    " The best colorscheme.
+    Plugin 'altercation/vim-colors-solarized'
+    " Python virtualenvs.
+    Plugin 'jmcantrell/vim-virtualenv'
+  " Environment
+    " Perform all your vim insert mode completions with Tab
+    Plugin 'ervandew/supertab'
+    " Shows 'Nth match out of M' at every search
+    Plugin 'vim-scripts/IndexedSearch'
+    " RegExp search
+    Plugin 'mileszs/ack.vim'
+    " NERDTree. A tree explorer plugin
+    Plugin 'scrooloose/nerdtree'
+  " VCS
+    " The best git wrapper for Vim.
+    Plugin 'tpope/vim-fugitive'
+    " Show added / changed / deleted rows by Git.
+    Plugin 'airblade/vim-gitgutter'
+  " Coding
+    " Best syntax checker
+    Plugin 'scrooloose/syntastic'
+    " Easy config code style
+    Plugin 'editorconfig/editorconfig-vim'
+
+  " All of your Plugins must be added before the following line
+  call vundle#end()  " required
+  filetype plugin on  " required
+
+" Put your non-Plugin stuff after this line
+
+" Plugins settings
+
+  " Airline.
+    let g:airline_theme = 'solarized'
+    let g:airline_powerline_fonts = 1
+    let g:airline#extensions#tabline#enabled = 1  " enable tab line
+    let g:airline#extensions#tmuxline#enabled = 0  " disable autochange Tmuxline
+    set laststatus=2  " Window always has a status line
+    set noshowmode  " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+
+  " GitGutter.
+    let g:gitgutter_sign_removed = '-'
+    let g:gitgutter_sign_modified_removed = '~-'
+
+  " NERDTree.
+    nmap <Bs> :NERDTreeToggle<CR>
+    let NERDTreeShowBookmarks = 1
+    let NERDTreeChDirMode = 2
+    let NERDTreeQuitOnOpen = 1
+    let NERDTreeShowHidden = 1
+    let NERDTreeKeepTreeInNewTab = 0
+    " Disable display of the 'Bookmarks' label and 'Press ? for help' text
+    let NERDTreeMinimalUI = 1
+    " Use arrows instead of + ~ chars when displaying directories
+    let NERDTreeDirArrows = 1
+    let NERDTreeBookmarksFile= $HOME . '/.vim/.NERDTreeBookmarks'
+    let NERDTreeIgnore=['\.py[c|o]$', '\~$']
+
+  " Solarized.
+    set background=light  " dark | light
+    colorscheme solarized
+    call togglebg#map("<F5>") " Toggle dark | light background
+
+" Common settings
+
+  " Character encodings considered when starting to edit an existing file
+  set fileencodings=utf-8,cp1251
+  " Display invisible characters
+  set list
+  set listchars=tab:▸\ ,trail:·,extends:❯,precedes:❮,nbsp:×
+  " Wordwrap
+    set wrap  " Wrap long lines
+    set linebreak  " Don't break words when wrapping
+    " Show ↪ at the beginning of wrapped lines
+    if has('linebreak')
+      let &sbr = nr2char(8618).' '
+    endif
+  " Indent
+    " Use spaces instead of tab
+    set expandtab
+    " Number of spaces to use for each step of (auto)indent
+    set shiftwidth=2
+    " Number of spaces that a tab counts for
+    set tabstop=2
+    " Number of spaces that a tab counts for while performing editing operations
+    set softtabstop=2
+    " Override default settings by filetype
+    if has('autocmd')
+      " Python
+        " Number of column to be highlighted
+        autocmd FileType python set colorcolumn=80
+        " Number of spaces to use for each step of (auto)indent
+        autocmd FileType python set shiftwidth=4
+        autocmd FileType python set tabstop=4
+        autocmd FileType python set softtabstop=4
+    end
+  " Cursor
+    " Highlight the screen line of the cursor
+    set cursorline
+    " Set cursor to its last position
+    if has('autocmd')
+      autocmd BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+    end
+  " Backup
+    set nobackup  " Don't create backups
+    set noswapfile  " Don't create swap files

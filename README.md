@@ -1,4 +1,3 @@
-dotfiles-prod
-=============
+# dotfiles #
 
-Some dotfiles to production servers and projects
+My Linux dotfiles
