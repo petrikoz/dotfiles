@@ -1,0 +1,9 @@
+# VIM
+.vim/*
+!.vim/rc
+!.vim/bundle/Vundle.vim
+
+# ZSH
+.zsh/history
+.zsh/custom/*
+!.zsh/custom/petrikoz.zsh-theme
