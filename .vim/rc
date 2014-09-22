@@ -1,3 +1,4 @@
+" vim: syntax=vim
 " Vundle. Plugin manager.
   " Brief help:
   " :PluginList          - list configured bundles
