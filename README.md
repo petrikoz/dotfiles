@@ -45,6 +45,7 @@ ln -s ~/.dotfiles/.tmux ~/.tmux
 ln -s ~/.tmux/conf ~/.tmux.conf
 ```
 
+Go to `tmux` and press `prefix + I` for install plugins.
 
 ### Powerline ###
 
