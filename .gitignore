@@ -11,3 +11,4 @@
 # TMUX
 .tmux/*
 !.tmux/conf
+!.tmux/plugins/tpm
