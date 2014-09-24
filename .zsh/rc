@@ -112,9 +112,14 @@
 ################################################################
 # Functions
 ################################################################
-  # mkdir & cd
+  # Create path from string and go to last directory
   function mkcd {
     mkdir -p "$@" && cd $_
+  }
+
+  # Get favicon by Google Favicons
+  function getfavicon() {
+    wget "https://www.google.com/s2/favicons?domain=$1" -O "/tmp/$1.png"
   }
 
 ################################################################
