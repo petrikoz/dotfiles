@@ -1,4 +1,5 @@
 # vim: syntax=zsh
+
 ################################################################
 # “OH MY ZSHELL!”
 ################################################################
@@ -23,7 +24,8 @@
     fabric              # support for remote deployment tool
     gem                 # support for Ruby package manager
     git                 # support for git
-    git-flow            # support for git-flow
+    git-flow            # support for git-flow completion
+    git-flow-avh        # support for git-flow-avh completion
     history             # aliases: h for history, hsi for grepping history
     npm                 # support for NodeJS package manager
     pip                 # support for Python package manager
@@ -37,86 +39,55 @@
 ################################################################
 #== Completion ================
   setopt COMPLETE_ALIASES  # completion uses unexpanded aliases
-  setopt COMPLETE_IN_WORD  # allow completion from within a word/phrase
-  setopt ALWAYS_TO_END     # when completing from the middle of a word, move the cursor to the end of the word
 
 #== History ================
   setopt APPEND_HISTORY          # history appends to existing file
-  setopt HIST_EXPIRE_DUPS_FIRST  # duplicate history entries lost first
   setopt HIST_FIND_NO_DUPS       # history search finds once only
   setopt HIST_IGNORE_ALL_DUPS    # remove all earlier duplicate lines
-  setopt HIST_IGNORE_SPACE       # don’t store lines starting with space
   setopt HIST_REDUCE_BLANKS      # trim multiple insgnificant blanks in history
-  setopt EXTENDED_HISTORY        # save the time and how long a command ran
-  setopt HIST_IGNORE_SPACE       # lines which begin with a space don't go into the history
-  setopt HIST_NO_STORE           # not to store history or fc commands
+  setopt HIST_NO_STORE           # remove the history (fc -l) command from the history when invoked
 
   HISTFILE=$HOME/.zsh/history    # history file location
   HISTSIZE=1000000               # number of history lines kept internally
   SAVEHIST=1000000               # max number of history lines saved
 
 ################################################################
-# Completion
+# Environment variables
 ################################################################
 
-  # Extra pathes completion
-  fpath=($HOME/.zsh/completions/src $fpath)
+#== ls ================
+  export CLICOLOR=1
+  export LSCOLORS=gxfxcxdxbxegedabagacad
+  export LS_OPTIONS='--color=auto'
+  # Solarized LS_COLORS
+  # https://github.com/seebi/dircolors-solarized
+  dir_colors_path="$HOME/.dircolors-solarized"
+  [ -d $dir_colors_path ] && eval `dircolors $dir_colors_path/dircolors.256dark`
 
-  # load the completion module
-  zstyle :compinstall filename "$HOME/.zshrc"
-  autoload -Uz compinit && compinit
-
-  # insert next character of first match automatically
-  setopt menu_complete  # TODO: check this is usable
-
-  # The zsh/complist module offers three extensions to completion
-  # listings: the ability to highlight matches in such a list, the ability
-  # to scroll through long lists and a different style of menu completion.
-  # http://www.cims.nyu.edu/cgi-systems/info2html?(zsh)The%2520zsh%2Fcomplist%2520Module
-  zmodload zsh/complist  # TODO: is this important?
-
-  # graphical menu for completion list (autoselect first completion on open)
-  #zstyle ':completion:*' menu yes select
-
-  # colorize files completions
-  zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
-  # list of directories to get commands from for sudo
-  zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
-
-  # show menu but don't select first completion
-  zstyle ':completion:*' menu select=1
-  setopt auto_menu
-  unsetopt menu_complete
+#== grep ================
+  export GREP_COLOR='3;33'  # Enable color in grep
 
 ################################################################
 # Aliases
 ################################################################
-  # ls aliases
-  alias ls='ls $LS_OPTIONS'
-  alias ll='ls $LS_OPTIONS -lahF'
-  alias l='ls $LS_OPTIONS -lA'
-  alias lsa='ls $LS_OPTIONS -lah'
 
-  # grep aliases
-  alias grep='grep $GREP_OPTIONS'
-  alias fgrep='fgrep $GREP_OPTIONS'
-  alias egrep='egrep $GREP_OPTIONS'
+#== Tmux ================
+  alias tmux='tmux -2'  # run with 256 colors support
 
-  # tmux
-  alias tmux='tmux -2'  # 256 colors support
-
-  # misc
+#== Misc ================
   alias :q='exit'  # exit
 
 ################################################################
 # Functions
 ################################################################
+
+#== Filesystem ================
   # Create path from string and go to last directory
   function mkcd {
     mkdir -p "$@" && cd $_
   }
 
+#== Internet ================
   # Get favicon by Google Favicons
   function getfavicon() {
     wget "https://www.google.com/s2/favicons?domain=$1" -O "/tmp/$1.png"
@@ -125,10 +96,14 @@
 ################################################################
 # Autostart
 ################################################################
+
+#== Environment ================
   # Ssh-agent
   if [ -z "$SSH_AUTH_SOCK" ]; then
     ssh-agent; ssh-add
   fi
+
+#== Utilities ================
   # Tmux
   if [[ -z "$TMUX" ]]; then
     tmux attach || tmux new-session;

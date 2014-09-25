@@ -28,7 +28,6 @@ Install plugins:
 
 ```
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-wget https://raw.githubusercontent.com/petervanderdoes/git-flow-completion/develop/git-flow-completion.plugin.zsh -O ~/.zsh/custom/git-flow-avh-completion.plugin.zsh
 ```
 
 Apply config:

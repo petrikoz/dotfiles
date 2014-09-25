@@ -1,33 +1,36 @@
 # vim: syntax=zsh
+
 ################################################################
 # Extend '$PATH' variable
 ################################################################
-  # Node Packages Managers
-  export NPM_PACKAGES="$HOME/.npm-packages"
-  if [ -d "$NPM_PACKAGES" ]; then
-    MANPATH="$(manpath):$NPM_PACKAGES/share/man"
-    export NODE_PATH="$NODE_PATH:$NPM_PACKAGES/lib/node_modules"
-    export PATH="$PATH:$HOME/.npm-packages/bin"
-  fi
 
   # Add local programs
-  if [ -d "$HOME/.local/bin" ]; then
-    export PATH="$HOME/.local/bin:$PATH"
-  fi
+  [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 
   # Add RVM
-  if [ -d "$HOME/.rvm/bin" ]; then
-    export PATH="$PATH:$HOME/.rvm/bin"
+  [ -d "$HOME/.rvm/bin" ] && PATH="$HOME/.rvm/bin:$PATH"
+
+  # Node Packages Manager
+  export NPM_PACKAGES="$HOME/.npm-packages"
+  if [ -d "$NPM_PACKAGES" ]; then
+    MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+    export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+    PATH="$HOME/.npm-packages/bin:$PATH"
   fi
 
+  # Apply changes
+  export PATH="$PATH"
+
 ################################################################
-# Variables
+# Completions
+################################################################
+
+  [ -f $HOME/.zsh/completions/src ] && fpath=($HOME/.zsh/completions/src $fpath)
+
+################################################################
+# Environment variables
 ################################################################
   export TERM=xterm-256color  # let the system know how cool we are
-
-  # export LC_ALL=ru_RU.UTF-8  # utf-8 only
-  # export LANG=ru_RU.UTF-8  # it's 21st century now
-  # export LC_COLLATE=C  # CTAGS Sorting in VIM/Emacs is better behaved with this in place
 
   umask 0022  # set permissions for files: 0644, for directories: 0755
 
@@ -36,19 +39,8 @@
 
   export PGHOST=/tmp  # postgres won't work without this
 
-  export CLICOLOR=1
-  export LSCOLORS=gxfxcxdxbxegedabagacad
-  export LS_OPTIONS='--color=auto'
-  # Solarized LS_COLORS
-  # https://github.com/seebi/dircolors-solarized
-  [ -d $HOME/dircolors-solarized ] && eval `dircolors $HOME/dircolors-solarized/dircolors.256dark`
-
-  # Enable color in grep
-  export GREP_OPTIONS='--color=auto'
-  export GREP_COLOR='3;33'
-
-  # Python Virtualenv
-  # https://bitbucket.org/dhellmann/virtualenvwrapper/
+#== VirtualEnvWrapper ================
+# https://bitbucket.org/dhellmann/virtualenvwrapper/
   export PROJECT_HOME=$HOME/work/
   export WORKON_HOME=$HOME/work/.venv/
   export VIRTUAL_ENV_DISABLE_PROMPT=1
