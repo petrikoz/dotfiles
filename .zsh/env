@@ -25,7 +25,7 @@
 # Completions
 ################################################################
 
-  [ -f $HOME/.zsh/completions/src ] && fpath=($HOME/.zsh/completions/src $fpath)
+  [ -d $HOME/.zsh/completions/src ] && fpath=($HOME/.zsh/completions/src $fpath)
 
 ################################################################
 # Environment variables
