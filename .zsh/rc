@@ -55,7 +55,7 @@
 # Environment variables
 ################################################################
 
-#== ls ================
+#== Ls ================
   export CLICOLOR=1
   export LSCOLORS=gxfxcxdxbxegedabagacad
   export LS_OPTIONS='--color=auto'
@@ -64,7 +64,7 @@
   dir_colors_path="$HOME/.dircolors-solarized"
   [ -d $dir_colors_path ] && eval `dircolors $dir_colors_path/dircolors.256dark`
 
-#== grep ================
+#== Grep ================
   export GREP_COLOR='3;33'  # Enable color in grep
 
 ################################################################
@@ -85,6 +85,14 @@
   # Create path from string and go to last directory
   function mkcd {
     mkdir -p "$@" && cd $_
+  }
+
+  # EncFS and ssh-key
+  function encbox {
+    if [ ! "$(ls -A ~/encfs-decripted/dropbox)" ]; then
+      encfs ~/Dropbox ~/encfs-decripted/dropbox
+    fi
+    ssh-add ~/.ssh/id_rsa
   }
 
 #== Internet ================
