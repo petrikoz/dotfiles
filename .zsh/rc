@@ -28,7 +28,6 @@
     git-flow-avh        # support for git-flow-avh completion
     history             # aliases: h for history, hsi for grepping history
     npm                 # support for NodeJS package manager
-    pip                 # support for Python package manager
     rvm                 # support for Ruby version manager
   )
 

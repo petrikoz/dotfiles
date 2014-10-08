@@ -1,9 +1,10 @@
 # vim: syntax=zsh
 
 ################################################################
-# Extend '$PATH' variable
+# Extend pathes
 ################################################################
 
+#== $PATH ================
   # Add local programs
   [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 
@@ -34,14 +35,14 @@
 
   umask 0022  # set permissions for files: 0644, for directories: 0755
 
-  export EDITOR='vim'  # default editor
+  export EDITOR="vim"  # default editor
   export PAGER=less  # default pager
 
   export PGHOST=/tmp  # postgres won't work without this
 
 #== VirtualEnvWrapper ================
 # https://bitbucket.org/dhellmann/virtualenvwrapper/
-  export PROJECT_HOME=$HOME/work/
-  export WORKON_HOME=$HOME/work/.venv/
+  export PROJECT_HOME=$HOME/work
+  export WORKON_HOME=$PROJECT_HOME/.venv/
   export VIRTUAL_ENV_DISABLE_PROMPT=1
   [ -f $HOME/.local/bin/virtualenvwrapper.sh ] && source $HOME/.local/bin/virtualenvwrapper.sh
