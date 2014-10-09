@@ -1,22 +1,13 @@
 {
   "common": {
-    "term_truecolor": true,
-    "dividers": {
-      "left": {
-        "hard": " ",
-        "soft": " "
-      },
-      "right": {
-        "hard": " ",
-        "soft": " "
-      }
-    },
-    "spaces": 1
-  },
-  "ext": {
+    "term_truecolor": true
+    ,"log_file": "/tmp/powerline.log"
+    ,"log_level": "DEBUG"
+  }
+  ,"ext": {
     "tmux": {
-      "colorscheme": "petrikoz",
-      "theme": "petrikoz"
+      "colorscheme": "petrikoz"
+      ,"theme": "petrikoz"
     }
   }
 }

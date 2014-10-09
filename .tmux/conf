@@ -34,12 +34,10 @@
   # default window title colors
   set-window-option -g window-status-fg colour244 #base0
   set-window-option -g window-status-bg default
-  #set-window-option -g window-status-attr dim
 
   # active window title colors
   set-window-option -g window-status-current-fg colour166 #orange
   set-window-option -g window-status-current-bg default
-  #set-window-option -g window-status-current-attr bright
 
   # pane border
   set-option -g pane-border-fg colour235 #base02
@@ -61,14 +59,13 @@
   # Vim-style navigation in copy-mode
   set-window-option -g mode-keys vi
   # reloaded local config
-  bind R confirm-before -p 'Reload config from "~/.tmux.conf" (y/n)?' 'source-file ~/.tmux.conf'
+  bind R source-file ~/.tmux.conf \; display-message 'Reload config from "~/.tmux.conf"...'
   # Un/Zoom current pane
   bind F3 resize-pane -Z
 
 #== Plugins ======================================================================
   # Powerline. https://github.com/Lokaltog/powerline
-  source '/home/petr/.config/powerline/bindings/tmux/powerline.conf'
-  set -g status-left-length 200
+  source "$HOME/.config/powerline/bindings/tmux/powerline.conf"
 
   # List of plugins
   # Supports `github_username/repo` or full git URLs
