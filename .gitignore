@@ -2,6 +2,7 @@
 .vim/*
 !.vim/rc
 !.vim/bundle/Vundle.vim
+!.vim/fortunes
 
 # ZSH
 .zsh/history

@@ -21,6 +21,7 @@
 
   " Common
     Plugin 'tpope/vim-sensible'
+    Plugin 'mhinz/vim-startify'  " Nice start screen
   " Interface
     " Pretty and functionality statusline.
     Plugin 'bling/vim-airline'
@@ -86,6 +87,13 @@
     set background=light  " dark | light
     colorscheme solarized
     call togglebg#map("<F5>") " Toggle dark | light background
+
+  " Startify
+    let g:startify_change_to_dir = 0
+    let g:startify_files_number = 8
+    let g:startify_bookmarks = ['~/.vimrc',]
+    let g:startify_skiplist = ['vimrc',]
+    let g:startify_custom_header = map(split(system('fortune ~/.vim/fortunes | cowsay -W 60'), '\n'), '"   ". v:val') + ['','']
 
 " Common settings
 
