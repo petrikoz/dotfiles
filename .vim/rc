@@ -104,7 +104,22 @@
     let g:startify_files_number = 8
     let g:startify_bookmarks = ['~/.vimrc',]
     let g:startify_skiplist = ['vimrc',]
-    let g:startify_custom_header = map(split(system('fortune ~/.vim/fortunes | cowsay -W 60'), '\n'), '"   ". v:val') + ['','']
+    let g:startify_custom_header = map(
+      \ split(
+        \ system('fortune ~/.vim/fortunes | cowsay -W 60'),
+        \ '\n'),
+      \ '"   ". v:val')
+    \ + ['','']
+    let g:startify_list_order = [
+      \ ['   Last recently modified files in the current directory:'],
+      \ 'dir',
+      \ ['   Last recently opened files:'],
+      \ 'files',
+      \ ['   My sessions:'],
+      \ 'sessions',
+      \ ['   My bookmarks:'],
+      \ 'bookmarks',
+    \ ]
 
 " Common settings
 
