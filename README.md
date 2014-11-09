@@ -2,7 +2,7 @@
 
 My Linux dotfiles.
 
-## Install ##
+## INSTALL ##
 
 ```
 #!shell
@@ -10,7 +10,7 @@ My Linux dotfiles.
 git clone --recursive https://github.com/petrikoz/dotfiles.git ~/.dotfiles
 ```
 
-### VIM ###
+### vim ###
 
 ```
 #!shell
@@ -20,7 +20,7 @@ ln -s ~/.vim/rc ~/.vimrc
 vim +PluginInstall +qall
 ```
 
-### ZSH ###
+### zsh ###
 
 ```
 #!shell
@@ -47,7 +47,7 @@ source ~/.zshenv
 source ~/.zshrc
 ```
 
-### TMUX ###
+### tmux ###
 
 ```
 #!shell
@@ -58,11 +58,20 @@ ln -s ~/.tmux/conf ~/.tmux.conf
 
 Go to `tmux` and press `prefix + I` for install plugins.
 
-### Powerline ###
+### powerline ###
 
 ```
 #!shell
 
 pip install --user git+https://github.com/Lokaltog/powerline
 ln -s ~/.dotfiles/powerline ~/.config/powerline
+```
+
+### ansible ###
+
+```
+#!shell
+
+pip install --user ansible
+ln -s ~/.dotfiles/ansible ~/.ansible
 ```
