@@ -74,4 +74,5 @@ ln -s ~/.dotfiles/powerline ~/.config/powerline
 
 pip install --user ansible
 ln -s ~/.dotfiles/ansible ~/.ansible
+ln -s ~/.ansible/config ~/.ansible.cfg
 ```
