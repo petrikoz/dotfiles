@@ -1,0 +1,10 @@
+# config file for ansible -- http://ansible.com/
+# ==============================================
+
+[defaults]
+
+hostfile       = ~/.ansible/hosts
+
+# additional paths to search for roles in, colon separated
+roles_path    = ~/.ansible/roles
+
