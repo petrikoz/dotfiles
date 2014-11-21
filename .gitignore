@@ -24,3 +24,7 @@ ansible/*
 # PIP
 pip/*
 !pip/reqs.user
+
+# Postgres
+pg/*
+!pg/psqlrc
