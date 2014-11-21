@@ -1,18 +1,20 @@
 # VIM
-.vim/*
-!.vim/rc
-!.vim/bundle/Vundle.vim
-!.vim/fortunes
+vim/*
+!vim/rc
+!vim/bundle/Vundle.vim
+!vim/fortunes
 
 # ZSH
-.zsh/history
-.zsh/custom/*
-!.zsh/custom/petrikoz.zsh-theme
+zsh/history
+zsh/completions/*
+!zsh/completions/zsh-completions
+zsh/custom/*
+!zsh/custom/petrikoz.zsh-theme
 
 # TMUX
-.tmux/*
-!.tmux/conf
-!.tmux/plugins/tpm
+tmux/*
+!tmux/conf
+!tmux/plugins/tpm
 
 # Ansible
 ansible/*

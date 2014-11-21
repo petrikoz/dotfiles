@@ -1,12 +1,12 @@
-[submodule ".vim/bundle/Vundle.vim"]
-	path = .vim/bundle/Vundle.vim
-	url = https://github.com/gmarik/Vundle.vim.git
-[submodule ".zsh/completions"]
-	path = .zsh/completions
-	url = https://github.com/zsh-users/zsh-completions
-[submodule ".tmux/plugins/tpm"]
-	path = .tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm.git
 [submodule "ansible/roles/project"]
 	path = ansible/roles/project
 	url = https://github.com/petrikoz/project
+[submodule "vim/bundle/Vundle.vim"]
+	path = vim/bundle/Vundle.vim
+	url = https://github.com/gmarik/Vundle.vim
+[submodule "tmux/plugins/tpm"]
+	path = tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule "zsh/completions/zsh-completions"]
+	path = zsh/completions/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
