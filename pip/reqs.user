@@ -1,0 +1,16 @@
+# Installation per-user
+# Use: pip install --user -r ~/.pip/reqs.user
+ansible
+fabric
+flake8
+ipdb
+ipython
+mccabe
+pep8
+psycopg2
+pyflakes
+pyyaml
+redis
+virtualenvwrapper
+
+git+git://github.com/Lokaltog/powerline

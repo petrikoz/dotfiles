@@ -20,3 +20,7 @@ tmux/*
 ansible/*
 !ansible/config
 !ansible/roles/project
+
+# PIP
+pip/*
+!pip/reqs.user
