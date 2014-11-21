@@ -26,7 +26,8 @@
 # Completions
 ################################################################
 
-  [ -d $HOME/.zsh/completions/src ] && fpath=($HOME/.zsh/completions/src $fpath)
+  [ -d "$HOME/.zsh/completions" ] && fpath=($HOME/.zsh/completions $fpath)
+  [ -d "$HOME/.zsh/completions/zsh-completions/src" ] && fpath=($HOME/.zsh/completions/zsh-completions/src $fpath)
 
 ################################################################
 # Environment variables
@@ -38,7 +39,9 @@
   export EDITOR="vim"  # default editor
   export PAGER=less  # default pager
 
-  export PGHOST=/tmp  # postgres won't work without this
+  # Postgres
+  # http://www.postgresql.org/docs/current/static/libpq-envars.html
+  export PGHOST=localhost
 
 #== VirtualEnvWrapper ================
 # https://bitbucket.org/dhellmann/virtualenvwrapper/
