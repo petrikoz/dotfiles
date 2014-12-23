@@ -12,8 +12,7 @@ zsh/custom/*
 !zsh/custom/petrikoz.zsh-theme
 
 # TMUX
-tmux/*
-!tmux/conf
+tmux/plugins/*
 !tmux/plugins/colors.conf
 !tmux/plugins/tpm
 
