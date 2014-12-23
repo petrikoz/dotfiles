@@ -5,8 +5,10 @@ fabric
 flake8
 ipdb
 ipython
+lxml
 mccabe
 pep8
+pillow
 psycopg2
 pyflakes
 pyyaml
