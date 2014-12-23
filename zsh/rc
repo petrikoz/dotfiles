@@ -100,18 +100,9 @@
     wget "https://www.google.com/s2/favicons?domain=$1" -O "/tmp/$1.png"
   }
 
-################################################################
-# Autostart
-################################################################
+#== Terminal ================
+  # Run tmux
+  function tmuxrun {
+    tmux attach || tmux new-session
+  }
 
-#== Environment ================
-  # Ssh-agent
-  if [ -z "$SSH_AUTH_SOCK" ]; then
-    ssh-agent; ssh-add
-  fi
-
-#== Utilities ================
-  # Tmux
-  if [[ -z "$TMUX" ]]; then
-    tmux attach || tmux new-session;
-  fi
