@@ -14,6 +14,7 @@ zsh/custom/*
 # TMUX
 tmux/*
 !tmux/conf
+!tmux/plugins/colors.conf
 !tmux/plugins/tpm
 
 # Ansible
