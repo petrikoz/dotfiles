@@ -5,6 +5,8 @@ fabric
 flake8
 ipdb
 ipython
+isort
+joe
 lxml
 mccabe
 pep8
