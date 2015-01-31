@@ -7,6 +7,6 @@
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "zsh/completions/zsh-completions"]
-	path = zsh/completions/zsh-completions
-	url = https://github.com/zsh-users/zsh-completions
+[submodule "zsh/antigen"]
+	path = zsh/antigen
+	url = https://github.com/zsh-users/antigen

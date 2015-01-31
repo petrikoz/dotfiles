@@ -6,10 +6,6 @@ vim/*
 
 # ZSH
 zsh/history
-zsh/completions/*
-!zsh/completions/zsh-completions
-zsh/custom/*
-!zsh/custom/petrikoz.zsh-theme
 
 # TMUX
 tmux/plugins/*

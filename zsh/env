@@ -23,13 +23,6 @@
   export PATH="$PATH"
 
 ################################################################
-# Completions
-################################################################
-
-  [ -d "$HOME/.zsh/completions" ] && fpath=($HOME/.zsh/completions $fpath)
-  [ -d "$HOME/.zsh/completions/zsh-completions/src" ] && fpath=($HOME/.zsh/completions/zsh-completions/src $fpath)
-
-################################################################
 # Environment variables
 ################################################################
   export TERM=xterm-256color  # let the system know how cool we are
