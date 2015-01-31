@@ -1,0 +1,37 @@
+{
+    /*
+    options
+    =======
+    */
+
+    /*
+    The datetime format.
+
+        0: "%Y-%m-%d %H:%M:%S"
+        1: "%Y-%m-%d"
+        2: "%H:%M:%S"
+    */
+    "time_format": 1
+    /*
+    Whether show input panel when you add header. The default file which
+    you add header to is the current file you edit.
+    */
+    ,"show_input_panel_when_add_header": false
+    /*
+    Set your custom template header path here, it is a directory in which
+    you write your own header files. The file name should be a language,
+    "Python.tmpl" for example.
+    */
+    ,"custom_template_header_path": "/home/petr/.config/sublime-text-3/Packages/User/FileHeader/template/header/"
+    /*
+    Variables
+    =========
+    */
+
+    /*
+    Below is the variables you render templater.
+    */
+    ,"Default": {
+        "email": "po.zelenin@gmail.com"
+    }
+}

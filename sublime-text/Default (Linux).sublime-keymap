@@ -1,0 +1,12 @@
+[
+    /****************************************************************
+        Sublime Text 3
+    ****************************************************************/
+    // Project
+    { "keys": ["ctrl+shift+o"], "command": "prompt_add_folder" },
+    // Bookmarks
+    { "keys": ["f2"], "command": "next_bookmark" },
+    { "keys": ["super+f2"], "command": "toggle_bookmark" },
+    { "keys": ["super+shift+f2"], "command": "clear_bookmarks" }
+]
+

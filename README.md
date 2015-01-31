@@ -30,14 +30,6 @@ ln -s ~/.zsh/env ~/.zshenv
 ln -s ~/.zsh/rc ~/.zshrc
 ```
 
-Install plugins:
-
-```
-#!shell
-
-git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-```
-
 Apply config:
 
 ```
@@ -75,4 +67,12 @@ ln -s ~/.dotfiles/powerline ~/.config/powerline
 pip install --user ansible
 ln -s ~/.dotfiles/ansible ~/.ansible
 ln -s ~/.ansible/config ~/.ansible.cfg
+```
+
+### sublime text ###
+
+```
+#!shell
+
+ln -sf ~/.dotfiles/sublime-text  ~/.config/sublime-text-3/Packages/User
 ```

@@ -1,0 +1,15 @@
+{
+	"color_scheme": "Packages/User/SublimeLinter/Solarized (Dark) (SL).tmTheme",
+	"fallback_encoding": "Cyrillic (Windows 1251)",
+	"font_face": "Droid Sans Mono Slashed",
+	"font_size": 9,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Markdown",
+		"Vintage"
+	],
+	"show_encoding": true,
+	"translate_tabs_to_spaces": true,
+	"word_wrap": false
+}

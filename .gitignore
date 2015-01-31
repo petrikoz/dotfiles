@@ -1,26 +1,43 @@
-# VIM
+#== VIM
 vim/*
 !vim/rc
 !vim/bundle/Vundle.vim
 !vim/fortunes
 
-# ZSH
+#== ZSH
 zsh/history
 
-# TMUX
+#== TMUX
 tmux/plugins/*
 !tmux/plugins/colors.conf
 !tmux/plugins/tpm
 
-# Ansible
+#== Ansible
 ansible/*
 !ansible/config
 !ansible/roles/project
 
-# PIP
+#== PIP
 pip/*
 !pip/reqs.user
 
-# Postgres
+#== PSQL
 pg/*
 !pg/psqlrc
+
+#== Sublime Text
+
+# Package Control
+"/sublime-text/Package Control.last-run"
+"/sublime-text/Package Control.ca-list"
+"/sublime-text/Package Control.ca-bundle"
+"/sublime-text/Package Control.system-ca-bundle"
+"/sublime-text/Package Control.cache/"
+"/sublime-text/Package Control.ca-certs/"
+
+# Anaconda
+/sublime-text/PythonTestRunner.last-run
+
+#== Miscelanous
+# KDE Dolphin
+**/.directory

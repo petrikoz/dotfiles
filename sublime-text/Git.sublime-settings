@@ -1,0 +1,4 @@
+{
+    // Show git flow commands
+    "flow": true
+}
