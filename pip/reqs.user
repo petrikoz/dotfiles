@@ -11,6 +11,7 @@ lxml
 mccabe
 pep8
 pillow
+pip-autoremove
 psycopg2
 pyflakes
 pyyaml
