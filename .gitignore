@@ -28,12 +28,12 @@ pg/*
 #== Sublime Text
 
 # Package Control
-"/sublime-text/Package Control.last-run"
-"/sublime-text/Package Control.ca-list"
-"/sublime-text/Package Control.ca-bundle"
-"/sublime-text/Package Control.system-ca-bundle"
-"/sublime-text/Package Control.cache/"
-"/sublime-text/Package Control.ca-certs/"
+'/sublime-text/Package Control.last-run'
+'/sublime-text/Package Control.ca-list'
+'/sublime-text/Package Control.ca-bundle'
+'/sublime-text/Package Control.system-ca-bundle'
+'/sublime-text/Package Control.cache/'
+'/sublime-text/Package Control.ca-certs/'
 
 # Anaconda
 /sublime-text/PythonTestRunner.last-run
