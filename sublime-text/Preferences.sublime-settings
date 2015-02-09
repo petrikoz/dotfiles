@@ -6,8 +6,8 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"Markdown",
-		"Vintage"
+		"Vintage",
+		"Markdown"
 	],
 	"show_encoding": true,
 	"translate_tabs_to_spaces": true,
