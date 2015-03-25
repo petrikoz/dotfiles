@@ -1,8 +1,6 @@
 #== VIM
-vim/*
-!vim/rc
+vim/bundle/*
 !vim/bundle/Vundle.vim
-!vim/fortunes
 
 #== ZSH
 zsh/history
