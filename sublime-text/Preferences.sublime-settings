@@ -1,5 +1,6 @@
 {
 	"color_scheme": "Packages/User/Solarized.tmTheme",
+	"dictionary": "Packages/User/ru_RU.dic",
 	"draw_white_space": "all",
 	"ensure_newline_at_eof_on_save": true,
 	"fallback_encoding": "Cyrillic (Windows 1251)",
@@ -8,9 +9,9 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"Vintage",
 		"RestructuredText",
-		"Markdown"
+		"Markdown",
+		"Vintage"
 	],
 	"show_encoding": true,
 	"translate_tabs_to_spaces": true,
