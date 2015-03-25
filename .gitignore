@@ -29,9 +29,9 @@ pg/*
 
 # Package Control
 /sublime-text/Package\ Control*
+!/sublime-text/Package\ Control.sublime-settings
 /sublime-text/Color\ Highlighter*
-!'/sublime-text/Package Control.sublime-settings'
-
+/sublime-text/**/*.bak
 # Anaconda
 /sublime-text/PythonTestRunner.last-run
 
