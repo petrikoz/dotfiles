@@ -29,6 +29,7 @@ pg/*
 
 # Package Control
 /sublime-text/Package\ Control*
+/sublime-text/Color\ Highlighter*
 !'/sublime-text/Package Control.sublime-settings'
 
 # Anaconda
