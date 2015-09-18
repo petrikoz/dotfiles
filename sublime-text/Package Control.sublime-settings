@@ -1,4 +1,5 @@
 {
+	"bootstrapped": true,
 	"in_process_packages":
 	[
 	],
@@ -7,7 +8,6 @@
 		"Anaconda",
 		"Color Highlighter",
 		"ColorPicker",
-		"DevDocs",
 		"Djaneiro",
 		"Dockerfile Syntax Highlighting",
 		"EditorConfig",
