@@ -8,3 +8,8 @@ hostfile       = ~/.ansible/hosts
 # additional paths to search for roles in, colon separated
 roles_path    = ~/.ansible/roles
 
+transport = ssh
+
+
+[ssh_connection]
+ssh_args = -o ForwardAgent=yes
