@@ -32,6 +32,8 @@ pg/*
 /sublime-text/**/*.bak
 # Anaconda
 /sublime-text/PythonTestRunner.last-run
+# Themes
+/sublime-text/**/*.tmTheme
 
 #== Miscelanous
 # KDE Dolphin
