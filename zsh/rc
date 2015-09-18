@@ -19,6 +19,7 @@
   antigen bundle git-flow-avh       # support for git-flow-avh completion
   antigen bundle history            # aliases: h for history, hsi for grepping history
   antigen bundle npm                # support for NodeJS package manager
+  antigen bundle pip                # support for Python Package Manager
   antigen bundle rvm                # support for Ruby version manager
 
   # Additional completion definitions for Zsh.
