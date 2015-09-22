@@ -84,18 +84,18 @@
     let NERDTreeRespectWildIgnore = 1
 
     " calls NERDTreeFind iff NERDTree is active, current window contains a modifiable file, and we're not in vimdiff
-    function! rc:syncTree()
-      if bufname('%') !~? 'nerd_tree_*'
-        nmap <Bs> :NERDTreeFind<CR>
-      else
-        nmap <Bs> :NERDTreeTabsToggle<CR>
-      endif
-    endfunction
+    "function! rc:syncTree()
+    "  if bufname('%') !~? 'nerd_tree_*'
+    "    nmap <Bs> :NERDTreeFind<CR>
+    "  else
+    "    nmap <Bs> :NERDTreeTabsToggle<CR>
+    "  endif
+    "endfunction
 
-    autocmd BufEnter * call rc:syncTree()
+    "autocmd BufEnter * call rc:syncTree()
 
   " Solarized.
-    set background=dark  " dark | light
+    set background=light  " dark | light
     colorscheme solarized
     call togglebg#map("<F5>") " Toggle dark | light background
 
