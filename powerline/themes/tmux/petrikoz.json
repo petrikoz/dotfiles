@@ -14,6 +14,13 @@
         ,"priority": 50
       }
       ,{
+        "function": "powerline.segments.common.wthr.weather"
+        ,"priority": 50
+        ,"args": {
+          "location_query": "yekaterinburg, russia"
+        }
+      }
+      ,{
         "function": "powerline.segments.common.time.date"
       }
       ,{
