@@ -16,7 +16,6 @@ psycopg2
 pyflakes
 pyyaml
 redis
-virtualenvwrapper
 youtube-dl
 
 git+git://github.com/Lokaltog/powerline
