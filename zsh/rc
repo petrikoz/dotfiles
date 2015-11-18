@@ -36,9 +36,6 @@
 ################################################################
 # Set ZSH options
 ################################################################
-#== Completion ================
-  setopt COMPLETE_ALIASES  # completion uses unexpanded aliases
-
 #== History ================
   setopt APPEND_HISTORY          # history appends to existing file
   setopt HIST_FIND_NO_DUPS       # history search finds once only
