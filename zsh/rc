@@ -88,7 +88,6 @@
     if [ ! "$(ls -A ~/encfs-decripted/dropbox)" ]; then
       encfs ~/Dropbox ~/encfs-decripted/dropbox
     fi
-    ssh-add ~/.ssh/id_rsa
   }
 
 #== Internet ================
