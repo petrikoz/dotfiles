@@ -22,6 +22,12 @@
     PATH="$HOME/.npm-packages/bin:$PATH"
   fi
 
+  # GO
+  if [ -d "$HOME/.go" ]; then
+    export GOPATH="$HOME/.go:$GOPATH"
+    PATH="$HOME/.go/bin:$PATH"
+  fi
+
   # Apply changes
   export PATH="$PATH"
 
