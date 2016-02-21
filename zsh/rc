@@ -88,9 +88,14 @@
 
   # EncFS and ssh-key
   function encbox {
-    if [ ! "$(ls -A ~/encfs-decripted/dropbox)" ]; then
-      encfs ~/Dropbox ~/encfs-decripted/dropbox
+    if [ ! "$(ls -A $HOME/encfs-decripted/dropbox)" ]; then
+      encfs $HOME/Dropbox $HOME/encfs-decripted/dropbox
     fi
+
+    if ! [[ $(ssh-add -l) =~ $HOME/.ssh/id_rsa ]]; then
+      ssh-add $HOME/.ssh/id_rsa
+    fi
+
   }
 
 #== Internet ================
