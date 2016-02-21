@@ -24,7 +24,8 @@
     Plugin 'mhinz/vim-startify'  " Nice start screen
   " Interface
     " Pretty and functionality statusline.
-    Plugin 'bling/vim-airline'
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
     " The best colorscheme.
     Plugin 'altercation/vim-colors-solarized'
     " Python virtualenvs.
@@ -95,7 +96,7 @@
     autocmd BufEnter * call SyncTree()
 
   " Solarized.
-    set background=light  " dark | light
+    set background=dark  " dark | light
     colorscheme solarized
     call togglebg#map("<F5>") " Toggle dark | light background
 
