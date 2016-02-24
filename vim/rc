@@ -96,7 +96,7 @@
     autocmd BufEnter * call SyncTree()
 
   " Solarized.
-    set background=dark  " dark | light
+    set background=light  " dark | light
     colorscheme solarized
     call togglebg#map("<F5>") " Toggle dark | light background
 
