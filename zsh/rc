@@ -57,7 +57,7 @@
   export LS_OPTIONS='--color=auto'
   # Solarized LS_COLORS
   # https://github.com/seebi/dircolors-solarized
-  dir_colors_path="$HOME/.dircolors-solarized"
+  dir_colors_path="$HOME/.zsh/dircolors-solarized"
   [ -d $dir_colors_path ] && eval `dircolors $dir_colors_path/dircolors.256dark`
 
 #== Grep ================
