@@ -23,6 +23,7 @@
 
   # Additional completion definitions for Zsh.
   antigen bundle zsh-users/zsh-completions src
+  antigen bundle sdurrheimer/docker-compose-zsh-completion
 
   # Load the theme.
   antigen theme $HOME/.zsh/themes 'petrikoz' --no-local-clone
