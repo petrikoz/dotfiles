@@ -28,9 +28,6 @@
   # Load the theme.
   antigen theme $HOME/.zsh/themes 'petrikoz' --no-local-clone
 
-  # Autoenv: Directory-based Environments
-  antigen bundle kennethreitz/autoenv
-
   # Tell antigen that you're done.
   antigen apply
 
