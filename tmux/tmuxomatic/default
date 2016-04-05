@@ -1,0 +1,26 @@
+# Default session config.
+# tmuxomatic: https://github.com/oxidane/tmuxomatic
+
+# First window
+window control center
+
+DDDDDHHH
+DDDDDHHH
+DDDDDHHH
+DDDDDHHH
+
+foc
+dir ~
+H run htop
+
+# Second window
+window midnight commander
+
+MMMMMMMM
+MMMMMMMM
+MMMMMMMM
+MMMMMMMM
+
+dir ~
+M run mc
+
