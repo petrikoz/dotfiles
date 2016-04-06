@@ -34,6 +34,8 @@ pg/*
 /sublime-text/PythonTestRunner.last-run
 # Themes
 /sublime-text/**/*.tmTheme
+# GoSublime
+/sublime-text/GoSublime*
 
 #== Miscelanous
 # KDE Dolphin
