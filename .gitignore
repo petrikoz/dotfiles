@@ -13,7 +13,6 @@ tmux/plugins/*
 #== Ansible
 ansible/*
 !ansible/config
-!ansible/roles/project
 
 #== PIP
 pip/*
@@ -22,6 +21,18 @@ pip/*
 #== PSQL
 pg/*
 !pg/psqlrc
+
+#== Ansible
+go/*
+!go/bin
+go/bin/*
+!go/bin/.gitkeep
+!go/pkg
+go/pkg/*
+!go/pkg/.gitkeep
+!go/src
+go/src/*
+!go/src/.gitkeep
 
 #== Sublime Text
 
