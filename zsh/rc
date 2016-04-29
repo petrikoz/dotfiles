@@ -79,11 +79,6 @@
 ################################################################
 
 #== Filesystem ================
-  # Create path from string and go to last directory
-  function mkcd {
-    mkdir -p "$@" && cd $_
-  }
-
   # EncFS and ssh-key
   function encbox {
     if [ ! "$(ls -A $HOME/encfs-decripted/dropbox)" ]; then
@@ -96,15 +91,9 @@
 
   }
 
-#== Internet ================
-  # Get favicon by Google Favicons
-  function getfavicon() {
-    wget "https://www.google.com/s2/favicons?domain=$1" -O "/tmp/$1.png"
-  }
-
 #== Terminal ================
   # Run tmux
   function tmuxrun {
-    tmux attach || tmux new-session
+    tmuxomatic ~/.tmux/tmuxomatic/default
   }
 

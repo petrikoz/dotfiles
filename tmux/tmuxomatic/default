@@ -11,7 +11,8 @@ DDDDDHHH
 
 foc
 dir ~
-H run htop
+H run sudo $(which htop)
+H foc
 
 # Second window
 window midnight commander
