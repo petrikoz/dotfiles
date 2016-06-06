@@ -15,11 +15,11 @@
   #[ -d "$HOME/.rvm/bin" ] && PATH="$HOME/.rvm/bin:$PATH"
 
   # NodeJS
-  export NPM_PACKAGES="$HOME/.npm-packages"
+  export NPM_PACKAGES="$HOME/.npm/packages"
   if [ -d "$NPM_PACKAGES" ]; then
     MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
     export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
-    PATH="$HOME/.npm-packages/bin:$PATH"
+    PATH="$NPM_PACKAGES/bin:$PATH"
   fi
 
   # Golang
