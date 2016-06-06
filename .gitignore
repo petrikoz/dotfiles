@@ -22,7 +22,7 @@ pip/*
 pg/*
 !pg/psqlrc
 
-#== Ansible
+#== Golang
 go/*
 !go/bin
 go/bin/*
@@ -33,6 +33,13 @@ go/pkg/*
 !go/src
 go/src/*
 !go/src/.gitkeep
+
+#== NPM
+npm/*
+!npm/rc
+!npm/packages
+npm/packages/*
+!npm/packages/.gitkeep
 
 #== Sublime Text
 
