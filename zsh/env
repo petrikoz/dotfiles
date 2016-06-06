@@ -22,10 +22,15 @@
     PATH="$HOME/.npm-packages/bin:$PATH"
   fi
 
-  # GO
+  # Golang
   if [ -d "$HOME/.go" ]; then
     export GOPATH="$HOME/.go"
     PATH="$HOME/.go/bin:$PATH"
+  fi
+
+  # Android Studio
+  if [ -d "$HOME/android-studio" ]; then
+    PATH="$HOME/android-studio/bin:$PATH"
   fi
 
   # Apply changes
