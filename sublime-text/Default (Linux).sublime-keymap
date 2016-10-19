@@ -3,6 +3,7 @@
         Sublime Text 3
     ****************************************************************/
     // Project
-    { "keys": ["ctrl+shift+o"], "command": "prompt_add_folder" }
+    { "keys": ["ctrl+shift+o"], "command": "prompt_add_folder" },
+    { "keys": ["ctrl+alt+g"], "command": "goto_definition" }
 ]
 
