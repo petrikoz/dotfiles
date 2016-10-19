@@ -1,5 +1,6 @@
 # Default session config.
 # tmuxomatic: https://github.com/oxidane/tmuxomatic
+session itcase
 
 # First window
 window control center
