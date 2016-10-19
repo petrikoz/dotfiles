@@ -20,6 +20,7 @@
   antigen bundle npm                # support for NodeJS package manager
   antigen bundle pip                # support for Python Package Manager
   antigen bundle rvm                # support for Ruby version manager
+  antigen bundle react-native       # support for React Native CLI
 
   # Additional completion definitions for Zsh.
   antigen bundle zsh-users/zsh-completions src
