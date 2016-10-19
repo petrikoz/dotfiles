@@ -3,12 +3,11 @@
 
 [defaults]
 
-hostfile       = ~/.ansible/hosts
+inventory    = $HOME/.ansible/hosts
+transport = ssh
 
 # additional paths to search for roles in, colon separated
-roles_path    = ~/.ansible/roles
-
-transport = ssh
+roles_path    = $HOME/.ansible/roles
 
 
 [ssh_connection]
