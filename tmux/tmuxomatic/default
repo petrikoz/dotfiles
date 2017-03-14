@@ -12,6 +12,7 @@ DDDDDHHH
 
 foc
 dir ~
+D run encbox
 H run sudo $(which htop)
 H foc
 
