@@ -7,15 +7,9 @@ ipdb
 ipython
 isort
 joe
-lxml
 mccabe
 pep8
-pillow
 pip-autoremove
-psycopg2
+powerline-status
 pyflakes
-pyyaml
-redis
-youtube-dl
-
-git+git://github.com/Lokaltog/powerline
+tmuxomatic
