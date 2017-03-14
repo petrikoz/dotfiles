@@ -22,6 +22,10 @@
   fi
 
   # Golang
+  if [ -d "$HOME/.local/go" ]; then
+    export GOROOT="$HOME/.local/go"
+    PATH="$GOROOT/bin:$PATH"
+  fi
   if [ -d "$HOME/.go" ]; then
     export GOPATH="$HOME/.go"
     PATH="$HOME/.go/bin:$PATH"
