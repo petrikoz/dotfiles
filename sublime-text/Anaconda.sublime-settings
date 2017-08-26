@@ -1,6 +1,4 @@
 {
-    "hide_snippets_on_completion": true,
-
     /*
         Python Builder Options
 
@@ -29,5 +27,43 @@
         "E501"
     ],
     // Set is a false to disable Anaconda Linting totally
-    "anaconda_linting": false
+    "anaconda_linting": false,
+
+    /*
+        If 'outline' (default), anaconda will outline error lines.
+        If 'fill', anaconda will fill the lines.
+        If 'solid_underline', anaconda will draw a solid underline below regions.
+        If 'stippled_underline', anaconda will draw a stippled underline below regions.
+        If 'squiggly_underline', anaconda will draw a squiggly underline below regions.
+        If 'none', anaconda will not draw anything on error lines.
+    */
+    "anaconda_linter_mark_style": "none",
+
+    /*
+        If anaconda_linter_show_errors_on_save is set to true, anaconda
+        will show a list of errors when you save the file.
+
+        This is disabled by default.
+    */
+    "anaconda_linter_show_errors_on_save": true,
+
+    // Set this to true to turn pep257 checking on.
+    "pep257": true,
+
+    /*
+        A list of pep257 error numbers to ignore.
+
+        The list can be found here: https://github.com/GreenSteam/pep257/#error-codes
+
+        D209: Multi-line docstring should end with 1 blank line is ignored by
+        default as this rule has been deprecated.
+
+        D203: 1 blank line before class docstring is ignored by default, as
+        this rule has been deprecated.
+    */
+    "pep257_ignore":
+    [
+        "D203",
+        "D209"
+    ]
 }
