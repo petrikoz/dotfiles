@@ -1,6 +1,6 @@
 {
 	"color_scheme": "Packages/User/SublimeLinter/Solarized (Light) (SL).tmTheme",
-	"dictionary": "Packages/User/ru_RU.dic",
+	"dictionary": "Packages/Language - English/en_US.dic",
 	"draw_white_space": "all",
 	"ensure_newline_at_eof_on_save": true,
 	"font_face": "Droid Sans Mono Slashed for Powerline",
@@ -11,8 +11,8 @@
 		"RestructuredText",
 		"Vintage"
 	],
+	"show_definitions": false,
 	"show_encoding": true,
 	"translate_tabs_to_spaces": true,
-	"trim_trailing_white_space_on_save": true,
-	"word_wrap": false
+	"trim_trailing_white_space_on_save": true
 }
