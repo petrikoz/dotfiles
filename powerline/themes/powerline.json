@@ -12,10 +12,7 @@
   }
   ,"spaces": 1
   ,"segment_data": {
-    "branch": {
-      "before": " "
-    }
-    ,"time": {
+    "time": {
       "before": "⌚ "
     }
     ,"powerline.segments.common.net.network_load": {
@@ -26,12 +23,6 @@
     }
     ,"powerline.segments.common.sys.uptime": {
       "before": "⇑ "
-    }
-    ,"powerline.segments.common.env.virtualenv": {
-      "before": "ⓔ  "
-    }
-    ,"powerline.segments.common.net.hostname": {
-      "before": " "
     }
   }
 }
