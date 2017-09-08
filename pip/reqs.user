@@ -1,7 +1,7 @@
 # Installation per-user
 # Use: pip install --user -r ~/.pip/reqs.user
 ansible
-fabric
+fabric3
 flake8
 ipdb
 ipython
@@ -9,7 +9,6 @@ isort
 joe
 mccabe
 pep8
-pip-autoremove
 powerline-status
 pyflakes
 tmuxomatic
