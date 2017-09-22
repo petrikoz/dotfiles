@@ -1,6 +1,7 @@
 # Installation per-user
 # Use: pip install --user -r ~/.pip/reqs.user
 ansible
+docker-compose
 fabric3
 flake8
 http-prompt
@@ -10,6 +11,7 @@ isort
 joe
 mccabe
 pep8
+pgcli
 powerline-status
 pyflakes
 tmuxomatic
