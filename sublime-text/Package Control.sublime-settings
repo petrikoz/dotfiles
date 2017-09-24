@@ -20,6 +20,7 @@
 		"Package Control",
 		"Solarized Color Scheme",
 		"SublimeLinter",
+		"SublimeLinter-contrib-eslint",
 		"SublimeLinter-json",
 		"SublimeLinter-pep8",
 		"SublimeLinter-pyflakes",
