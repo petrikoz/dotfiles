@@ -10,8 +10,7 @@ ipython
 isort
 joe
 mccabe
-pep8
 pgcli
 powerline-status
-pyflakes
+pydocstyle
 tmuxomatic
