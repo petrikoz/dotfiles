@@ -6,10 +6,9 @@ fabric3
 flake8
 http-prompt
 ipdb
-ipython
+ptpython
 isort
 joe
-mccabe
-pgcli
 powerline-status
+pydocstyle
 tmuxomatic
