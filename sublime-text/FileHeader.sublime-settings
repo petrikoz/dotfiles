@@ -32,6 +32,7 @@
     Below is the variables you render templater.
     */
     ,"Default": {
-        "email": "po.zelenin@gmail.com"
+        "author": "Petr Zelenin",
+        "email": "po.zelenin@gmail.com",
     }
 }
