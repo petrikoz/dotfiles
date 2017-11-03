@@ -6,6 +6,7 @@
 	"installed_packages":
 	[
 		"Anaconda",
+		"AutoDocstring",
 		"Babel",
 		"Djaneiro",
 		"Dockerfile Syntax Highlighting",
