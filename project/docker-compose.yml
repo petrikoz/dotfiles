@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+
+  postgres:
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: project-password
+      POSTGRES_USER: project
+
+  redis:
+    image: redis:alpine
+
+  project:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      PYTHONPATH: '/third-party-module'
+    ports:
+      - '8000:8000'
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./src:/code
+      - ./tmp:/tmp-host
+
+      - ./third-party/module:/third-party-module
+

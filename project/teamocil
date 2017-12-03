@@ -1,0 +1,13 @@
+windows:
+  - name: project
+    root: ~/path-to-project
+    layout: main-vertical
+    panes:
+      - fab django_server
+      - focus: true
+        commands:
+          - cd src
+          - gss
+          - ggpull
+      - ls -l
+

@@ -1,0 +1,34 @@
+{
+    "folders":
+    [
+        {
+            "file_exclude_patterns": [
+                "**/__*.css*",
+            ],
+            "folder_exclude_patterns": [
+                "__build",
+                "__pycache__",
+                "example",
+                "node_modules",
+            ],
+            "follow_symlinks": true,
+            "path": "."
+        }
+    ],
+    "settings":
+    {
+        "python_interpreter": "python3",
+        "extra_paths": [
+            "${project}",
+            "${project}/itcase-dev/*",
+        ]
+    },
+    "SublimeLinter":
+    {
+        "linters":
+        {
+            "flake8": {"show-code": true}
+        }
+    }
+}
+
