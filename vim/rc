@@ -19,35 +19,34 @@
 
   " Keep Plugin commands between vundle#begin/end.
 
-  " Common
     Plugin 'tpope/vim-sensible'
-    Plugin 'mhinz/vim-startify'  " Nice start screen
-  " Interface
+
+    " Nice start screen
+    Plugin 'mhinz/vim-startify'  
+
     " Pretty and functionality statusline.
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
+
     " The best colorscheme.
     Plugin 'altercation/vim-colors-solarized'
-    " Python virtualenvs.
-    Plugin 'jmcantrell/vim-virtualenv'
-  " Environment
+
     " Perform all your vim insert mode completions with Tab
     Plugin 'ervandew/supertab'
+
     " Shows 'Nth match out of M' at every search
     Plugin 'vim-scripts/IndexedSearch'
-    " RegExp search
-    Plugin 'mileszs/ack.vim'
+
     " NERDTree. A tree explorer plugin
     Plugin 'scrooloose/nerdtree'
     Plugin 'jistr/vim-nerdtree-tabs'
-  " VCS
-    " The best git wrapper for Vim.
-    Plugin 'tpope/vim-fugitive'
+
     " Show added / changed / deleted rows by Git.
     Plugin 'airblade/vim-gitgutter'
-  " Coding
+
     " Best syntax checker
     Plugin 'scrooloose/syntastic'
+
     " Easy config code style
     Plugin 'editorconfig/editorconfig-vim'
 
