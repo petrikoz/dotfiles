@@ -19,6 +19,7 @@
 		"Jinja2",
 		"nginx",
 		"Package Control",
+		"PgSQL",
 		"Solarized Color Scheme",
 		"SublimeLinter",
 		"SublimeLinter-contrib-eslint",
