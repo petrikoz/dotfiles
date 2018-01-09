@@ -1,6 +1,4 @@
-*
-!.gitignore
-!plugins
 plugins/*
 !plugins/colors.conf
 !plugins/tpm
+resurrect/*

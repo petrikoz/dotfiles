@@ -1,0 +1,11 @@
+# Package Control
+Package\ Control*
+!Package\ Control.sublime-settings
+Color\ Highlighter*
+*.bak
+# Anaconda
+PythonTestRunner.last-run
+# Themes
+*.tmTheme
+# GoSublime
+GoSublime*
