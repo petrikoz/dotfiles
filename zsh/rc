@@ -90,9 +90,3 @@
     fi
   }
 
-#== Terminal ================
-  # Run tmux
-  function tmuxrun {
-    tmuxomatic ~/.tmux/tmuxomatic/default
-  }
-

@@ -22,8 +22,13 @@
   #   github_username/plugin_name
   #   git@github.com/user/plugin
   #   git@bitbucket.com/user/plugin
-  set -g @tpm_plugins "  \
-    tmux-plugins/tpm  \
-    tmux-plugins/tmux-copycat  \
+  set -g @tpm_plugins "          \
+    tmux-plugins/tpm             \
+    tmux-plugins/tmux-copycat    \
+    tmux-plugins/tmux-resurrect  \
   "
+  
+  # Tmux Resurrect: https://github.com/tmux-plugins/tmux-resurrect
+  set -g @resurrect-processes 'mc "sudo htop"'
+
   run-shell "$HOME/.tmux/plugins/tpm/tpm"
