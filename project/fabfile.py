@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2017 Petr Zelenin (po.zelenin@gmail.com)
+# Copyright 2018 Petr Zelenin (po.zelenin@gmail.com)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -143,4 +143,25 @@ def psql(args=''):
     prefix = prefix.format(compose=env.compose, service=env.db_service)
 
     return local('%s psql --dbname=%s %s' % (prefix, env.project, args))
+
+
+@task
+def loadsql(filepath):
+    """Load data form SQL-file into DB.
+
+    Args:
+        filepath (string): Path to SQL-file.
+
+    """
+    _cat = 'cat %s' % filepath
+
+    _exec = '{docker} exec -iu {db_service} {project}-{db_service}'
+    _exec = _exec.format(docker=env.docker, db_service=env.db_service,
+                         project=env.project)
+
+    _psql = 'psql -U {project} -d {project}'
+    _psql = _psql.format(project=env.project)
+
+    command = '{cat} | {exec} {psql}'.format(cat=_cat, exec=_exec, psql=_psql)
+    return local(command)
 
