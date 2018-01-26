@@ -1,0 +1,12 @@
+# Used immediatly after start new tmux:
+# teamocil --here tmux-initial
+windows:
+  - name: Control
+    root: ~
+    layout: main-vertical
+    panes:
+      - encbox
+      - sudo htop
+  - name: MC
+    panes:
+      - mc
