@@ -76,6 +76,7 @@
   alias mc='mc --nomouse'  # disable mouse
 
 #== Misc ================
+  alias grv='~/.local/bin/grv'
   alias :q='exit'  # exit
 
 ################################################################
