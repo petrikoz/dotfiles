@@ -5,8 +5,12 @@ windows:
     root: ~
     layout: main-vertical
     panes:
-      - encbox
+      - focus: true
+        commands:
+          - todo.sh list @Дела
+          - encbox
       - sudo htop
   - name: MC
+    root: ~
     panes:
       - mc
