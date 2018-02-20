@@ -3,12 +3,12 @@
 windows:
   - name: Control
     root: ~
-    layout: main-vertical
+    layout: even-horizontal
     panes:
       - focus: true
         commands:
-          - todo.sh list @Дела
           - encbox
+          - todo.sh list @Дела
       - sudo htop
   - name: MC
     root: ~
