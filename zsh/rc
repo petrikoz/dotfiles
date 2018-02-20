@@ -83,11 +83,15 @@
 # Functions
 ################################################################
 
-#== Filesystem ================
-  # EncFS and ssh-key
+# EncFS from Dropbox
   function encbox {
     if [ ! "$(ls -A $HOME/encfs-decripted/dropbox)" ]; then
       encfs $HOME/Dropbox $HOME/encfs-decripted/dropbox
     fi
+  }
+
+# TMUX
+  function tmuxrun {
+    tmux new 'teamocil tmux-init'
   }
 
