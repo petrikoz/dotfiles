@@ -1,0 +1,12 @@
+// SublimeLinter Settings - User
+{
+    "linters": {
+        "flake8": {
+            "show-code": true,
+        },
+    },
+    // Provide extra paths to be searched when locating system executables.
+    "paths": {
+        "linux": ["~/.local/bin"],
+    },
+}
