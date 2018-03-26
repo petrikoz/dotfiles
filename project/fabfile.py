@@ -34,7 +34,7 @@ def get_container_id(options='--all --quiet'):
 
 
 @task
-def project_exec(command, options='--interactive --tty'):
+def project_exec(command, options='--interactive --tty --user root'):
     """Exec command in project-server container."""
     from fabric.colors import yellow
 
