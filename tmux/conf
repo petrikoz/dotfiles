@@ -11,20 +11,8 @@
   bind F3 resize-pane -Z
 
 #== Plugins ======================================================================
-  source "$HOME/.tmux/plugins/colors.conf"
+  source "$HOME/.tmux/colors.conf"
 
   # Powerline. https://github.com/Lokaltog/powerline
   source "$HOME/.config/powerline/bindings/tmux/powerline.conf"
 
-  # Tmux Plugin Manager. https://github.com/tmux-plugins/tpm
-  # List of plugins. Supports `github_username/repo` or full git URLs
-  # Examples:
-  #   github_username/plugin_name
-  #   git@github.com/user/plugin
-  #   git@bitbucket.com/user/plugin
-  set -g @tpm_plugins "          \
-    tmux-plugins/tpm             \
-    tmux-plugins/tmux-copycat    \
-  "
-
-  run-shell "$HOME/.tmux/plugins/tpm/tpm"
