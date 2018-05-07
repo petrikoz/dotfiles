@@ -73,7 +73,7 @@ def django_server(recreate=False):
         options = '--name %s --service-ports' % env.container
         prefix = '%s run %s %s' % (env.compose, options, env.project)
         command = 'runserver 0.0.0.0:8000'
-        return local('%s python manage.py %s' % (prefix, command))
+        return local('%s python -Walways manage.py %s' % (prefix, command))
 
     local('%s start %s' % (env.compose, ' '.join(env.services)))
 
