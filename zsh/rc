@@ -17,10 +17,8 @@
   antigen bundle git                # support for git
   antigen bundle git-flow-avh       # support for git-flow-avh completion
   antigen bundle history            # aliases: h for history, hsi for grepping history
-  antigen bundle npm                # support for NodeJS package manager
   antigen bundle pip                # support for Python Package Manager
   antigen bundle rvm                # support for Ruby version manager
-  antigen bundle react-native       # support for React Native CLI
 
   # Additional completion definitions for Zsh.
   antigen bundle zsh-users/zsh-completions src
@@ -29,7 +27,7 @@
   # Load the theme.
   #antigen theme $HOME/.zsh/themes 'petrikoz' --no-local-clone
   POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time)
+  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs time)
   antigen theme bhilburn/powerlevel9k powerlevel9k
 
   # Tell antigen that you're done.
