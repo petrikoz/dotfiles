@@ -5,8 +5,14 @@
             "show-code": true,
         },
     },
+
     // Provide extra paths to be searched when locating system executables.
     "paths": {
         "linux": ["~/.local/bin"],
     },
+
+    // Determines what happens when a linter reports a problem without column.
+    // By default, a mark is put in the gutter and the first character is highlighted.
+    // If this setting is `true`, the entire line is also highlighted.
+    "no_column_highlights_line": true,
 }
