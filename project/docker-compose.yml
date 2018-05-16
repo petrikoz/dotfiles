@@ -8,6 +8,8 @@ services:
     environment:
       POSTGRES_PASSWORD: project-password
       POSTGRES_USER: project
+    volumes:
+      - ./tmp:/tmp-host
 
   redis:
     image: redis:alpine

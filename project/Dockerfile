@@ -2,14 +2,14 @@ FROM python:latest
 
 MAINTAINER Petr Zelenin (po.zelenin@gmail.com)
 
-### Directories
+### Global
+RUN pip install --upgrade pip ptpython ipdb
+RUN pip install --upgrade django-extensions
+
+### Project
 RUN mkdir /code
 COPY ./src/requirements.txt /code/
-
-### Requirements
 RUN pip install -r /code/requirements.txt
-RUN pip install --upgrade pip django-extensions
-RUN pip install --upgrade ptpython ipdb
 
 ### User
 ENV HOME_USER user
