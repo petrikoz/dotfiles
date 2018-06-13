@@ -4,6 +4,14 @@
         "flake8": {
             "show-code": true,
         },
+        "pydocstyle": {
+            // Lint Mode determines when the linter is run.
+            // - background: asynchronously on every change
+            // - load_save: when a file is opened and every time it's saved
+            // - manual: only when calling the Lint This View command
+            // - save: only when a file is saved
+            "lint_mode": "manual",
+        },
     },
 
     // Provide extra paths to be searched when locating system executables.
@@ -15,4 +23,10 @@
     // By default, a mark is put in the gutter and the first character is highlighted.
     // If this setting is `true`, the entire line is also highlighted.
     "no_column_highlights_line": true,
+
+    // Show the output panel on save if there are problems.
+    // - window: check if the window has problems.
+    // - view: only check the current file.
+    // - never: disable this feature.
+    "show_panel_on_save": "view",
 }
