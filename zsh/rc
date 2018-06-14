@@ -26,8 +26,8 @@
 
   # Load the theme.
   #antigen theme $HOME/.zsh/themes 'petrikoz' --no-local-clone
-  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs)
-  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs ssh time)
+  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs dir_writable root_indicator ssh time)
   antigen theme bhilburn/powerlevel9k powerlevel9k
 
   # Tell antigen that you're done.
