@@ -34,7 +34,7 @@ fonts
 
 .. code-block:: shell
 
-    ln -s ~/dotfiles/fonts ~/.fonts
+    ln -s $HOME/dotfiles/fonts $HOME/.fonts
     fc-cache -f -v
 
 golang
@@ -43,7 +43,7 @@ golang
 .. code-block:: shell
 
     sudo apt install golang-go
-    ln -s ~/dotfiles/go ~/.go
+    ln -s $HOME/dotfiles/go $HOME/.go
 
 i3wm
 ----
@@ -64,10 +64,10 @@ python
     sudo apt install python3 python3-dev python3-pip
     pip3 install --upgrade --user pip
 
-    ln -s ~/dotfiles/pip ~/.pip
-    pip install --requirement=~/.pip/requirements.txt
+    ln -s $HOME/dotfiles/pip $HOME/.pip
+    pip install --requirement=$HOME/.pip/requirements.txt
 
-    ln -s ~/dotfiles/isort.cfg ~/.isort.cfg
+    ln -s $HOME/dotfiles/isort.cfg $HOME/.isort.cfg
 
 smplayer
 --------
@@ -87,7 +87,7 @@ sublime text
     echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
     sudo apt update
     sudo apt install sublime-text
-    ln -sf ~/dotfiles/sublime-text  ~/.config/sublime-text-3/Packages/User
+    ln -sf $HOME/dotfiles/sublime-text  $HOME/.config/sublime-text-3/Packages/User
 
 tmux
 ----
@@ -95,8 +95,8 @@ tmux
 .. code-block:: shell
 
     sudo apt install tmux
-    ln -s ~/dotfiles/tmux ~/.tmux
-    ln -s ~/.tmux/conf ~/.tmux.conf
+    ln -s $HOME/dotfiles/tmux $HOME/.tmux
+    ln -s $HOME/.tmux/conf $HOME/.tmux.conf
 
 vim
 ---
@@ -104,8 +104,8 @@ vim
 .. code-block:: shell
 
     sudo apt install vim
-    ln -s ~/dotfiles/vim ~/.vim
-    ln -s ~/.vim/rc ~/.vimrc
+    ln -s $HOME/dotfiles/vim $HOME/.vim
+    ln -s $HOME/.vim/rc $HOME/.vimrc
 
 zsh
 ---
@@ -113,6 +113,6 @@ zsh
 .. code-block:: shell
 
     sudo apt install zsh
-    ln -s ~/dotfiles/zsh ~/.zsh
-    ln -s ~/.zsh/env ~/.zshenv
-    ln -s ~/.zsh/rc ~/.zshrc
+    ln -s $HOME/dotfiles/zsh $HOME/.zsh
+    ln -s $HOME/.zsh/env $HOME/.zshenv
+    ln -s $HOME/.zsh/rc $HOME/.zshrc
