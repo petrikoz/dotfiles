@@ -29,6 +29,14 @@ common
         telegram-desktop \
         update-notifier-common
 
+fonts
+-----
+
+.. code-block:: shell
+
+    ln -s ~/dotfiles/fonts ~/.fonts
+    fc-cache -f -v
+
 golang
 ------
 
