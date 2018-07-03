@@ -34,7 +34,7 @@ def get_container_id(options='--all --quiet'):
 
 
 @task
-def project_exec(command, options='--interactive --tty'):
+def project_exec(command, options='--interactive --tty', user=None):
     """Exec command in project-server container."""
     from fabric.colors import yellow
 
@@ -42,6 +42,9 @@ def project_exec(command, options='--interactive --tty'):
     if not container_id:
         print(yellow('You must run "django_server" first'))
         return
+
+    if user is not None:
+        options += ' --user %s' % user
 
     prefix = '%s exec %s %s' % (env.docker, options, container_id)
 
