@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[
+PROJECT=${1:project}; psql -h localhost -U $PROJECT -d $PROJECT -f /tmp/$PROJECT.sql --echo-errors
+]]></content>
+    <tabTrigger>psql</tabTrigger>
+    <scope>source.shell</scope>
+    <description>Restore dump with `psql`</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[
+PROJECT=${1:project}; pg_dump -h localhost -U $PROJECT -d $PROJECT -f /tmp/$PROJECT.sql -bcOv
+]]></content>
+    <tabTrigger>pgdump</tabTrigger>
+    <scope>source.shell</scope>
+    <description>Create dump with `pg_dump`</description>
+</snippet>
