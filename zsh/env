@@ -24,9 +24,6 @@
     PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
   fi
 
-  # Apply changes
-  #export PATH="$PATH"
-
 ################################################################
 # Environment variables
 ################################################################
