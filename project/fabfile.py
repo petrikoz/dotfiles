@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from distutils.util import strtobool
+
 from fabric.api import env
 from fabric.decorators import task
 from fabric.operations import local
@@ -26,6 +28,10 @@ env.db_service = 'postgres'
 env.services = ('redis', env.db_service)
 
 
+def _prep_bool_arg(arg):
+    return bool(strtobool(str(arg)))
+
+
 def get_container_id(options='--all --quiet'):
     """Return ID of project-server container."""
     prefix = '%s ps %s' % (env.docker, options)
@@ -34,7 +40,7 @@ def get_container_id(options='--all --quiet'):
 
 
 @task
-def project_exec(command, options='--interactive --tty'):
+def project_exec(command, options='--interactive --tty', user=None):
     """Exec command in project-server container."""
     from fabric.colors import yellow
 
@@ -43,23 +49,34 @@ def project_exec(command, options='--interactive --tty'):
         print(yellow('You must run "django_server" first'))
         return
 
+    if user is not None:
+        options += ' --user %s' % user
+
     prefix = '%s exec %s %s' % (env.docker, options, container_id)
 
     return local('%s %s' % (prefix, command))
 
 
 @task
-def django_exec(command):
+def django_exec(command, pdb=False):
     """Run any command as suffix for manage.py in project-server container.
 
     Ex.: django_exec:help -> python manage.py help
     """
-    return project_exec('python manage.py %s' % command)
+    pdb = _prep_bool_arg(pdb)
+
+    options = {'command': command, 'pdb': ''}
+
+    if pdb:
+        options['pdb'] = '-m ipdb -c continue'
+
+    return project_exec('python %(pdb)s manage.py %(command)s' % options)
 
 
 @task(default=True)
 def django_server(recreate=False):
     """Start Django's development server."""
+    recreate = _prep_bool_arg(recreate)
     container_id = get_container_id()
 
     if recreate:
@@ -139,8 +156,8 @@ def compose_bash(command, entrypoint='/bin/bash'):
 @task
 def psql(args=''):
     """Run utilite 'psql' into database service."""
-    prefix = '{compose} exec --user {service} {service}'
-    prefix = prefix.format(compose=env.compose, service=env.db_service)
+    prefix = '%(compose)s exec --user %(service)s %(service)s'
+    prefix = prefix % {'compose': env.compose, 'service': env.db_service}
 
     return local('%s psql --dbname=%s %s' % (prefix, env.project, args))
 
@@ -159,9 +176,9 @@ def loadsql(filepath):
     _exec = _exec.format(docker=env.docker, db_service=env.db_service,
                          project=env.project)
 
-    _psql = 'psql -U {project} -d {project}'
-    _psql = _psql.format(project=env.project)
+    _psql = 'psql -U %(project)s -d %(project)s'
+    _psql = _psql % {'project': env.project}
 
-    command = '{cat} | {exec} {psql}'.format(cat=_cat, exec=_exec, psql=_psql)
-    return local(command)
+    command = {'cat': _cat, 'exec': _exec, 'psql': _psql}
 
+    return local('%(cat)s | %(exec)s %(psql)s' % command)
