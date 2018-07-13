@@ -32,5 +32,4 @@
 
   export EDITOR="vim"         # default editor
   export PAGER=less           # default pager
-  export TERM=xterm-256color  # let the system know how cool we are
 
