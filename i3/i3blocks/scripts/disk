@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+#
+# Show free space in Solarized Dark colorscheme
+
+crit_color="#DC322F"
+crit_threshold=90    # %
+
+warn_color="#B58900"
+warn_threshold=75    # %
+
+data="$(df -hlP ${BLOCK_INSTANCE:-$HOME})"
+size="$(echo "$data" | awk '/\/.*/ { print $4 }')"
+use="$(echo "$data" | awk '/\/.*/ { gsub(/%$/, "", $5); print $5 }')"
+
+echo "$size ($use%)"
+echo "$size ($use%)"
+
+if [[ "$use" -ge "$crit_threshold" ]] ; then
+  echo "$crit_color"
+  exit 33
+fi
+
+[[ "$use" -ge "$warn_threshold" ]] && echo "$warn_color"
+
+exit 0

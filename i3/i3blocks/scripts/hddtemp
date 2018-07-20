@@ -1,0 +1,44 @@
+#!/usr/bin/env zsh
+#
+# Show temperature of HDD in Solarized Dark colorscheme
+#
+# Requirements:
+#  `hddtemp` as service:
+#    sudo pacman -S hddtemp
+#    sudo systemctl enable hddtemp.service
+#    sudo systemctl start hddtemp.service
+#  `netcat`:
+#    sudo pacman -S gnu-netcat
+#  Font with support of icons:
+#    if you not see $LABEL below use other font :)
+
+crit_color="#DC322F"
+crit_label=""
+crit_threshold=60    # °C
+
+label=""
+
+warn_color="#B58900"
+warn_label=""
+warn_threshold=50    # °C
+
+temperature="$(nc localhost 7634 | awk -F'|' '{print $4}')"
+
+if [[ "$temperature" -ge "$warn_threshold" ]] ; then
+  color="$warn_color"
+  label="$warn_label"
+fi
+
+if [[ "$temperature" -ge "$crit_threshold" ]] ; then
+  crit=true
+  color="$crit_color"
+  label="$crit_label"
+fi
+
+echo "$label $temperature°C"
+echo "$label $temperature°C"
+
+[[ -n $color ]] && echo "$color"
+[[ "$crit" = true ]] && exit 33
+
+exit 0

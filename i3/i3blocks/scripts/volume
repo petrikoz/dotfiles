@@ -1,0 +1,24 @@
+#!/usr/bin/env zsh
+#
+# Show audio volume in Solarized Dark colorscheme
+
+label="蓼"
+
+muted_color="#B58900"
+muted_label="遼"
+
+data="$(pacmd list-sinks)"
+volume="$(echo "$data" | awk -F '/' '/volume: front/ { gsub(/%|[[:blank:]]/, "", $2); print $2 }')"
+muted="$(echo "$data" | awk '/muted:/ {print $2}')"
+
+if [[ "$muted" =~ "yes" ]] ; then
+  color="$muted_color"
+  label="$muted_label"
+fi
+
+echo "$label $volume%" # full_text
+echo "$label $volume%" # short_text
+
+[[ -n "$color" ]] && echo "$color"
+
+exit 0

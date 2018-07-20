@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+# Based on https://github.com/vivien/i3blocks-contrib
+
+LOAD="$(cut -d ' ' -f1 /proc/loadavg)"
+CPUS="$(nproc)"
+
+# full text
+echo "$LOAD"
+
+# short text
+echo "$LOAD"
+
+# color if load is too high
+awk -v cpus=$CPUS -v cpuload=$LOAD '
+    BEGIN {
+        if (cpus <= cpuload) {
+            print "#DC322F";
+            exit 33;
+        }
+    }
+'

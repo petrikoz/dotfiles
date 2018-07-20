@@ -13,6 +13,10 @@ set $mod Mod4
 
 set $font 'DejaVuSansMono Nerd Font'
 
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:$font 8
+
 # start a terminal
 bindsym $mod+Return exec st -f $font
 
@@ -28,9 +32,9 @@ bindsym $mod+d exec rofi -show combi
 # fn keys on laptop
 #################
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym  XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume 0 +5%    && pkill -RTMIN+1 i3blocks
+bindsym  XF86AudioLowerVolume  exec --no-startup-id pactl set-sink-volume 0 -5%    && pkill -RTMIN+1 i3blocks
+bindsym  XF86AudioMute         exec --no-startup-id pactl set-sink-volume 0 toggle && pkill -RTMIN+1 i3blocks
 
 ###############################################################
 # Shutdown, reboot, lock screen
@@ -55,87 +59,91 @@ mode "$mode_system" {
 # solarized theme for i3 by lasers
 # https://github.com/okraits/j4-make-config/blob/master/themes/solarized_dark
 
+# $i3-status
+#color_bad = "#DC322F"
+#color_degraded = "#B58900"
+#color_good = "#859900"
+
+# $i3-theme-window
 # solarized accents
-set $yellow  #b58900
-set $orange  #cb4b16
-set $red     #dc322f
-set $magenta #d33682
-set $violet  #6c71c4
-set $blue    #268bd2
-set $cyan    #2aa198
-set $green   #859900
+set  $yellow   #B58900
+set  $orange   #CB4B16
+set  $red      #DC322F
+set  $magenta  #D33682
+set  $violet   #6C71C4
+set  $blue     #268BD2
+set  $cyan     #2AA198
+set  $green    #859900
 
 # solarized dark
-set $baseA3 #002b36
-set $baseA2 #073642
-set $baseA1 #586e75
-set $baseA0 #657b83
-set $baseB0 #839496
-set $baseB1 #93a1a1
-set $baseB2 #eee8d5
-set $baseB3 #fdf6e3
-set $custom #1c5766
+set  $baseA3  #002B36
+set  $baseA2  #073642
+set  $baseA1  #586E75
+set  $baseA0  #657B83
+set  $baseB0  #839496
+set  $baseB1  #93A1A1
+set  $baseB2  #EEE8D5
+set  $baseB3  #FDF6E3
+set  $custom  #1C5766
+
+# $i3-background
+exec_always --no-startup-id xsetroot -solid '$baseA2'
 
 ###################
 # solarized (clean)
 ###################
-# clientclass           border  backgr. text    indicator
-client.focused          $green  $green  $baseB3 $blue
-client.focused_inactive $cyan   $cyan   $baseB2 $violet
-client.unfocused        $baseA2 $baseA2 $baseB1 $baseA1
-#client.urgent          $orange $orange $baseB3 $red
-client.urgent           $yellow $yellow $baseB3 $orange
+# clientclass            border   bg       text     indicator
+client.focused           $green   $green   $baseB3  $blue
+client.focused_inactive  $cyan    $cyan    $baseB2  $violet
+client.unfocused         $baseA2  $baseA2  $baseB1  $baseA1
+#client.urgent           $orange  $orange  $baseB3  $red
+client.urgent            $yellow  $yellow  $baseB3  $orange
 
 #####################
 # solarized (borders)
 #####################
-# clientclass           border  backgr. text    indicator
-client.focused          $baseB0 $green  $baseB3 $blue
-client.focused_inactive $baseB0 $cyan   $baseB2 $violet
-client.unfocused        $baseB0 $baseA2 $baseB1 $baseA1
-#client.urgent          $baseB0 $orange $baseB3 $red
-client.urgent           $baseB0 $yellow $baseB3 $orange
+# clientclass            border   bg       text     indicator
+client.focused           $baseB0  $green   $baseB3  $blue
+client.focused_inactive  $baseB0  $cyan    $baseB2  $violet
+client.unfocused         $baseB0  $baseA2  $baseB1  $baseA1
+#client.urgent           $baseB0  $orange  $baseB3  $red
+client.urgent            $baseB0  $yellow  $baseB3  $orange
 
 ###############################################################
 # Start i3bar to display a workspace bar
 bar {
-    status_command i3status
-
-    font pango:$font  8
+    position        top
+    status_command  i3blocks -c ~/.i3/i3blocks/conf
 
     colors {
         # status
-        separator $blue
-        background $baseA3
-        statusline $baseB2
+        separator   $blue
+        background  $baseA3
+        statusline  $baseB2
 
         ###################
         # solarized (clean)
         ###################
-        # workclass             border  backgr. text
-        #focused_workspace      $green  $green  $baseA3
-        #active_workspace       $cyan   $cyan   $baseA2
-        #inactive_workspace     $baseA2 $baseA2 $baseB1
-        #urgent_workspace       $orange $orange $baseB3
-        #urgent_workspace       $yellow $yellow $baseB3
+        # workclass             border   bg       text
+        #focused_workspace      $green   $green   $baseA3
+        #active_workspace       $cyan    $cyan    $baseA2
+        #inactive_workspace     $baseA2  $baseA2  $baseB1
+        #urgent_workspace       $orange  $orange  $baseB3
+        #urgent_workspace       $yellow  $yellow  $baseB3
 
         #####################
         # solarized (borders)
         #####################
-        # workclass             border backgr. text
-        focused_workspace       $baseB0 $green  $baseA3
-        active_workspace        $baseB0 $cyan   $baseA2
-        inactive_workspace      $baseB0 $baseA2 $baseB1
-        #urgent_workspace       $baseB0 $orange $baseB3
-        urgent_workspace        $baseB0 $orange $baseB3
+        # workclass             border   bg       text
+        focused_workspace       $baseB0  $green   $baseA3
+        active_workspace        $baseB0  $cyan    $baseA2
+        inactive_workspace      $baseB0  $baseA2  $baseB1
+        #urgent_workspace       $baseB0  $orange  $baseB3
+        urgent_workspace        $baseB0  $orange  $baseB3
     }
 }
 
 ###############################################################
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:monospace 8
-
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8

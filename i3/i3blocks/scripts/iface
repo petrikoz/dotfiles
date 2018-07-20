@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# Based on https://github.com/vivien/i3blocks-contrib
+#------------------------------------------------------------------------
+
+# Use the provided interface, otherwise the device used for the default route.
+if [[ -n $BLOCK_INSTANCE ]]; then
+  IF=$BLOCK_INSTANCE
+else
+  IF=$(ip route | awk '/^default/ { print $5 ; exit }')
+fi
+
+#------------------------------------------------------------------------
+
+# As per #36 -- It is transparent: e.g. if the machine has no battery or wireless
+# connection (think desktop), the corresponding block should not be displayed.
+[[ ! -d /sys/class/net/${IF} ]] && exit
+
+#------------------------------------------------------------------------
+
+AF=inet6?
+COLOR_BAD="#DC322F"
+LABEL=""
+
+for flag in "$1" "$2"; do
+  case "$flag" in
+    -4)
+      AF=inet ;;
+    -6)
+      AF=inet6 ;;
+    -C) # color bad
+      AF="$2" ;;
+    -L)
+      if [[ "$IF" = "" ]]; then
+        LABEL="iface "
+      else
+        LABEL="$IF: "
+      fi ;;
+  esac
+done
+
+if [[ "$IF" = "" ]] || [[ "$(cat /sys/class/net/$IF/operstate)" = 'down' ]]; then
+  echo "${LABEL}down" # full text
+  echo "${LABEL}down" # short text
+  echo "${COLOR_BAD}"
+  exit
+fi
+
+# if no interface is found, use the first device with a global scope
+IPADDR=$(ip addr show $IF | perl -n -e "/$AF ([^\/]+).* scope global/ && print \$1 and exit")
+
+case $BLOCK_BUTTON in
+  3) echo -n "$IPADDR" | xclip -q -se c ;;
+esac
+
+#------------------------------------------------------------------------
+
+echo "$LABEL$IPADDR" # full text
+echo "$LABEL$IPADDR" # short text
