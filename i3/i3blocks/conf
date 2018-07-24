@@ -37,6 +37,7 @@ separator_block_width=15
 interval=10
 label=
 separator=false
+separator_block_width=7
 
 # Temperature
 #
@@ -47,15 +48,17 @@ separator=false
 color=#859900
 interval=10
 separator=false
+separator_block_width=7
 
-[load_average]
+[load]
 interval=10
+label=
 
 # Memory usage
 #
 # The type defaults to "mem" if the instance is not specified.
 [memory]
-command=/usr/lib/i3blocks/$BLOCK_NAME
+instance=mem;free
 interval=30
 label=
 
@@ -65,6 +68,7 @@ label=
 interval=30
 label=
 separator=false
+separator_block_width=7
 
 [hddtemp]
 color=#859900
@@ -72,29 +76,21 @@ interval=10
 
 # Network
 #
-# If the instance is not specified, use the interface used for default route.
-# The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
-[iface]
-#instance=wlan0
-interval=10
+[ssid]
+interval=60
 separator=false
+separator_block_width=7
 
-[wifi]
-command=/usr/lib/i3blocks/$BLOCK_NAME
+[network]
 instance=wlp2s0
 interval=10
-separator=false
+label=
 
-[bandwidth]
-command=/usr/lib/i3blocks/$BLOCK_NAME
-#instance=eth0
-interval=5
-
-# Keyboard layout
+# Key layout
 #
 [key_layout]
+interval=1
 label=
-interval=30
 
 # Volume indicator
 #
