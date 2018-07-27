@@ -15,6 +15,7 @@ netctl
 openssh
 os-prober
 rofi
+rsync
 smplayer
 sudo
 vim
