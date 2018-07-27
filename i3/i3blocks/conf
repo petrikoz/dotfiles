@@ -31,9 +31,7 @@ separator_block_width=15
 
 # System monitor
 #
-# The script may be called with -w and -c switches to specify thresholds,
-# see the script for details.
-[cpu_usage]
+[cpu]
 interval=10
 label=
 separator=false
