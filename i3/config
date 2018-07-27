@@ -29,19 +29,30 @@ default_floating_border  pixel 1
 bindsym $mod+d exec rofi -show combi
 
 ###############################################################
+# Autostart
+#####################
+
+# make short-pressed Ctrl behave like Escape:
+exec --no-startup-id xcape -e 'Control_L=Escape'
+
+###############################################################
 # fn keys on laptop
 #################
 # Pulse Audio controls
-bindsym  XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume 0 +5%    && pkill -RTMIN+1 i3blocks
-bindsym  XF86AudioLowerVolume  exec --no-startup-id pactl set-sink-volume 0 -5%    && pkill -RTMIN+1 i3blocks
-bindsym  XF86AudioMute         exec --no-startup-id pactl set-sink-volume 0 toggle && pkill -RTMIN+1 i3blocks
+bindsym  XF86AudioRaiseVolume  exec --no-startup-id amixer -q sset Master 5%+
+bindsym  XF86AudioLowerVolume  exec --no-startup-id amixer -q sset Master 5%-
+bindsym  XF86AudioMute         exec --no-startup-id amixer -q sset Master toggle
 
 ###############################################################
 # Shutdown, reboot, lock screen
 #################
 set $Locker i3lock && sleep 1
 
+bindsym $mod+l exec --no-startup-id $Locker
+
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
+
+# PauseBreak key
 bindsym $mod+XF86Launch3 mode "$mode_system"
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
@@ -144,12 +155,6 @@ bar {
 }
 
 ###############################################################
-# Autostart
-#################
-
-exec --no-startup-id xss-lock -- i3lock -n
-
-###############################################################
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -168,15 +173,9 @@ floating_modifier $mod
 bindsym $mod+Shift+q kill
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
 bindsym $mod+Right focus right
 
 # move focused window
