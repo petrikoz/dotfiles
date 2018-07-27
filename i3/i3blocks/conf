@@ -29,6 +29,12 @@ command=~/.i3/i3blocks/scripts/$BLOCK_NAME
 markup=pango
 separator_block_width=15
 
+# Packages available
+#
+[packages]
+interval=300
+label=
+
 # System monitor
 #
 [cpu]
