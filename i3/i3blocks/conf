@@ -94,9 +94,8 @@ label=
 
 # Volume indicator
 #
-[volume]
-interval=once
-signal=1
+[audio]
+interval=1
 
 # Date Time
 #
