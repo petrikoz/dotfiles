@@ -34,8 +34,13 @@ if [ -f $sysmodmap ]; then
 fi
 
 ###############################################################
-# Screenlock
+# Autostart
 #################
+
+# Dropbox
+exec ~/.dropbox-dist/dropboxd &
+
+# Screenlock
 exec xautolock -time 1 -locker i3lock &
 exec xss-lock -- i3lock -n &
 
