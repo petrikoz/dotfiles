@@ -19,7 +19,7 @@ volume=$(echo "${statusLine}" | awk -F ' ' '{print $4}' | tr -d '[]%')
 
 label="${BLOCK_LABEL:-蓼}"
 color=""
-if [[ "${status}" == "off" ]]; then
+if [[ "${status}" != "on" ]]; then
   label="遼"
   color="#B58900"
 fi
