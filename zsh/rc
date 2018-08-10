@@ -13,12 +13,10 @@
   antigen bundle command-not-found  # suggests package name with relevant command
   antigen bundle docker             # docker autocomplete plugin
   antigen bundle extract            # 'x' alias - swiss knife for archive extracting
-  antigen bundle gem                # support for Ruby package manager
   antigen bundle git                # support for git
   antigen bundle git-flow-avh       # support for git-flow-avh completion
   antigen bundle history            # aliases: h for history, hsi for grepping history
   antigen bundle pip                # support for Python Package Manager
-  antigen bundle rvm                # support for Ruby version manager
 
   # Additional completion definitions for Zsh.
   antigen bundle zsh-users/zsh-completions src
@@ -68,7 +66,6 @@
   alias mc='mc --nomouse'  # disable mouse
 
 #== Misc ================
-  alias vi='vim'
   alias :q='exit'
 
 ################################################################
@@ -77,13 +74,8 @@
 
 # EncFS from Dropbox
   function encbox {
-    if [ ! "$(ls -A $HOME/encfs-decripted/dropbox)" ]; then
-      encfs $HOME/Dropbox $HOME/encfs-decripted/dropbox
+    if [ ! "$(ls -A $HOME/encfs/dropbox)" ]; then
+      encfs $HOME/Dropbox $HOME/encfs/dropbox
     fi
-  }
-
-# TMUX
-  function tmuxrun {
-    tmux new 'teamocil tmux-init'
   }
 
