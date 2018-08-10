@@ -2,6 +2,7 @@ alsa-utils
 bc
 chromium
 conky
+docker
 encfs
 git
 gnu-netcat
@@ -14,10 +15,13 @@ mc
 netctl
 openssh
 os-prober
+python
 rofi
 rsync
 smplayer
+sublime-text
 sudo
+tmux
 vim
 wget
 xautolock
