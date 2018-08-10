@@ -62,11 +62,9 @@
 # Aliases
 ################################################################
 
-#== Midnight Commander ====
-  alias mc='mc --nomouse'  # disable mouse
-
-#== Misc ================
   alias :q='exit'
+  alias mc='mc --nomouse'  # disable mouse
+  alias startx='ssh-agent startx'
 
 ################################################################
 # Functions
