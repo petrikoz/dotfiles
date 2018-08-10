@@ -1,5 +1,6 @@
 #== Base ======================================================================
-  set -g default-terminal 'screen-256color'
+  #set -g default-terminal 'screen-256color'
+  set -g default-terminal "$TERM"
   set -g main-pane-width 160
 
 #== Keys ======================================================================
@@ -11,8 +12,6 @@
   bind F3 resize-pane -Z
 
 #== Plugins ======================================================================
-  source "$HOME/.tmux/colors.conf"
-
-  # Powerline. https://github.com/Lokaltog/powerline
-  source "$HOME/.config/powerline/bindings/tmux/powerline.conf"
+  #source "$HOME/.tmux/colors.conf"
+  source "$HOME/.tmux/solarized-dark.conf"
 

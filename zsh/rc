@@ -64,9 +64,6 @@
 # Aliases
 ################################################################
 
-#== Tmux ================
-  alias tmux='tmux -2'  # run with 256 colors support
-
 #== Midnight Commander ====
   alias mc='mc --nomouse'  # disable mouse
 
