@@ -48,6 +48,8 @@
 # Environment variables
 ################################################################
 
+  export TERM='screen-256color'
+
 #== Ls ================
   export CLICOLOR=1
   export LSCOLORS=gxfxcxdxbxegedabagacad
@@ -63,15 +65,16 @@
   alias :q='exit'
   alias mc='mc --nomouse'  # disable mouse
   alias startx='ssh-agent startx'
+  alias tmux='tmux -2'
 
 ################################################################
 # Functions
 ################################################################
 
 # EncFS from Dropbox
-  function encbox {
-    if [ ! "$(ls -A $HOME/encfs/dropbox)" ]; then
-      encfs $HOME/Dropbox $HOME/encfs/dropbox
-    fi
+  function encbox() {
+    local src="${1:-$HOME/Dropbox}"
+    local target="${2:-$HOME/encfs}"
+    [[ ! "$(ls -A $target)" ]] && encfs "$src" "$target"
   }
 
