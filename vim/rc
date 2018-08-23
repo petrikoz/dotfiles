@@ -22,7 +22,7 @@
     Plugin 'tpope/vim-sensible'
 
     " Nice start screen
-    Plugin 'mhinz/vim-startify'  
+    Plugin 'mhinz/vim-startify'
 
     " Pretty and functionality statusline.
     Plugin 'vim-airline/vim-airline'
@@ -60,6 +60,7 @@
 
   " Airline.
     let g:airline_theme = 'solarized'
+    let g:airline_solarized_bg = 'dark'
     let g:airline_powerline_fonts = 1
     let g:airline#extensions#tabline#enabled = 1  " enable tab line
     let g:airline#extensions#tmuxline#enabled = 0  " disable autochange Tmuxline
@@ -95,21 +96,16 @@
     autocmd BufEnter * call SyncTree()
 
   " Solarized.
-    set background=dark  " dark | light
+    let g:solarized_termcolors = 256
+    let g:solarized_termtrans = 1
+    set background=dark
     colorscheme solarized
-    call togglebg#map("<F5>") " Toggle dark | light background
 
   " Startify
     let g:startify_change_to_dir = 0
     let g:startify_files_number = 8
     let g:startify_bookmarks = ['~/.vimrc',]
     let g:startify_skiplist = ['vimrc',]
-    let g:startify_custom_header = map(
-      \ split(
-        \ system('fortune ~/.vim/fortunes | cowsay -W 60'),
-        \ '\n'),
-      \ '"   ". v:val')
-    \ + ['','']
     let g:startify_list_order = [
       \ ['   Last recently modified files in the current directory:'],
       \ 'dir',
