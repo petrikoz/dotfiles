@@ -1,5 +1,4 @@
 #== Base ======================================================================
-  #set -g default-terminal 'screen-256color'
   set -g default-terminal "$TERM"
   set -g main-pane-width 160
 
@@ -11,7 +10,6 @@
   # Un/Zoom current pane
   bind F3 resize-pane -Z
 
-#== Plugins ======================================================================
-  #source "$HOME/.tmux/colors.conf"
+#== Plugins ===================================================================
   source "$HOME/.tmux/solarized-dark.conf"
 

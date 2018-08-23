@@ -1,15 +1,22 @@
 #!/bin/sh
 
+###############################################################
+# Keyboard
+#################
 
-userresources=$HOME/.Xresources
-if [ -f "$userresources" ]; then
-    xrdb -merge "$userresources"
-fi
+sysresources=/etc/X11/xinit/.Xresources
+[[ -f "$sysresources" ]] && xrdb -merge "$sysresources"
+userresources="$HOME/.Xresources"
+[[ -f "$userresources" ]] && xrdb -merge "$userresources"
 
-usermodmap=$HOME/.Xmodmap
-if [ -f "$usermodmap" ]; then
-    xmodmap "$usermodmap"
-fi
+sysmodmap=/etc/X11/xinit/.Xmodmap
+[[ -f "$sysmodmap" ]] && xmodmap "$sysmodmap"
+usermodmap="$HOME/.Xmodmap"
+[[ -f "$usermodmap" ]] && xmodmap "$usermodmap"
+
+###############################################################
+# Autostart
+#################
 
 # start some nice programs
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
@@ -19,30 +26,11 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-###############################################################
-# Keyboard
-#################
-# merge in defaults and keymaps
-sysresources=/etc/X11/xinit/.Xresources
-if [ -f $sysresources ]; then
-    xrdb -merge $sysresources
-fi
-
-sysmodmap=/etc/X11/xinit/.Xmodmap
-if [ -f $sysmodmap ]; then
-    xmodmap $sysmodmap
-fi
-
-###############################################################
-# Autostart
-#################
-
 # Dropbox
 exec ~/.dropbox-dist/dropboxd &
 
 # Screenlock
 exec xautolock -time 1 -locker i3lock &
-exec xss-lock -- i3lock -n &
 
 ###############################################################
 # Windows management
