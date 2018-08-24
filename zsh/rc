@@ -63,8 +63,6 @@
 ################################################################
 
   alias :q='exit'
-  alias mc='mc --nomouse'  # disable mouse
-  alias startx='ssh-agent startx'
   alias tmux='tmux -2'
 
 ################################################################
