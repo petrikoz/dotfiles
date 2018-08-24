@@ -7,7 +7,7 @@ windows:
       - focus: true
         commands:
           - cd src
-          - gss
-          - ggpull
+          - git status -s
+          - git fetch origin
       - ls -l
 
