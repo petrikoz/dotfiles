@@ -13,10 +13,8 @@
   antigen bundle command-not-found  # suggests package name with relevant command
   antigen bundle docker             # docker autocomplete plugin
   antigen bundle extract            # 'x' alias - swiss knife for archive extracting
-  antigen bundle git                # support for git
   antigen bundle git-flow-avh       # support for git-flow-avh completion
   antigen bundle history            # aliases: h for history, hsi for grepping history
-  antigen bundle pip                # support for Python Package Manager
 
   # Additional completion definitions for Zsh.
   antigen bundle zsh-users/zsh-completions src
