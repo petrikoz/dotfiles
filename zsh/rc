@@ -50,14 +50,6 @@
 
   export TERM='screen-256color'
 
-#== Ls ================
-  export CLICOLOR=1
-  export LSCOLORS=gxfxcxdxbxegedabagacad
-  export LS_OPTIONS='--color=auto'
-
-#== Grep ================
-  export GREP_COLOR='3;33'  # Enable color in grep
-
 ################################################################
 # Aliases
 ################################################################
