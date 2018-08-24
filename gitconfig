@@ -1,0 +1,18 @@
+[user]
+	name = Petr Zelenin
+[push]
+	default = simple
+[alias]
+	a = add
+	b = branch
+	c = commit -v
+	co = checkout
+	d = diff
+	fo = fetch -v origin
+	l = log
+	ll = log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+	pl = pull
+	plc = !git pull origin "$(git rev-parse --abbrev-ref HEAD)"
+	ps = push
+	s = status
+	ss = status -s
