@@ -33,3 +33,5 @@
   export EDITOR="vim"         # default editor
   export PAGER=less           # default pager
 
+  export TERM="screen-256color"
+
