@@ -2,6 +2,10 @@
   set -g default-terminal "$TERM"
   set -g main-pane-width 160
 
+  # Windows
+  setw -g allow-rename off
+  setw -g automatic-rename off
+
 #== Keys ======================================================================
   # Vim-style navigation in copy-mode
   set-window-option -g mode-keys vi
