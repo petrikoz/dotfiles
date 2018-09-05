@@ -9,6 +9,7 @@
 	co = checkout
 	d = diff
 	fo = fetch -v origin
+	k = !gitk --all --branches
 	l = log
 	ll = log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 	pl = pull
