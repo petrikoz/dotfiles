@@ -38,10 +38,14 @@ exec --no-startup-id xcape -e 'Control_L=Escape'
 ###############################################################
 # fn keys on laptop
 #################
-# Pulse Audio controls
+# audio
 bindsym  XF86AudioRaiseVolume  exec --no-startup-id amixer -q sset Master 5%+
 bindsym  XF86AudioLowerVolume  exec --no-startup-id amixer -q sset Master 5%-
 bindsym  XF86AudioMute         exec --no-startup-id amixer -q sset Master toggle
+
+# brightness
+bindsym  XF86MonBrightnessUp    exec xbacklight -inc 20
+bindsym  XF86MonBrightnessDown  exec xbacklight -dec 20
 
 ###############################################################
 # Shutdown, reboot, lock screen
