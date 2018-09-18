@@ -1,9 +1,9 @@
 alsa-utils
 bc
-chromium
 conky
 docker
 encfs
+firefox
 git
 gnu-netcat
 hddtemp
@@ -22,11 +22,13 @@ smplayer
 sublime-text
 sudo
 tmux
+unzip
 vim
 wget
 xautolock
 xcape
 xorg-server
+xorg-xbacklight
 xorg-xinit
 xorg-xsetroot
 xss-lock
