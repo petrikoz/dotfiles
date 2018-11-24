@@ -9,7 +9,7 @@ Install
 
 .. code-block:: shell
 
-    sudo apt install git
+    sudo pacman -Suy git
     git clone --recursive https://github.com/petrikoz/dotfiles.git
 
 Soft
@@ -22,12 +22,7 @@ common
 
 .. code-block:: shell
 
-    sudo apt install \
-        apt-transport-https \
-        landscape-common \
-        shadowsocks-libev \
-        telegram-desktop \
-        update-notifier-common
+    sudo pacman -S - < $HOME/dotfiles/pkglist.txt
 
 fonts
 -----
@@ -42,7 +37,6 @@ golang
 
 .. code-block:: shell
 
-    sudo apt install golang-go
     ln -s $HOME/dotfiles/go $HOME/.go
 
 i3wm
@@ -50,18 +44,22 @@ i3wm
 
 .. code-block:: shell
 
-    /usr/lib/apt/apt-helper download-file http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2018.01.30_all.deb keyring.deb SHA256:baa43dbbd7232ea2b5444cae238d53bebb9d34601cc000e82f11111b1889078a
-    sudo dpkg -i ./keyring.deb
-    echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" | sudo tee /etc/apt/sources.list.d/sur5r-i3.list
-    sudo apt update
-    sudo apt install i3 xinit
+    ln -s $HOME/dotfiles/i3 $HOME/.i3
+
+pmount
+------
+
+.. code-block:: shell
+
+    git clone https://aur.archlinux.org/pmount.git
+    cd pmount
+    makepkg -sri
 
 python
 ------
 
 .. code-block:: shell
 
-    sudo apt install python3 python3-dev python3-pip
     pip3 install --upgrade --user pip
 
     ln -s $HOME/dotfiles/pip $HOME/.pip
@@ -69,24 +67,31 @@ python
 
     ln -s $HOME/dotfiles/isort.cfg $HOME/.isort.cfg
 
-smplayer
---------
+rofi-dmenu
+----------
 
 .. code-block:: shell
 
-    sudo add-apt-repository ppa:rvm/smplayer
-    sudo apt update
-    sudo apt install smplayer
+    git clone https://aur.archlinux.org/rofi-dmenu.git
+    cd rofi-dmenu
+    makepkg -sri
+
+st
+--
+
+.. code-block:: shell
+
+    cd $HOME/dotfiles/st
+    makepkg -sri
 
 sublime text
 ------------
 
 .. code-block:: shell
 
-    wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-    echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-    sudo apt update
-    sudo apt install sublime-text
+    curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --add sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
+    echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf
+    sudo pacman -Syu sublime-text
     ln -sf $HOME/dotfiles/sublime-text  $HOME/.config/sublime-text-3/Packages/User
 
 tmux
@@ -94,7 +99,6 @@ tmux
 
 .. code-block:: shell
 
-    sudo apt install tmux
     ln -s $HOME/dotfiles/tmux $HOME/.tmux
     ln -s $HOME/.tmux/conf $HOME/.tmux.conf
 
@@ -103,16 +107,38 @@ vim
 
 .. code-block:: shell
 
-    sudo apt install vim
     ln -s $HOME/dotfiles/vim $HOME/.vim
     ln -s $HOME/.vim/rc $HOME/.vimrc
+
+    # replace vi with vim
+    git clone https://aur.archlinux.org/vi-vim-symlink.git
+    cd vi-vim-symlink
+    makepkg -sri
+
+xorg
+----
+
+.. code-block:: shell
+
+    ln -s $HOME/dotfiles/Xorg/xinitrc $HOME/.xinitrc
+    ln -s $HOME/dotfiles/Xorg/Xmodmap $HOME/.Xmodmap
+
+
+xkblayout-state
+---------------
+
+.. code-block:: shell
+
+    git clone https://aur.archlinux.org/xkblayout-state-git.git
+    cd xkblayout-state-git
+    makepkg -sri
 
 zsh
 ---
 
 .. code-block:: shell
 
-    sudo apt install zsh
     ln -s $HOME/dotfiles/zsh $HOME/.zsh
     ln -s $HOME/.zsh/env $HOME/.zshenv
+    ln -s $HOME/.zsh/profile $HOME/.zprofile
     ln -s $HOME/.zsh/rc $HOME/.zshrc
