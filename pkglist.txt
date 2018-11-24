@@ -19,7 +19,6 @@ python
 rofi
 rsync
 smplayer
-sublime-text
 sudo
 tmux
 unzip
