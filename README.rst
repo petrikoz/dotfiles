@@ -76,6 +76,13 @@ rofi-dmenu
     cd rofi-dmenu
     makepkg -sri
 
+rtorrent
+--------
+
+.. code-block:: shell
+
+    ln -s $HOME/dotfiles/rtorrent.rc $HOME/.rtorrent.rc
+
 st
 --
 
