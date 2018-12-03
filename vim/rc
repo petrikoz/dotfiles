@@ -19,6 +19,9 @@
 
   " Keep Plugin commands between vundle#begin/end.
 
+    " Nginx syntax highlighting
+    Plugin 'chr4/nginx.vim'
+
     Plugin 'tpope/vim-sensible'
 
     " Nice start screen
