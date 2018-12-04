@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[
+url(r'^${1:(?P<slug>[-_\w]+)}/\$', ${2:views.ClassView.as_view()}, name='${3:url-name}'),
+]]></content>
+    <tabTrigger>url</tabTrigger>
+    <scope>source.python</scope>
+    <description>Item of Django's 'urlpatterns' list in `urls.py`</description>
+</snippet>
