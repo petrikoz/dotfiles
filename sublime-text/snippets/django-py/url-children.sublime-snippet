@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+url(r'^${1:(?P<slug>[-_\w]+)}/', include([
+    url(r'^${2}\$', ${3:views.ClassView.as_view()}, name='${4:url-name}'),
+])),
+]]></content>
+    <tabTrigger>urlc</tabTrigger>
+    <scope>source.python</scope>
+    <description>Django's 'url' with children in 'include'</description>
+</snippet>
