@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+migrations.RunPython(forwards_func, migrations.RunPython.noop),
+def forwards_func(apps, schema_editor):
+    ${1:Model} = apps.get_model('${2:app}', '${1:Model}')
+    db_alias = schema_editor.connection.alias
+    manager = ${1:Model}.objects.using(db_alias)
+]]></content>
+    <tabTrigger>runpy</tabTrigger>
+    <scope>source.python</scope>
+    <description>Django's 'migrations.RunPython'</description>
+</snippet>
