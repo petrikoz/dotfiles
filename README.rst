@@ -81,7 +81,8 @@ rtorrent
 
 .. code-block:: shell
 
-    ln -s $HOME/dotfiles/rtorrent.rc $HOME/.rtorrent.rc
+    ln -s $HOME/dotfiles/rtorrent $HOME/.rtorrent
+    ln -s $HOME/.rtorrent/rc $HOME/.rtorrent.rc
 
 st
 --

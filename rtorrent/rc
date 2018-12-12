@@ -8,8 +8,8 @@
 
 
 ## Instance layout (base paths)
-method.insert = cfg.basedir,  private|const|string, (cat,"/home/petr/rtorrent/")
-method.insert = cfg.download, private|const|string, (cat,"/mnt/torrents/")
+method.insert = cfg.basedir,  private|const|string, (cat,(system.env,HOME),"/.rtorrent/")
+method.insert = cfg.download, private|const|string, (cat,(cfg.basedir),"download/")
 method.insert = cfg.logs,     private|const|string, (cat,(cfg.basedir),"log/")
 method.insert = cfg.logfile,  private|const|string, (cat,(cfg.logs),"rtorrent-",(system.time),".log")
 method.insert = cfg.session,  private|const|string, (cat,(cfg.basedir),".session/")
@@ -39,9 +39,10 @@ trackers.use_udp.set = no
 
 
 ## Peer settings
-# Global upload and download rate in KiB, `0` for unlimited
-throttle.global_down.max_rate.set_kb = 50
-throttle.global_up.max_rate.set_kb   = 50
+schedule2 = throttle_1,22:00:00,24:00:00,throttle.global_down.max_rate.set_kb=0
+schedule2 = throttle_1_1,22:00:00,24:00:00,throttle.global_up.max_rate.set_kb=0
+schedule2 = throttle_2,07:00:00,24:00:00,throttle.global_down.max_rate.set_kb=50
+schedule2 = throttle_2_1,07:00:00,24:00:00,throttle.global_up.max_rate.set_kb=50
 
 throttle.max_uploads.set = 100
 throttle.max_uploads.global.set = 250
