@@ -21,14 +21,8 @@
         "extra_paths": [
             "${project}",
             "${project}/itcase-dev/*",
-        ]
-    },
-    "SublimeLinter":
-    {
-        "linters":
-        {
-            "flake8": {"show-code": true}
-        }
+        ],
+        "SublimeLinter.linters.flake8.show-code": true
     }
 }
 
