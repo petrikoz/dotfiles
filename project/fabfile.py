@@ -17,14 +17,16 @@
 from distutils.util import strtobool
 
 from fabric.api import env
+from fabric.colors import yellow
 from fabric.decorators import task
 from fabric.operations import local
 
-env.docker = 'docker'
 env.compose = 'docker-compose'
-env.project = 'project'
-env.container = '%s-server' % env.project
 env.db_service = 'postgres'
+env.docker = 'docker'
+env.manage = 'manage.py'
+env.project = 'project'
+env.container = '{project}-server'.format(**{'project': env.project})
 env.services = ('redis', env.db_service)
 
 
@@ -34,27 +36,35 @@ def _prep_bool_arg(arg):
 
 def get_container_id(options='--all --quiet'):
     """Return ID of project-server container."""
-    prefix = '%s ps %s' % (env.docker, options)
-    _filter = '--filter=name=%s' % env.container
-    return local('%s %s' % (prefix, _filter), capture=True)
+    command = '{docker} ps {options} --filter=name={container}'
+    command = command.format(**{
+        'container': env.container,
+        'docker': env.docker,
+        'options': options,
+    })
+    return local(command, capture=True)
 
 
 @task
 def project_exec(command, options='--interactive --tty', user=None):
     """Exec command in project-server container."""
-    from fabric.colors import yellow
-
-    container_id = get_container_id(options='--quiet')
-    if not container_id:
+    container = get_container_id(options='--quiet')
+    if not container:
         print(yellow('You must run "django_server" first'))
         return
 
     if user is not None:
-        options += ' --user %s' % user
+        options += ' --user {user}'.format(**{'user': user})
 
-    prefix = '%s exec %s %s' % (env.docker, options, container_id)
+    _command = '{docker} exec {options} {container} {command}'
+    _command = _command.format(**{
+        'command': command,
+        'container': container,
+        'docker': env.docker,
+        'options': options,
+    })
 
-    return local('%s %s' % (prefix, command))
+    return local(_command)
 
 
 @task
@@ -63,39 +73,63 @@ def django_exec(command, pdb=False):
 
     Ex.: django_exec:help -> python manage.py help
     """
-    pdb = _prep_bool_arg(pdb)
+    python = 'python'
+    if _prep_bool_arg(pdb):
+        python += ' -m ipdb -c continue'
 
-    options = {'command': command, 'pdb': ''}
+    _command = '{python} {manage} {command}'
+    _command = _command.format(**{
+        'command': command,
+        'manage': env.manage,
+        'python': python,
+    })
 
-    if pdb:
-        options['pdb'] = '-m ipdb -c continue'
-
-    return project_exec('python %(pdb)s manage.py %(command)s' % options)
+    return project_exec(_command)
 
 
 @task(default=True)
 def django_server(recreate=False):
     """Start Django's development server."""
-    recreate = _prep_bool_arg(recreate)
-    container_id = get_container_id()
+    container = get_container_id()
 
-    if recreate:
-        local('%s build' % env.compose)
+    if _prep_bool_arg(recreate):
+        local('{compose} build'.format(**{'compose': env.compose}))
 
-        if container_id:
-            local('%s rm -f %s' % (env.docker, container_id))
-            container_id = None
+        if container:
+            command = '{docker} rm -f {container}'
+            command = command.format(**{
+                'container': container,
+                'docker': env.docker,
+            })
+            local(command)
+            container = None
 
-    if not container_id:
-        options = '--name %s --service-ports' % env.container
-        prefix = '%s run %s %s' % (env.compose, options, env.project)
-        command = 'runserver 0.0.0.0:8000'
-        return local('%s python -Walways manage.py %s' % (prefix, command))
+    if not container:
+        command = '{compose} run --name {container} --service-ports'
+        command += ' {project} python -Walways {manage}'
+        command += ' runserver 0.0.0.0:8000'
+        command = command.format(**{
+            'compose': env.compose,
+            'container': env.container,
+            'manage': env.manage,
+            'project': env.project,
+        })
+        return local(command)
 
-    local('%s start %s' % (env.compose, ' '.join(env.services)))
+    if env.services:
+        command = '{compose} start {services}'
+        command = command.format(**{
+            'compose': env.compose,
+            'services': ' '.join(env.services),
+        })
+        local(command)
 
-    prefix = '%s start --attach --interactive' % env.docker
-    return local('%s %s' % (prefix, container_id))
+    command = '{docker} start --attach --interactive {container}'
+    command = command.format(**{
+        'container': container,
+        'docker': env.docker,
+    })
+    return local(command)
 
 
 @task
@@ -108,7 +142,7 @@ def django_shell():
 
 
 @task
-def itcase_dev_update(folder='itcase-dev', git_brunch='develop'):
+def itcase_dev_update(folder='itcase-dev', brunch='develop'):
     """Update all ItCase Dev submodules for project.
 
     Used for directories structure:
@@ -128,38 +162,48 @@ def itcase_dev_update(folder='itcase-dev', git_brunch='develop'):
     from fabric.colors import cyan
     from fabric.context_managers import lcd, settings
 
-    path = './%s' % folder
+    command = 'find ./{folder} -maxdepth 1 -type l'
+    command = command.format(**{'folder': folder})
 
-    output = local('find %s -maxdepth 1 -type l' % path, capture=True)
-
-    for subdir in output.split():
+    for subdir in local(command, capture=True).split():
 
         with lcd(subdir), settings(warn_only=True):
             print(cyan(subdir))
-            local('git pull origin %s' % git_brunch)
+            local('git pull origin {brunch}'.format(**{'brunch': brunch}))
 
 
 @task
-def compose_bash(command, entrypoint='/bin/bash'):
+def compose_bash(command, entrypoint=None):
     """Run Docker container with custom entrypoint (default: bash).
 
     Example: fab compose_bash:'ls -l'
     """
-    _entrypoint = ''
-    if entrypoint:
-        _entrypoint = '--entrypoint %s' % entrypoint
+    _command = '{compose} run --rm --entrypoint {entrypoint} {project}'
+    _command += ' -c {command}'
+    _command = _command.format(**{
+        'command': command,
+        'compose': env.compose,
+        'entrypoint': entrypoint or '/bin/bash',
+        'project': env.project,
+    })
 
-    prefix = '%s run --rm %s %s' % (env.compose, _entrypoint, env.project)
-    return local('%s -c "%s"' % (prefix, command))
+    return local(_command)
 
 
 @task
 def psql(args=''):
     """Run utilite 'psql' into database service."""
-    prefix = '%(compose)s exec --user %(service)s %(service)s'
-    prefix = prefix % {'compose': env.compose, 'service': env.db_service}
+    command = '{compose} exec --user {service} {service}'
+    command += ' psql --dbname={project}'
+    if args:
+        command += args
+    command = command.format(**{
+        'compose': env.compose,
+        'project': env.project,
+        'service': env.db_service,
+    })
 
-    return local('%s psql --dbname=%s %s' % (prefix, env.project, args))
+    return local(command)
 
 
 @task
@@ -170,15 +214,14 @@ def loadsql(filepath):
         filepath (string): Path to SQL-file.
 
     """
-    _cat = 'cat %s' % filepath
+    command = 'cat {filepath} |'
+    command += ' {docker} exec -iu {service} {project}-{service}'
+    command += ' psql -U {project} -d {project}'
+    command = command.format(**{
+        'docker': env.docker,
+        'filepath': filepath,
+        'project': env.project,
+        'service': env.db_service,
+    })
 
-    _exec = '{docker} exec -iu {db_service} {project}-{db_service}'
-    _exec = _exec.format(docker=env.docker, db_service=env.db_service,
-                         project=env.project)
-
-    _psql = 'psql -U %(project)s -d %(project)s'
-    _psql = _psql % {'project': env.project}
-
-    command = {'cat': _cat, 'exec': _exec, 'psql': _psql}
-
-    return local('%(cat)s | %(exec)s %(psql)s' % command)
+    return local(command)
