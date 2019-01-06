@@ -20,6 +20,7 @@ python
 rofi
 rsync
 rtorrent
+shadowsocks-libev
 smplayer
 sudo
 telegram-desktop
