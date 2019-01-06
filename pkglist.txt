@@ -11,6 +11,7 @@ i3-wm
 i3blocks
 i3lock
 keepassxc
+lm_sensors
 mc
 netctl
 openssh
