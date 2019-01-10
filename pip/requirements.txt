@@ -9,5 +9,4 @@ ipdb
 ptpython
 isort
 joe
-powerline-status
 pydocstyle
