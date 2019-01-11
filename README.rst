@@ -46,6 +46,13 @@ i3wm
 
     ln -s $HOME/dotfiles/i3 $HOME/.i3
 
+lm_sensors
+----------
+
+.. code-block:: shell
+
+    sudo sensors-detect --auto
+
 pmount
 ------
 
@@ -81,8 +88,8 @@ rtorrent
 
 .. code-block:: shell
 
-    ln -s $HOME/dotfiles/rtorrent $HOME/.rtorrent
-    ln -s $HOME/.rtorrent/rc $HOME/.rtorrent.rc
+    ln -s $HOME/dotfiles/rtorrent $HOME/rtorrent
+    ln -s $HOME/rtorrent/rc $HOME/.rtorrent.rc
 
 st
 --
