@@ -23,14 +23,17 @@ services:
       - postgres
       - redis
     environment:
-      PYTHONPATH: '/third-party-module'
+      PYTHONPATH: '/itcase/itcase-plugin'
     ports:
-      - '8000:8000'
+      - '127.0.0.1:8000:8000'
+      - '127.0.0.1:19360:19360'
     stdin_open: true
     tty: true
     volumes:
       - ./src:/code
       - ./tmp:/tmp-host
 
-      - ./third-party/module:/third-party-module
+      - ../itcase-dev:/itcase
+
+      - ~/.config/sublime-text-3/Packages/Anaconda:/opt/anaconda
 

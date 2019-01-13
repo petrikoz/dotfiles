@@ -17,11 +17,7 @@
     ],
     "settings":
     {
-        "python_interpreter": "python3",
-        "extra_paths": [
-            "${project}",
-            "${project}/itcase-dev/*",
-        ],
+        "python_interpreter": "tcp://localhost:19360?pathmap=${project_path},/code",
         "SublimeLinter.linters.flake8.show-code": true
     }
 }
