@@ -117,6 +117,17 @@ tmux
     ln -s $HOME/dotfiles/tmux $HOME/.tmux
     ln -s $HOME/.tmux/conf $HOME/.tmux.conf
 
+todo.sh
+-------
+
+.. code-block:: shell
+
+    ln -s $HOME/dotfiles/todo $HOME/.todo
+
+    git clone https://aur.archlinux.org/todotxt.git
+    cd todotxt
+    makepkg -sri
+
 vim
 ---
 

@@ -1,0 +1,6 @@
+*
+!.gitignore
+!config
+!actions.d
+actions.d/*
+!*.gitkeep

@@ -50,6 +50,7 @@
 
   alias :q='exit'
   alias tmux='tmux -2'
+  alias todo='todo.sh'
 
 ################################################################
 # Functions
