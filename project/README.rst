@@ -23,13 +23,10 @@ Usage
     * ``fabfile.py`` - файл настроек для `Fabric (fork)`_.
         .. warning:: Перед запуском требуются изменения внутри файла.
     * ``sublime-project`` -> ``/project/folder/project.sublime-project`` - файл настроек для `Sublime Text`_
-    * ``teamocil`` -> ``/project/folder/.teamocil`` - файл настроек для Teamocil_.
-        .. warning:: Перед запуском требуются изменения внутри файла.
 
 .. _`Docker Compose`: https://docs.docker.com/compose
 .. _`Docker`: https://docs.docker.com
 .. _`Fabric (fork)`: https://github.com/mathiasertl/fabric
 .. _`Sublime Text`: http://www.sublimetext.com
 .. _EditorConfig: http://EditorConfig.org
-.. _Teamocil: https://github.com/remiprev/teamocil
 

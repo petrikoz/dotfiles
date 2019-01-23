@@ -26,8 +26,8 @@ env.compose = 'docker-compose'
 env.db_service = 'postgres'
 env.docker = 'docker'
 env.manage = 'manage.py'
-env.project = 'project'
-env.container = '{project}-server'.format(**{'project': env.project})
+env.project = REPLACEME
+env.container = f'{env.project}-server'
 env.services = ('redis', env.db_service)
 
 
@@ -47,16 +47,10 @@ def compose_bash(command, entrypoint=None):
 
     Example: fab compose_bash:'ls -l'
     """
-    _command = '{compose} run --rm --entrypoint {entrypoint} {project}'
-    _command += ' -c {command}'
-    _command = _command.format(**{
-        'command': command,
-        'compose': env.compose,
-        'entrypoint': entrypoint or '/bin/bash',
-        'project': env.project,
-    })
+    entrypoint = entrypoint or '/bin/bash'
 
-    return local(_command)
+    return local(f'{env.compose} run --rm --entrypoint {entrypoint}'
+                 f' {env.project} -c {command}')
 
 
 @task
@@ -69,14 +63,7 @@ def django_exec(command, pdb=False):
     if bool_arg(pdb):
         python += ' -m ipdb -c continue'
 
-    _command = '{python} {manage} {command}'
-    _command = _command.format(**{
-        'command': command,
-        'manage': env.manage,
-        'python': python,
-    })
-
-    return project_exec(_command)
+    return project_exec(f'{python} {env.manage} {command}')
 
 
 @task(default=True)
@@ -85,43 +72,21 @@ def django_server(recreate=False):
     container = get_container_id()
 
     if bool_arg(recreate):
-        local('{compose} build'.format(**{'compose': env.compose}))
+        local(f'{env.compose} build')
 
         if container:
-            command = '{docker} rm -f {container}'
-            command = command.format(**{
-                'container': container,
-                'docker': env.docker,
-            })
-            local(command)
+            local(f'{env.docker} rm -f {container}')
             container = None
 
     if not container:
-        command = '{compose} run --name {container} --service-ports'
-        command += ' {project} python -Walways {manage}'
-        command += ' runserver 0.0.0.0:8000'
-        command = command.format(**{
-            'compose': env.compose,
-            'container': env.container,
-            'manage': env.manage,
-            'project': env.project,
-        })
-        return local(command)
+        return local(f'{env.compose} run --name {env.container}'
+                     f' --service-ports {env.project} python -Walways'
+                     f' {env.manage} runserver 0.0.0.0:8000')
 
     if env.services:
-        command = '{compose} start {services}'
-        command = command.format(**{
-            'compose': env.compose,
-            'services': ' '.join(env.services),
-        })
-        local(command)
+        local(f'{env.compose} start {" ".join(env.services)}')
 
-    command = '{docker} start --attach --interactive {container}'
-    command = command.format(**{
-        'container': container,
-        'docker': env.docker,
-    })
-    return local(command)
+    return local(f'{env.docker} start --attach --interactive {container}')
 
 
 @task
@@ -135,13 +100,8 @@ def django_shell():
 
 def get_container_id(options='--all --quiet'):
     """Return ID of project-server container."""
-    command = '{docker} ps {options} --filter=name={container}'
-    command = command.format(**{
-        'container': env.container,
-        'docker': env.docker,
-        'options': options,
-    })
-    return local(command, capture=True)
+    return local(f'{env.docker} ps {options} --filter=name={env.container}',
+                 capture=True)
 
 
 @task
@@ -162,17 +122,14 @@ def itcase_dev_update(folder='itcase-dev', brunch='develop'):
             |-- ...
             `-- third-party-module
     """
-    command = 'find {folder}/ -maxdepth 1 -type d'
-    command = command.format(**{'folder': folder})
-
-    subdirs = local(command, capture=True)
+    subdirs = local(f'find {folder}/ -maxdepth 1 -type d', capture=True)
     subdirs = subdirs.split()
 
     for subdir in subdirs[1:]:
 
         with lcd(subdir), settings(warn_only=True):
             print(cyan(subdir))
-            local('git pull origin {brunch}'.format(**{'brunch': brunch}))
+            local(f'git pull origin {brunch}')
 
 
 @task
@@ -183,17 +140,9 @@ def loadsql(filepath):
         filepath (string): Path to SQL-file.
 
     """
-    command = 'cat {filepath} |'
-    command += ' {docker} exec -iu {service} {project}-{service}'
-    command += ' psql -U {project} -d {project}'
-    command = command.format(**{
-        'docker': env.docker,
-        'filepath': filepath,
-        'project': env.project,
-        'service': env.db_service,
-    })
-
-    return local(command)
+    return local(f'cat {filepath} | {env.docker} exec -iu {env.db_service}'
+                 f' {env.project}-{env.db_service} psql -U {env.project}'
+                 f' -d {env.project}')
 
 
 @task
@@ -205,31 +154,34 @@ def project_exec(command, options='--interactive --tty', user=None):
         return
 
     if user is not None:
-        options += ' --user {user}'.format(**{'user': user})
+        options += f' --user {user}'
 
-    _command = '{docker} exec {options} {container} {command}'
-    _command = _command.format(**{
-        'command': command,
-        'container': container,
-        'docker': env.docker,
-        'options': options,
-    })
-
-    return local(_command)
+    return local(f'{env.docker} exec {options} {container} {command}')
 
 
 @task
 def psql(args=''):
     """Run utilite 'psql' into database service."""
-    command = '{compose} exec --user {service} {service}'
-    command += ' psql --dbname={project}'
+    command = (f'{env.compose} exec --user {env.db_service} {env.db_service}'
+               f' psql --dbname={env.project}')
     if args:
         command += args
-    command = command.format(**{
-        'compose': env.compose,
-        'project': env.project,
-        'service': env.db_service,
-    })
 
     return local(command)
 
+
+@task
+def tmux():
+    commands = [
+        f'rename-window {env.project}',
+        'send-keys fab Enter',
+        'split-window -h',
+        'send-keys "cd src" Enter',
+        'send-keys "git foc" Enter',
+        'split-window',
+        'send-keys "ls -l" Enter',
+        'last-pane',
+    ]
+
+    for command in commands:
+        local(f'tmux {command}')
