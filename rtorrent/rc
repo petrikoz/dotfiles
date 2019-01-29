@@ -39,11 +39,8 @@ trackers.use_udp.set = no
 
 
 ## Peer settings
-schedule2 = throttle_1,22:00:00,24:00:00,throttle.global_down.max_rate.set_kb=0
-schedule2 = throttle_1_1,22:00:00,24:00:00,throttle.global_up.max_rate.set_kb=0
-schedule2 = throttle_2,07:00:00,24:00:00,throttle.global_down.max_rate.set_kb=50
-schedule2 = throttle_2_1,07:00:00,24:00:00,throttle.global_up.max_rate.set_kb=50
-
+throttle.global_down.max_rate.set_kb = 50
+throttle.global_up.max_rate.set_kb = 50
 throttle.max_uploads.set = 100
 throttle.max_uploads.global.set = 250
 
@@ -54,6 +51,11 @@ throttle.max_peers.seed.set = 80
 trackers.numwant.set = 80
 
 protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
+
+schedule2 = throttle_1,22:00:00,24:00:00,throttle.global_down.max_rate.set_kb=0
+schedule2 = throttle_1_1,22:00:00,24:00:00,throttle.global_up.max_rate.set_kb=0
+schedule2 = throttle_2,07:00:00,24:00:00,throttle.global_down.max_rate.set_kb=50
+schedule2 = throttle_2_1,07:00:00,24:00:00,throttle.global_up.max_rate.set_kb=50
 
 
 ## Limits for file handle resources, this is optimized for
