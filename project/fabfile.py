@@ -15,6 +15,7 @@
 # limitations under the License.
 
 from distutils.util import strtobool
+import os
 
 from fabric.api import env
 from fabric.colors import cyan, yellow
@@ -26,9 +27,11 @@ env.compose = 'docker-compose'
 env.db_service = 'postgres'
 env.docker = 'docker'
 env.manage = 'manage.py'
-env.project = REPLACEME
+env.project = os.path.basename(os.path.dirname(__file__))
 env.container = f'{env.project}-server'
 env.services = ('redis', env.db_service)
+
+command_psql = f'psql --username={env.project} --dbname={env.project}'
 
 
 @task
@@ -140,9 +143,12 @@ def loadsql(filepath):
         filepath (string): Path to SQL-file.
 
     """
-    return local(f'cat {filepath} | {env.docker} exec -iu {env.db_service}'
-                 f' {env.project}-{env.db_service} psql -U {env.project}'
-                 f' -d {env.project}')
+    command = (f'cat {filepath} |'
+               f' {env.docker} exec -iu {env.db_service}'
+               f' {env.project}-{env.db_service}')
+    command += ' ' + command_psql
+
+    return local(command)
 
 
 @task
@@ -162,8 +168,9 @@ def project_exec(command, options='--interactive --tty', user=None):
 @task
 def psql(args=''):
     """Run utilite 'psql' into database service."""
-    command = (f'{env.compose} exec --user {env.db_service} {env.db_service}'
-               f' psql --dbname={env.project}')
+    command = f'{env.compose} exec --user {env.db_service} {env.db_service}'
+    command += ' ' + command_psql
+
     if args:
         command += args
 
