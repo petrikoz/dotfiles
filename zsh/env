@@ -13,8 +13,8 @@
   fi
 
   # Golang
-  if [ -d "$HOME/.go" ]; then
-    export GOPATH="$HOME/.go"
+  export GOPATH="$HOME/go"
+  if [ -d "$GOPATH" ]; then
     PATH="$GOPATH/bin:$PATH"
   fi
 

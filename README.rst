@@ -37,7 +37,7 @@ golang
 
 .. code-block:: shell
 
-    ln -s $HOME/dotfiles/go $HOME/.go
+    ln -s $HOME/dotfiles/go $HOME/go
 
 i3wm
 ----
