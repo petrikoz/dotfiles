@@ -29,7 +29,6 @@ env.docker = 'docker'
 env.manage = 'manage.py'
 env.project = os.path.basename(os.path.dirname(__file__))
 env.container = f'{env.project}-server'
-env.services = ('redis', env.db_service)
 
 command_psql = f'psql --username={env.project} --dbname={env.project}'
 
@@ -86,8 +85,9 @@ def django_server(recreate=False):
                      f' --service-ports {env.project} python -Walways'
                      f' {env.manage} runserver 0.0.0.0:8000')
 
-    if env.services:
-        local(f'{env.compose} start {" ".join(env.services)}')
+    services = get_compose_services()
+    if services:
+        local(f'{env.compose} start {services}')
 
     return local(f'{env.docker} start --attach --interactive {container}')
 
@@ -99,6 +99,13 @@ def django_shell():
     Default use 'shell_plus' command via Django Extensions.
     """
     return django_exec('shell_plus')
+
+
+def get_compose_services():
+    services = local(f'{env.compose} config --services', capture=True)
+    services = services.split('\n')
+    services.remove(env.project)
+    return ' '.join(services)
 
 
 def get_container_id(options='--all --quiet'):
