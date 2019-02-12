@@ -52,10 +52,11 @@ trackers.numwant.set = 80
 
 protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
 
-schedule2 = throttle_1,22:00:00,24:00:00,throttle.global_down.max_rate.set_kb=0
-schedule2 = throttle_1_1,22:00:00,24:00:00,throttle.global_up.max_rate.set_kb=0
-schedule2 = throttle_2,07:00:00,24:00:00,throttle.global_down.max_rate.set_kb=50
-schedule2 = throttle_2_1,07:00:00,24:00:00,throttle.global_up.max_rate.set_kb=50
+# Speed limits by time
+schedule2 = throttle_day, 07:00:00, 24:00:00, "throttle.global_down.max_rate.set_kb=50;\
+                                               throttle.global_up.max_rate.set_kb=50"
+schedule2 = throttle_night, 21:00:00, 24:00:00, "throttle.global_down.max_rate.set_kb=0;\
+                                                 throttle.global_up.max_rate.set_kb=0"
 
 
 ## Limits for file handle resources, this is optimized for
@@ -105,10 +106,19 @@ method.insert = d.session_file, simple, "cat=(session.path), (d.hash), .torrent"
 
 
 ## Watch directories (add more as you like, but use unique schedule names)
-## Add torrent
-schedule2 = watch_load, 11, 10, ((load.verbose, (cat, (cfg.watch), "load/*.torrent")))
-## Add & download straight away
 schedule2 = watch_start, 10, 10, ((load.start_verbose, (cat, (cfg.watch), "start/*.torrent")))
+schedule2 = watch_films, 10, 10,\
+            "load.start_verbose=(cat, (cfg.watch), \"films/*.torrent\"),\
+            \"d.directory.set=(cat, (cfg.download), /films)\""
+schedule2 = watch_games, 10, 10,\
+            "load.start_verbose=(cat, (cfg.watch), \"games/*.torrent\"),\
+            \"d.directory.set=(cat, (cfg.download), /games)\""
+schedule2 = watch_porno, 10, 10,\
+            "load.start_verbose=(cat, (cfg.watch), \"porno/*.torrent\"),\
+            \"d.directory.set=(cat, (cfg.download), /porno)\""
+schedule2 = watch_series, 10, 10,\
+            "load.start_verbose=(cat, (cfg.watch), \"series/*.torrent\"),\
+            \"d.directory.set=(cat, (cfg.download), /series)\""
 
 
 ## Run the rTorrent process as a daemon in the background
