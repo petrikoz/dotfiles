@@ -1,0 +1,25 @@
+<snippet>
+    <content><![CDATA[
+@admin.register(${1:Model})
+class ${1:Model}Admin(admin.ModelAdmin):
+
+    fieldsets = (
+        (None, {
+            'fields': (${2:'field','field1', ...}),
+        }),
+        ('${3:BlockName}', {
+            'fields': (${4:'field','field1', ...}),
+            'classes': ('grp-collapse', 'grp-closed'),
+        }),
+    )
+
+    list_display = (${2:'field','field1', ...})
+    list_editable = (${2:'field','field1', ...})
+    list_filter = (${2:'field','field1', ...})
+
+    search_fields = (${2:'field','field1', ...})
+]]></content>
+    <tabTrigger>Admin</tabTrigger>
+    <scope>source.python</scope>
+    <description>Django's ModelAdmin implementation</description>
+</snippet>

@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[
+def get_form_kwargs(self):
+    kwargs = super().get_form_kwargs()
+    ${1:put your code here}
+    return kwargs
+]]></content>
+    <tabTrigger>getformkwargs</tabTrigger>
+    <scope>source.python</scope>
+    <description>Extend Django's FormView.get_form_kwargs</description>
+</snippet>

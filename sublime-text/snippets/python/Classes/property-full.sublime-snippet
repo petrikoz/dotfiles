@@ -1,0 +1,17 @@
+<snippet>
+    <content><![CDATA[
+@property
+def ${1:property}(self):
+    return self._${1:property}
+
+@${1:property}.deleter
+def ${1:property}(self):
+    del self._${1:property}
+
+@${1:property}.setter
+def ${1:property}(self, value):
+    self._${1:property} = value
+]]></content>
+    <tabTrigger>property-full</tabTrigger>
+    <scope>source.python</scope>
+</snippet>

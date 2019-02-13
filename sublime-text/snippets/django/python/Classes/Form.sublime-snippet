@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+class ${1:Class}Form(forms.Form):
+
+    ${2:put your fileds here}
+]]></content>
+    <tabTrigger>Form</tabTrigger>
+    <scope>source.python</scope>
+    <description>Django's Form implementation</description>
+</snippet>

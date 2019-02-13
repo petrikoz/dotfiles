@@ -1,0 +1,14 @@
+<snippet>
+    <content><![CDATA[
+class ${1:Model}Form(forms.ModelForm):
+
+    ${3:put your fileds here}
+
+    class Meta(object):
+        model = ${1:Model}
+        fields = ${2:'__all__'}
+]]></content>
+    <tabTrigger>FormModel</tabTrigger>
+    <scope>source.python</scope>
+    <description>Django's ModelForm implementation</description>
+</snippet>
