@@ -21,6 +21,20 @@ This part contains instructions for install and config soft.
 sudo pacman -S - < $HOME/dotfiles/pkglist.txt
 ```
 
+### cron
+
+```shell
+
+git clone https://aur.archlinux.org/systemd-cron.git
+cd systemd-cron
+makepkg -sri
+
+ln -s $HOME/dotfiles/cron/check-updates.sh /etc/cron.daily/
+sudo systemctl daemon-reload
+sudo systemctl enable cron.target
+sudo systemctl start cron.target
+```
+
 ### fonts
 
 ```shell
