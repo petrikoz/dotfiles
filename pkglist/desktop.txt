@@ -1,0 +1,9 @@
+cups
+go
+libreoffice-still
+qmapshack
+rawtherapee
+rtorrent
+steam
+steam-native-runtime
+virtualbox
