@@ -32,6 +32,15 @@
     "anaconda_linter_show_errors_on_save": true,
 
     /*
+        Auto project switching
+
+        If you set this to true, anaconda will detect project switches and
+        will reconnect a new JsonServer with the switched project
+        configuration.
+    */
+    "auto_project_switch": false,
+
+    /*
         Python Builder Options
 
         If enabled, anaconda will add your configured interpreter (if any)
