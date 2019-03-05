@@ -56,6 +56,30 @@ def compose_bash(command, entrypoint=None):
 
 
 @task
+def db_loadsql(filepath):
+    """Load data form SQL-file into DB.
+
+    Args:
+        filepath (string): Path to SQL-file.
+
+    """
+    command = (f'cat {filepath} |'
+               f' {env.docker} exec -iu {env.db_service}'
+               f' {env.project}-{env.db_service}')
+    command += ' ' + command_psql
+
+    return local(command)
+
+
+@task
+def db_reset():
+    """Recreate container for database service."""
+    suffixes = ('stop', f'rm -f {env.db_service}', f'up -d {env.db_service}')
+
+    return local(' && '.join(f'{env.compose} {suffix}' for suffix in suffixes))
+
+
+@task
 def django_exec(command, pdb=False):
     """Run any command as suffix for manage.py in project-server container.
 
@@ -89,7 +113,10 @@ def django_server(recreate=False):
     if services:
         local(f'{env.compose} start {services}')
 
-    return local(f'{env.docker} start --attach --interactive {container}')
+    local(f'{env.docker} start {container}')
+    anaconda()
+
+    return local(f'{env.docker} attach {container}')
 
 
 @task
@@ -140,22 +167,6 @@ def itcase_dev_update(folder='itcase-dev', brunch='develop'):
         with lcd(subdir), settings(warn_only=True):
             print(cyan(subdir))
             local(f'git pull origin {brunch}')
-
-
-@task
-def loadsql(filepath):
-    """Load data form SQL-file into DB.
-
-    Args:
-        filepath (string): Path to SQL-file.
-
-    """
-    command = (f'cat {filepath} |'
-               f' {env.docker} exec -iu {env.db_service}'
-               f' {env.project}-{env.db_service}')
-    command += ' ' + command_psql
-
-    return local(command)
 
 
 @task
