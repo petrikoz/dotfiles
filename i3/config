@@ -130,6 +130,7 @@ client.urgent            $baseB0  $yellow  $baseB3  $orange
 bar {
     position        top
     status_command  i3blocks -c ~/.i3/i3blocks/conf
+    tray_output     primary
 
     colors {
         # status
