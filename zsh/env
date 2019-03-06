@@ -4,25 +4,17 @@
 # Extend pathes
 ################################################################
 
-  # Python
-  [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
-
-  # Ruby
-  if which ruby >/dev/null && which gem >/dev/null; then
-    PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
-  fi
+  # Local
+  localbin="$HOME/.local/bin"
+  [[ -d $localbin ]] && PATH="$localbin:$PATH"
 
   # Golang
   export GOPATH="$HOME/go"
-  if [ -d "$GOPATH" ]; then
-    PATH="$GOPATH/bin:$PATH"
-  fi
+  [[ -d "$GOPATH" ]] && PATH="$GOPATH/bin:$PATH"
 
   # Android
   export ANDROID_HOME="$HOME/Android/Sdk"
-  if [ -d $ANDROID_HOME ]; then
-    PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
-  fi
+  [[ -d $ANDROID_HOME ]] && PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
 
 ################################################################
 # Environment variables
@@ -30,8 +22,10 @@
 
   umask 0022  # set permissions for files: 0644, for directories: 0755
 
-  export EDITOR="vim"         # default editor
-  export PAGER=less           # default pager
-
+  export EDITOR="vim"  # default editor
   export TERM="screen-256color"
 
+  # Pager
+  export PAGER="less"  # default
+  vimpager="$HOME/.vim/bundle/vimpager/vimpager"
+  [[ -x $vimpager ]] && PAGER="$vimpager"

@@ -53,6 +53,9 @@
   alias tmux='tmux -2'
   alias todo='todo.sh'
 
+  vimcat="$HOME/.vim/bundle/vimpager/vimcat"
+  [[ -x $vimcat ]] && alias cat="$vimcat"
+
 ################################################################
 # Functions
 ################################################################
