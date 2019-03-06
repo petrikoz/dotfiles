@@ -123,7 +123,7 @@
 " Common settings
 
   " Character encodings considered when starting to edit an existing file
-  set fileencodings=utf-8,cp1251
+  set fileencodings=utf-8
   " Display invisible characters
   set list
   set listchars=tab:▸\ ,trail:·,extends:❯,precedes:❮,nbsp:×
@@ -144,22 +144,21 @@
     " Number of spaces that a tab counts for while performing editing operations
     set softtabstop=2
     " Override default settings by filetype
-    if has('autocmd')
       " Python
-        " Number of column to be highlighted
+        " Highlighte max column by PEP8
         autocmd FileType python set colorcolumn=80
         " Number of spaces to use for each step of (auto)indent
         autocmd FileType python set shiftwidth=4
         autocmd FileType python set tabstop=4
         autocmd FileType python set softtabstop=4
-    end
   " Cursor
     " Highlight the screen line of the cursor
     set cursorline
     " Set cursor to its last position
-    if has('autocmd')
-      autocmd BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-    end
+    autocmd BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
   " Backup
     set nobackup  " Don't create backups
     set noswapfile  " Don't create swap files
+  " Syntax
+    " Sublime Text Snippet
+      autocmd BufNewFile,BufRead *.sublime-snippet set syntax=xml
