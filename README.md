@@ -48,7 +48,7 @@ fc-cache -f -v
 
 ```shell
 
-ln -s $HOME/dotfiles/go $HOME/go
+mkdir -p $HOME/go/bin $HOME/go/pkg $HOME/go/src
 ```
 
 ### i3wm

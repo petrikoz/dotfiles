@@ -1,8 +1,0 @@
-*
-!.gitignore
-bin/*
-!bin/.gitkeep
-pkg/*
-!pkg/.gitkeep
-src/*
-!src/.gitkeep
