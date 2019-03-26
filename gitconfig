@@ -18,6 +18,7 @@
 	plc = !git pull origin "$(git rev-parse --abbrev-ref HEAD)"
 	ps = push
 	psa = push --all
+	reb = rebase
 	res = reset
 	resh = reset --hard
 	s = status
