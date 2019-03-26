@@ -30,29 +30,7 @@ env.manage = 'manage.py'
 env.project = os.path.basename(os.path.dirname(__file__))
 env.container = f'{env.project}-server'
 
-command_psql = f'psql --username={env.project} --dbname={env.project}'
-
-
-@task
-def anaconda():
-    command = '/opt/anaconda/anaconda_server/docker/start python 19360'
-    return project_exec(command, options='--detach')
-
-
-def bool_arg(arg):
-    return bool(strtobool(str(arg)))
-
-
-@task
-def compose_bash(command, entrypoint=None):
-    """Run Docker container with custom entrypoint (default: bash).
-
-    Example: fab compose_bash:'ls -l'
-    """
-    entrypoint = entrypoint or '/bin/bash'
-
-    return local(f'{env.compose} run --rm --entrypoint {entrypoint}'
-                 f' {env.project} -c {command}')
+psql = f'psql --username={env.project} --dbname={env.project}'
 
 
 @task
@@ -65,8 +43,8 @@ def db_loadsql(filepath):
     """
     command = (f'cat {filepath} |'
                f' {env.docker} exec -iu {env.db_service}'
-               f' {env.project}-{env.db_service}')
-    command += ' ' + command_psql
+               f' {env.project}-{env.db_service}'
+               f' {psql}')
 
     return local(command)
 
@@ -80,24 +58,33 @@ def db_reset():
 
 
 @task
-def django_exec(command, pdb=False):
-    """Run any command as suffix for manage.py in project-server container.
+def db_shell(args=''):
+    """Run utilite 'psql' into database service."""
+    command = f'{env.compose} exec --user {env.db_service} {env.db_service}'
+    command += f' {psql}'
 
-    Ex.: django_exec:help -> python manage.py help
-    """
+    if args:
+        command += args
+
+    return local(command)
+
+
+@task
+def dj_exec(command, pdb=False):
+    """Run any command as suffix for manage.py in project-server container."""
     python = 'python'
-    if bool_arg(pdb):
+    if get_bool(pdb):
         python += ' -m ipdb -c continue'
 
-    return project_exec(f'{python} {env.manage} {command}')
+    project_exec(f'{python} {env.manage} {command}')
 
 
 @task(default=True)
-def django_server(recreate=False):
+def dj_server(recreate=False):
     """Start Django's development server."""
     container = get_container_id()
 
-    if bool_arg(recreate):
+    if get_bool(recreate):
         local(f'{env.compose} build')
 
         if container:
@@ -114,18 +101,19 @@ def django_server(recreate=False):
         local(f'{env.compose} start {services}')
 
     local(f'{env.docker} start {container}')
-    anaconda()
+    st_anaconda()
 
     return local(f'{env.docker} attach {container}')
 
 
 @task
-def django_shell():
-    """Start Django's shell.
+def dj_shell():
+    """Run 'shell_plus' command from Django Extensions."""
+    return dj_exec('shell_plus')
 
-    Default use 'shell_plus' command via Django Extensions.
-    """
-    return django_exec('shell_plus')
+
+def get_bool(arg):
+    return bool(strtobool(str(arg)))
 
 
 def get_compose_services():
@@ -142,8 +130,8 @@ def get_container_id(options='--all --quiet'):
 
 
 @task
-def itcase_dev_update(folder='itcase-dev', brunch='develop'):
-    """Update all ItCase Dev submodules for project.
+def itcase_dev_update(folder='itcase-dev', branch=None):
+    """Update all ItCase Dev submodules.
 
     Used for directories structure:
         .
@@ -159,6 +147,8 @@ def itcase_dev_update(folder='itcase-dev', brunch='develop'):
             |-- ...
             `-- third-party-module
     """
+    branch = branch or '"$(git rev-parse --abbrev-ref HEAD)"'
+
     subdirs = local(f'find {folder}/ -maxdepth 1 -type d', capture=True)
     subdirs = subdirs.split()
 
@@ -166,7 +156,7 @@ def itcase_dev_update(folder='itcase-dev', brunch='develop'):
 
         with lcd(subdir), settings(warn_only=True):
             print(cyan(subdir))
-            local(f'git pull origin {brunch}')
+            local(f'git pull origin {branch}')
 
 
 @task
@@ -184,19 +174,15 @@ def project_exec(command, options='--interactive --tty', user=None):
 
 
 @task
-def psql(args=''):
-    """Run utilite 'psql' into database service."""
-    command = f'{env.compose} exec --user {env.db_service} {env.db_service}'
-    command += ' ' + command_psql
-
-    if args:
-        command += args
-
-    return local(command)
+def st_anaconda():
+    """Run server for Sublime Text's plugin 'Anaconda'."""
+    command = '/opt/anaconda/anaconda_server/docker/start python 19360'
+    project_exec(command, options='--detach')
 
 
 @task
 def tmux():
+    """Configure TMUX's current window for project."""
     commands = [
         f'rename-window {env.project}',
         'send-keys fab Enter',
