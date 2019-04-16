@@ -63,7 +63,7 @@
 # EncFS from Dropbox
   function encbox() {
     local src="${1:-$HOME/Dropbox}"
-    local target="${2:-$HOME/encfs}"
+    local target="${2:-$HOME/encfs/dropbox}"
     [[ ! "$(ls -A $target)" ]] && encfs "$src" "$target"
   }
 
