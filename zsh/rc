@@ -12,7 +12,6 @@
   # Bundles from the default repo (robbyrussell's oh-my-zsh).
   antigen bundle command-not-found  # suggests package name with relevant command
   antigen bundle docker             # docker autocomplete plugin
-  antigen bundle extract            # 'x' alias - swiss knife for archive extracting
   antigen bundle git-flow-avh       # support for git-flow-avh completion
   antigen bundle history            # aliases: h for history, hsi for grepping history
 
@@ -67,3 +66,13 @@
     [[ ! "$(ls -A $target)" ]] && encfs "$src" "$target"
   }
 
+# Extract archives with p7zip
+  function x() {
+    local filename="${1##*/}"
+    local target="./${filename%.*}"
+    if ! type "7z" &> /dev/null; then
+      echo "Please install p7zip: sudo pacman -Sy p7zip"
+    else
+      7z x "$1" -O"${2:-$target}"
+    fi
+  }
