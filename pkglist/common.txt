@@ -18,6 +18,7 @@ mtr
 netctl
 openssh
 os-prober
+p7zip
 python
 rofi
 rsync
