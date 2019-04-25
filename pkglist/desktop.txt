@@ -1,6 +1,7 @@
 cups
 go
 libreoffice-still
+numlockx
 qmapshack
 rawtherapee
 rtorrent
