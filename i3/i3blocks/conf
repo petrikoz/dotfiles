@@ -90,12 +90,6 @@ instance=wlp2s0
 interval=10
 label=
 
-# Key layout
-#
-[key_layout]
-interval=1
-label=
-
 # Volume indicator
 #
 [audio]

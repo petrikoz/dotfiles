@@ -178,15 +178,6 @@ Section "Monitor"
 EndSection
 ```
 
-### xkblayout-state
-
-```shell
-
-git clone https://aur.archlinux.org/xkblayout-state-git.git
-cd xkblayout-state-git
-makepkg -sri
-```
-
 ### zsh
 
 ```shell
