@@ -159,8 +159,24 @@ makepkg -sri
 
 ln -s $HOME/dotfiles/Xorg/xinitrc $HOME/.xinitrc
 ln -s $HOME/dotfiles/Xorg/Xmodmap $HOME/.Xmodmap
+sudo ln -s $HOME/dotfiles/Xorg/conf.d/40-libinput.conf /etc/X11/xorg.conf.d/
 ```
 
+For two monitors add file `/etc/X11/xorg.conf.d/10-monitor.conf` with content like this:
+
+```conf
+
+Section "Monitor"
+    Identifier  "DVI-0"
+    Option      "PreferredMode" "2560x1600"
+    Option      "Primary" "true"
+EndSection
+
+Section "Monitor"
+    Identifier  "HDMI-0"
+    Option      "RightOf" "DVI-0"
+EndSection
+```
 
 ### xkblayout-state
 
