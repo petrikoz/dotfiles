@@ -29,7 +29,7 @@ default_floating_border  pixel 1
 bindsym $mod+d exec rofi -show drun
 
 # screenshots
-bindsym $mod+Print exec xfce4-screenshooter
+bindsym Print exec xfce4-screenshooter
 
 ###############################################################
 # Autostart
@@ -37,6 +37,9 @@ bindsym $mod+Print exec xfce4-screenshooter
 
 # make short-pressed Ctrl behave like Escape:
 exec --no-startup-id xcape -e 'Control_L=Escape'
+
+# keyborad layouts switcher
+exec --no-startup-id xxkb &
 
 ###############################################################
 # fn keys on laptop

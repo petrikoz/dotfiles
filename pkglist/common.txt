@@ -39,5 +39,6 @@ xorg-xbacklight
 xorg-xinit
 xorg-xsetroot
 xss-lock
+xxkb
 zsh
 zsh-completions
