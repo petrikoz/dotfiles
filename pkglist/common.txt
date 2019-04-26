@@ -33,6 +33,7 @@ vim
 wget
 xautolock
 xcape
+xfce4-screenshooter
 xorg-server
 xorg-xbacklight
 xorg-xinit

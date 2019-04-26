@@ -28,6 +28,9 @@ default_floating_border  pixel 1
 # https://github.com/DaveDavenport/rofi/wiki/Themes
 bindsym $mod+d exec rofi -show drun
 
+# screenshots
+bindsym $mod+Print exec xfce4-screenshooter
+
 ###############################################################
 # Autostart
 #####################
