@@ -11,8 +11,19 @@ userresources="$HOME/.Xresources"
 
 sysmodmap=/etc/X11/xinit/.Xmodmap
 [[ -f "$sysmodmap" ]] && xmodmap "$sysmodmap"
-usermodmap="$HOME/.Xmodmap"
-[[ -f "$usermodmap" ]] && xmodmap "$usermodmap"
+
+# add layouts, switch its with LeftCtrl+LeftWin
+setxkbmap -layout us,ru -option grp:lctrl_lwin_toggle
+# change CapsLock → Ctrl
+setxkbmap -option ctrl:nocaps
+
+# make short-pressed Ctrl behave like Escape:
+xcape -e 'Control_L=Escape'
+
+# Num Lock
+if type "numlockx" &> /dev/null; then
+  numlockx on
+fi
 
 ###############################################################
 # Autostart
@@ -28,15 +39,13 @@ if [ -d "$scripts" ] ; then
 fi
 
 # Dropbox
-exec ~/.dropbox-dist/dropboxd &
+exec "$HOME/.dropbox-dist/dropboxd" &
 
 # Screenlock
 exec xautolock -time 3 -locker i3lock &
 
-# Num Lock
-if type "numlockx" &> /dev/null; then
-  numlockx on
-fi
+# Keyborad layouts switcher
+exec xxkb &
 
 ###############################################################
 # Windows management

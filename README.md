@@ -158,8 +158,7 @@ makepkg -sri
 ```shell
 
 ln -s $HOME/dotfiles/Xorg/xinitrc $HOME/.xinitrc
-ln -s $HOME/dotfiles/Xorg/Xmodmap $HOME/.Xmodmap
-sudo ln -s $HOME/dotfiles/Xorg/conf.d/40-libinput.conf /etc/X11/xorg.conf.d/
+ln -s $HOME/dotfiles/Xorg/xxkbrc $HOME/.xxkbrc
 ```
 
 For two monitors add file `/etc/X11/xorg.conf.d/10-monitor.conf` with content like this:

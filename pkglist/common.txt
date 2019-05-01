@@ -35,6 +35,7 @@ xautolock
 xcape
 xfce4-screenshooter
 xorg-server
+xorg-setxkbmap
 xorg-xbacklight
 xorg-xinit
 xorg-xsetroot

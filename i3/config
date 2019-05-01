@@ -32,16 +32,6 @@ bindsym $mod+d exec rofi -show drun
 bindsym Print exec xfce4-screenshooter
 
 ###############################################################
-# Autostart
-#####################
-
-# make short-pressed Ctrl behave like Escape:
-exec --no-startup-id xcape -e 'Control_L=Escape'
-
-# keyborad layouts switcher
-exec --no-startup-id xxkb &
-
-###############################################################
 # fn keys on laptop
 #################
 # audio
