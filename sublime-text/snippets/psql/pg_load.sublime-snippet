@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[
+PROJECT=${1:project}; psql -h ${2:localhost} -U ${3:\$PROJECT} -d ${4:\$PROJECT} -f ${5:/tmp/\$PROJECT.sql} --echo-errors
+]]></content>
+    <tabTrigger>pg_load</tabTrigger>
+    <scope>source.shell</scope>
+    <description>Restore dump with `psql`</description>
+</snippet>

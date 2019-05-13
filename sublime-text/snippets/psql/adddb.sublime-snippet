@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+CREATE USER ${1:name} WITH PASSWORD '${2:password}';
+CREATE DATABASE ${1:name} WITH OWNER ${1:owner};
+GRANT ALL ON DATABASE ${1:database} TO ${1:user};
+]]></content>
+    <tabTrigger>adddb</tabTrigger>
+    <scope>source.sql</scope>
+    <description>Add new user and database to PostgreSQL</description>
+</snippet>

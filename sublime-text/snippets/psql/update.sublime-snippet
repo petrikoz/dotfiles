@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+UPDATE ${1:table_name}
+    SET ${2:column_name} = ${3:expression}
+    WHERE ${3:condition};
+]]></content>
+    <tabTrigger>update</tabTrigger>
+    <scope>source.sql</scope>
+    <description>PostgreSQL query 'UPDATE'</description>
+</snippet>

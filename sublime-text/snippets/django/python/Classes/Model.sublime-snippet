@@ -2,13 +2,15 @@
     <content><![CDATA[
 class ${1:Model}(models.Model):
 
+    ${6:put your fields here}
+
     class Meta(object):
         _splash = '${2:name}'
-        verbose_name = _splash % '${3}'
-        verbose_name_plural = _splash % '${4}'
+        verbose_name = _splash % '$3'
+        verbose_name_plural = _splash % '$4'
 
     def __str__(self):
-        return ${4:self._meta.verbose_name}
+        return ${5:self._meta.verbose_name}
 ]]></content>
     <tabTrigger>Model</tabTrigger>
     <scope>source.python</scope>

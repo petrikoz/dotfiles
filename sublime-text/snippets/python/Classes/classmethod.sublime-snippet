@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+@classmethod
+def ${1:method}(cls, ${2:arg}):
+    ${3:put your code here}
+]]></content>
+    <tabTrigger>classmethod</tabTrigger>
+    <scope>source.python</scope>
+    <description>add classmethod</description>
+</snippet>

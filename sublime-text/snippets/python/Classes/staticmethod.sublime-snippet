@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+@staticmethod
+def ${1:method}(${2:arg}):
+    ${3:put your code here}
+]]></content>
+    <tabTrigger>staticmethod</tabTrigger>
+    <scope>source.python</scope>
+    <description>add staticmethod</description>
+</snippet>
