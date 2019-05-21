@@ -95,10 +95,16 @@ label=
 [audio]
 interval=1
 
+# Weather
+#
+[weather]
+command=~/.i3/i3blocks/scripts/weather/weather.py -c ~/.i3/i3blocks/weather.ini
+interval=3600
+
 # Date Time
 #
 [time]
-command=date '+ %Y-%m-%d  %H:%M'
+command=date '+ %d-%m-%Y  %H:%M'
 interval=5
 
 # Key indicators
