@@ -99,7 +99,7 @@ interval=1
 #
 [weather]
 command=~/.i3/i3blocks/scripts/weather/weather.py -c ~/.i3/i3blocks/weather.ini
-interval=3600
+interval=300
 
 # Date Time
 #

@@ -24,16 +24,24 @@ import urllib.request
 BASE_DIR = Path(__file__).parent
 
 ICONS = {
-    'clear-day': '\ue30d',
-    'clear-night': '\ue32b',
-    'cloudy': '\ue312',
-    'fog': '\ue313',
-    'partly-cloudy-day': '\ue302',
-    'partly-cloudy-night': '\ue37e',
-    'rain': '\ue318',
-    'sleet': '\ue316',
-    'snow': '\ue31a',
-    'wind': '\ufa9c',
+    '01d': '\ue30d',  # 
+    '01n': '\ue32b',  # 
+    '02d': '\ue30c',  # 
+    '02n': '\ue379',  # 
+    '03d': '\ue302',  # 
+    '03n': '\ue37e',  # 
+    '04d': '\ue312',  # 
+    '04n': '\ue312',  # 
+    '09d': '\ue319',  # 
+    '09n': '\ue319',  # 
+    '10d': '\ue308',  # 
+    '10n': '\ue325',  # 
+    '11d': '\ue31d',  # 
+    '11n': '\ue31d',  # 
+    '13d': '\ue31a',  # 
+    '13n': '\ue31a',  # 
+    '50d': '\ue313',  # 
+    '50n': '\ue313',  # 
 }
 
 
@@ -43,16 +51,16 @@ def get_config(path):
     config = configparser.ConfigParser()
     config.read(path)
 
-    return config['ARGS'], config['OPTIONS']
+    return config['OWM']
 
 
-def get_data(key, latitude, longitude, cache=None, **options):
+def get_data(config, cache=None):
 
-    url = f'https://api.darksky.net/forecast/{key}/{latitude},{longitude}'
+    url = 'https://api.openweathermap.org/data/2.5/weather'
 
     _first = True
     sep = '?'
-    for key, value in options.items():
+    for key, value in config.items():
         url += f'{sep}{key}={value}'
         if _first:
             _first = False
@@ -70,18 +78,20 @@ def get_data(key, latitude, longitude, cache=None, **options):
 
 
 def get_current(data):
-    icon = ICONS.get(data['icon'])
-    temp = str(round(data['temperature'])) + '°C'
+    weather = data['weather'][0]
+    icon = ICONS.get(weather['icon'])
+
+    main = data['main']
+    temp = str(round(main['temp'])) + '°C'
 
     return f'{icon}  {temp}'
 
 
 def main(args):
-    _args, options = get_config(args.config)
-    data = get_data(_args['key'], _args['latitude'], _args['longitude'],
-                    args.cache, **options)
+    config = get_config(args.config)
+    data = get_data(config, args.cache)
 
-    current = get_current(data['currently'])
+    current = get_current(data)
     print(current)
 
 
