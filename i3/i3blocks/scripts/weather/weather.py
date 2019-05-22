@@ -84,7 +84,7 @@ def get_current(data):
     main = data['main']
     temp = str(round(main['temp'])) + '°C'
 
-    return f'{icon}  {temp}'
+    return f'{icon} {temp}'
 
 
 def main(args):

@@ -98,7 +98,7 @@ interval=1
 # Weather
 #
 [weather]
-command=~/.i3/i3blocks/scripts/weather/weather.py -c ~/.i3/i3blocks/weather.ini
+command=~/.i3/i3blocks/scripts/$BLOCK_NAME/$BLOCK_NAME.py
 interval=300
 
 # Date Time
