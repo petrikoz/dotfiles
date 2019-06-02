@@ -3,10 +3,10 @@
 # Show count of available new packages Solarized Dark colorscheme
 
 crit_color="#DC322F"
-crit_threshold=25
+crit_threshold=75
 
 warn_color="#B58900"
-warn_threshold=15
+warn_threshold=50
 
 count="$(pacman -Qu | wc -l)"
 
