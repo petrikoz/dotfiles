@@ -104,7 +104,7 @@ interval=300
 # Date Time
 #
 [time]
-command=date '+ %d-%m-%Y  %H:%M'
+command=date '+ %d.%m.%Y  %H:%M'
 interval=5
 
 # Key indicators
