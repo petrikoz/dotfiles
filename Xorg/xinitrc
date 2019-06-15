@@ -16,6 +16,8 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 setxkbmap -layout us,ru -option grp:lctrl_lwin_toggle
 # change CapsLock → Ctrl
 setxkbmap -option ctrl:nocaps
+# add Compose key
+setxkbmap -option compose:menu
 
 # make short-pressed Ctrl behave like Escape:
 xcape -e 'Control_L=Escape'
