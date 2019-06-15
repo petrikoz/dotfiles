@@ -23,7 +23,6 @@ openssh
 os-prober
 p7zip
 python
-python3
 rawtherapee
 rofi
 rsync
