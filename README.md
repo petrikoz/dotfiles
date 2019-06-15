@@ -6,7 +6,7 @@ Configs for most of my software.
 
 ```shell
 
-sudo pacman -Suy git
+sudo pacman -Suy base-devel git
 git clone --recursive https://github.com/petrikoz/dotfiles.git
 ```
 
@@ -18,8 +18,10 @@ This part contains instructions for install and config soft.
 
 ```shell
 
-sudo pacman -S - < $HOME/dotfiles/pkglist.txt
+sudo pacman -S - < $HOME/dotfiles/pkglist/common.txt
 ```
+
+For desktop use `pkglist/desktop.txt`. For laptop `pkglist/laptop.txt`.
 
 ### cron
 
@@ -27,7 +29,7 @@ sudo pacman -S - < $HOME/dotfiles/pkglist.txt
 
 git clone https://aur.archlinux.org/systemd-cron.git
 cd systemd-cron
-makepkg -sri
+makepkg -irs
 
 sudo systemctl daemon-reload
 sudo systemctl enable cron.target
@@ -58,11 +60,36 @@ mkdir -p $HOME/go/bin $HOME/go/pkg $HOME/go/src
 ln -s $HOME/dotfiles/i3 $HOME/.i3
 ```
 
-### lm_sensors
+For enable blocks:
 
 ```shell
 
+# lm_sensors
 sudo sensors-detect --auto
+
+# hddtemp
+# for run only on localhost add in 'ExecStart': `-l 127.0.0.1`
+sudo systemctl enable hddtemp.service
+sudo systemctl start hddtemp.service
+```
+
+### netctl
+
+For more information see https://wiki.archlinux.org/index.php/Netctl
+
+See network interfaces:
+
+```shell
+
+ip link
+```
+
+Enable systemd service:
+
+```shell
+
+sudo systemctl enable netctl-auto@INTERFACE.service
+sudo systemctl start netctl-auto@INTERFACE.service
 ```
 
 ### pmount
@@ -71,7 +98,7 @@ sudo sensors-detect --auto
 
 git clone https://aur.archlinux.org/pmount.git
 cd pmount
-makepkg -sri
+makepkg -irs
 ```
 
 ### python
@@ -92,15 +119,9 @@ ln -s $HOME/dotfiles/isort.cfg $HOME/.isort.cfg
 
 git clone https://aur.archlinux.org/rofi-dmenu.git
 cd rofi-dmenu
-makepkg -sri
-```
+makepkg -irs
 
-### rtorrent
-
-```shell
-
-ln -s $HOME/dotfiles/rtorrent $HOME/rtorrent
-ln -s $HOME/rtorrent/rc $HOME/.rtorrent.rc
+ln -s $HOME/dotfiles/i3/rofi $HOME/.config/
 ```
 
 ### st
@@ -108,7 +129,7 @@ ln -s $HOME/rtorrent/rc $HOME/.rtorrent.rc
 ```shell
 
 cd $HOME/dotfiles/st
-makepkg -sri
+makepkg -irs
 ```
 
 ### sublime text
@@ -118,6 +139,7 @@ makepkg -sri
 curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --add sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
 echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf
 sudo pacman -Syu sublime-text
+
 ln -sf $HOME/dotfiles/sublime-text  $HOME/.config/sublime-text-3/Packages/User
 ```
 
@@ -137,7 +159,7 @@ ln -s $HOME/dotfiles/todo $HOME/.todo
 
 git clone https://aur.archlinux.org/todotxt.git
 cd todotxt
-makepkg -sri
+makepkg -irs
 ```
 
 ### vim
@@ -150,7 +172,7 @@ ln -s $HOME/.vim/rc $HOME/.vimrc
 # replace vi with vim
 git clone https://aur.archlinux.org/vi-vim-symlink.git
 cd vi-vim-symlink
-makepkg -sri
+makepkg -irs
 ```
 
 ### xorg
