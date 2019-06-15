@@ -1,10 +1,9 @@
 cups
+deluge
 go
 libreoffice-still
 numlockx
 qmapshack
-rawtherapee
-rtorrent
 steam
 steam-native-runtime
 virtualbox

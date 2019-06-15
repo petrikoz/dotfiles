@@ -1,0 +1,2 @@
+dialog
+wpa_supplicant
