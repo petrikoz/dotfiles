@@ -144,7 +144,7 @@ bar {
 set $ws1 "1: main"
 set $ws2 "2: web"
 set $ws3 "3: sup"
-set $ws4 "4: games"
+set $ws4 "4: other"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
@@ -248,6 +248,9 @@ bindsym $mod+space focus mode_toggle
 
 ###############
 # Apps
+
+# Deluge
+assign [class="^Deluge$"] → number $ws4
 
 # KeepassXC
 assign [class="^keepassxc$"] → number $ws3
