@@ -3,5 +3,6 @@ configuration {
   combi-modi: "window,drun,ssh";
   drun-show-actions: true;
   modi: "combi";
+  show-icons: true;
   theme: "solarized_alternate";
 }
