@@ -68,11 +68,11 @@
 
 # Extract archives with p7zip
   function x() {
-    local filename="${1##*/}"
-    local target="./${filename%.*}"
     if ! type "7z" &> /dev/null; then
       echo "Please install p7zip: sudo pacman -Sy p7zip"
-    else
-      7z x "$1" -O"${2:-$target}"
+      return
     fi
+    local cmd="7z x $1"
+    [[ ! -z "$2" ]] && cmd="$cmd -O$2"
+    eval "$cmd"
   }
