@@ -1,8 +1,7 @@
 <snippet>
     <content><![CDATA[
 
-```
-#!${1:syntax}
+```${1:syntax}
 
 ${2:code}
 ```
