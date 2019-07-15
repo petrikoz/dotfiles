@@ -8,5 +8,8 @@
 
     // Anaconda
     { "keys": ["alt+shift+d"], "command": "anaconda_doc" },
+
+    // Yapf
+    { "keys": ["ctrl+alt+r"], "command": "yapf_selection" },
 ]
 
