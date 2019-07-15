@@ -109,8 +109,6 @@ pip3 install --upgrade --user pip
 
 ln -s $HOME/dotfiles/pip $HOME/.pip
 pip install --requirement=$HOME/.pip/requirements.txt
-
-ln -s $HOME/dotfiles/isort.cfg $HOME/.isort.cfg
 ```
 
 ### rofi-dmenu

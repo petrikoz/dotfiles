@@ -6,7 +6,7 @@ fabric3
 flake8
 http-prompt
 ipdb
-ptpython
-isort
 joe
+ptpython
 pydocstyle
+yapf
