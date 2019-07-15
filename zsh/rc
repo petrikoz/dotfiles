@@ -48,7 +48,6 @@
 ################################################################
 
   alias :q='exit'
-  alias Rtorrent='stty start undef && stty stop undef && rtorrent'
   alias tmux='tmux -2'
   alias todo='todo.sh'
 
