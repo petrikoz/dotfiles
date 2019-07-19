@@ -21,6 +21,7 @@ mtr
 netctl
 openssh
 os-prober
+pacman-contrib
 p7zip
 python
 rawtherapee

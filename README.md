@@ -18,7 +18,7 @@ This part contains instructions for install and config soft.
 
 ```shell
 
-sudo pacman -S - < $HOME/dotfiles/pkglist/common.txt
+sudo pacman -S - < $HOME/dotfiles/pacman/pkglist/common.txt
 ```
 
 For desktop use `pkglist/desktop.txt`. For laptop `pkglist/laptop.txt`.
@@ -90,6 +90,13 @@ Enable systemd service:
 
 sudo systemctl enable netctl-auto@INTERFACE.service
 sudo systemctl start netctl-auto@INTERFACE.service
+```
+
+### pacman
+
+```shell
+
+sudo cp -r $HOME/dotfiles/pacman/hooks /etc/pacman.d/
 ```
 
 ### pmount
