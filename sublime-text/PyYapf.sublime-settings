@@ -5,5 +5,5 @@
         "BLANK_LINE_BEFORE_NESTED_CLASS_OR_DEF": true,
         "SPLIT_COMPLEX_COMPREHENSION": true
     },
-	"yapf_command": "/home/petr/.local/bin/yapf"
+    "yapf_command": "/home/petr/.local/bin/yapf"
 }
