@@ -112,10 +112,8 @@ makepkg -irs
 
 ```shell
 
-pip3 install --upgrade --user pip
-
-ln -s $HOME/dotfiles/pip $HOME/.pip
-pip install --requirement=$HOME/.pip/requirements.txt
+pip3 install --upgrade --user pip setuptools wheel
+pip install --requirement=$HOME/dotfiles/pip-reqs.txt
 ```
 
 ### rofi-dmenu
