@@ -19,6 +19,7 @@ lm_sensors
 mc
 mtr
 netctl
+nextcloud-client
 openssh
 os-prober
 pacman-contrib

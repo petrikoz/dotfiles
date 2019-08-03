@@ -40,8 +40,9 @@ if [ -d "$scripts" ] ; then
  unset f
 fi
 
-# Dropbox
+# Cloud clients
 exec "$HOME/.dropbox-dist/dropboxd" &
+exec nextcloud &
 
 # Screenlock
 exec xautolock -time 3 -locker i3lock &
