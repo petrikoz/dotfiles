@@ -1,0 +1,6 @@
+[Unit]
+Description=rclone copy backup <-> cloud
+
+[Service]
+ExecStart=%h/dotfiles/systemd/user/cloud-backup/cloud-backup.sh
+Type=oneshot

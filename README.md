@@ -25,17 +25,19 @@ For desktop use `pkglist/desktop.txt`. For laptop `pkglist/laptop.txt`.
 
 ### cron
 
+Use systemd's timers as replacement for cron
+
 ```shell
 
-git clone https://aur.archlinux.org/systemd-cron.git
-cd systemd-cron
-makepkg -irs
+# Check updates
+systemctl enable $HOME/dotfiles/systemd/check-updates/check-updates.service
+systemctl enable $HOME/dotfiles/systemd/check-updates/check-updates.timer
+systemctl start check-updates.timer
 
-sudo systemctl daemon-reload
-sudo systemctl enable cron.target
-sudo systemctl start cron.target
-
-sudo ln -s $HOME/dotfiles/cron/check-updates /etc/cron.daily/
+# Cloud backup
+systemctl --user enable $HOME/dotfiles/systemd/user/cloud-backup/cloud-backup.service
+systemctl --user enable $HOME/dotfiles/systemd/user/cloud-backup/cloud-backup.timer
+systemctl --user start cloud-backup.timer
 ```
 
 ### fonts

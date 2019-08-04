@@ -1,0 +1,8 @@
+[Unit]
+Description=Run `cloud-backup` hourly after login
+
+[Timer]
+OnActiveSec=1h
+
+[Install]
+WantedBy=timers.target

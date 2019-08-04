@@ -1,0 +1,6 @@
+[Unit]
+Description=check updates
+
+[Service]
+Type=oneshot
+ExecStart=pacman -Sy
