@@ -1,0 +1,7 @@
+ansible
+docker-compose
+fabric3
+flake8
+http-prompt
+pydocstyle
+yapf
