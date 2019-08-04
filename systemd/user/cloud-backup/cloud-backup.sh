@@ -6,17 +6,22 @@ if [[ ! -f "$rclone" ]]; then
   exit 1
 fi
 
-# Backup secret data if possible
+# Backup private data if possible
 decrypted="$HOME/encfs/cloud"
 if [[ ! "$(findmnt -M $decrypted)" ]]; then
     echo "Please mount encrypted cloud's backup to '$decrypted'"
 else
-    echo "Backup secret data:..."
+    echo "Backup private data:..."
 
     # self config
+    echo "  rclone:..."
     "$rclone" copy "$HOME/.config/rclone" "$decrypted/rclone"
+    echo "  done"
 
-    echo "done"
+    # Google Drive
+    echo "  Google Drive:..."
+    "$rclone" copy drive:Finances "$decrypted/fin-reports/drive.google.com"
+    echo "  done"
 fi
 
 
