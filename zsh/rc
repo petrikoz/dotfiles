@@ -19,9 +19,9 @@
   # Additional completion definitions for Zsh.
   antigen bundle zsh-users/zsh-completions src
   antigen bundle sdurrheimer/docker-compose-zsh-completion
+  antigen bundle $HOME/.zsh/completions --no-local-clone
 
   # Load the theme.
-  #antigen theme $HOME/.zsh/themes 'petrikoz' --no-local-clone
   DEFAULT_USER=$USER
   POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
   POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs context dir_writable root_indicator time)
