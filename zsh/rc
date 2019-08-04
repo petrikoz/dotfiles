@@ -61,8 +61,12 @@
 
 # EncFS from Dropbox
   function encbox() {
-    local src="${1:-$HOME/Nextcloud/private}"
-    local target="${2:-$HOME/encfs/nextcloud}"
+    if ! type "encfs" &> /dev/null; then
+      echo "Please install encfs: sudo pacman -Sy encfs"
+      return
+    fi
+    local src="${1:-$HOME/cloud/backup/.encrypted}"
+    local target="${2:-$HOME/encfs/cloud}"
     [[ ! "$(ls -A $target)" ]] && encfs "$src" "$target"
   }
 
