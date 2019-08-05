@@ -40,8 +40,7 @@ if [ -d "$scripts" ] ; then
  unset f
 fi
 
-# Cloud clients
-exec "$HOME/.dropbox-dist/dropboxd" &
+# NextCloud
 exec nextcloud &
 
 # Screenlock
