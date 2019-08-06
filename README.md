@@ -30,9 +30,8 @@ Use systemd's timers as replacement for cron
 ```shell
 
 # Check updates
-systemctl enable $HOME/dotfiles/systemd/check-updates/check-updates.service
-systemctl enable $HOME/dotfiles/systemd/check-updates/check-updates.timer
-systemctl start check-updates.timer
+sudo cp $HOME/dotfiles/systemd/check-updates/* /etc/systemd/system/
+systemctl enable check-updates.timer
 
 # Cloud backup
 systemctl --user enable $HOME/dotfiles/systemd/user/cloud-backup/cloud-backup.service
