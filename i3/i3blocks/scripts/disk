@@ -12,8 +12,9 @@ data="$(df -hlP ${BLOCK_INSTANCE:-$HOME})"
 size="$(echo "$data" | awk '/\/.*/ { print $4 }')"
 use="$(echo "$data" | awk '/\/.*/ { gsub(/%$/, "", $5); print $5 }')"
 
-echo "$size ($use%)"
-echo "$size ($use%)"
+label="${BLOCK_LABEL:-}"
+echo "$label $size ($use%)"
+echo "$label $size ($use%)"
 
 if [[ "$use" -ge "$crit_threshold" ]] ; then
   echo "$crit_color"

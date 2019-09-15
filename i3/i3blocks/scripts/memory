@@ -66,8 +66,9 @@ if [[ "${DISPLAY}" != "perc" ]]; then
   fi
 fi
 
-echo "${MEMINFO}"
-echo "${MEMINFO}"
+label="${BLOCK_LABEL:-}"
+echo "$label $MEMINFO"
+echo "$label $MEMINFO"
 echo ""
 
 if [[ "${SOURCE_PERC}" -gt "${URGENT_VALUE}" ]]; then

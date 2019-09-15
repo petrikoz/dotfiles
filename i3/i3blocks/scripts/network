@@ -1,23 +1,25 @@
 #!/bin/bash
 
 device="${BLOCK_INSTANCE:-wlan0}"
-status=$(cat /sys/class/net/${device}/operstate)
+data="$(cat /sys/class/net/$device/operstate)"
 
 URGENT_VALUE=20
 
-if [[ "${status}" == "up" ]]; then
-  if [[ -d "/sys/class/net/${device}/wireless" ]]; then
-    quality=$(grep ${device} /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
-    echo "${quality}%"
-    echo "${quality}%"
-    echo ""
+if [[ "$data" == "up" ]]; then
+  let text="on"
+  let code=0
 
-    if [[ "${quality}" -le "${URGENT_VALUE}" ]]; then
-      exit 33
+  if [[ -d "/sys/class/net/$device/wireless" ]]; then
+    quality=$(grep $device /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+    text="$quality%"
+    if [[ "$quality" -le "$URGENT_VALUE" ]]; then
+      code=33
     fi
-  else
-    echo "on"
-    echo "on"
-    echo ""
   fi
+
+  let label="${BLOCK_LABEL:-}"
+  echo "$label $text"
+  echo "$label $text"
+  echo ""
+  exit "$code"
 fi
