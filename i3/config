@@ -249,16 +249,16 @@ bindsym $mod+space focus mode_toggle
 # Apps
 
 # Deluge
-assign [class="^Deluge$"] → number $ws4
+assign [class="(?i)deluge"] → number $ws4
 
 # KeepassXC
-assign [class="^keepassxc$"] → number $ws3
+assign [class="keepassxc"] → number $ws3
 
 # Steam
-assign [class="^Steam$"] → number $ws4
+assign [class="Steam"] → number $ws4
 
 # Telegram
-assign [class="^TelegramDesktop$"] → number $ws3
+assign [class="TelegramDesktop"] → number $ws3
 
 ###############################################################
 # Keys
