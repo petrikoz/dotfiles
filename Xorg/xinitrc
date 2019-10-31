@@ -28,29 +28,6 @@ if type "numlockx" &> /dev/null; then
 fi
 
 ###############################################################
-# Autostart
-#################
-
-# start some programs
-scripts="/etc/X11/xinit/xinitrc.d"
-if [ -d "$scripts" ] ; then
- for f in "$scripts/?*.sh" ; do
-  [ -x "$f" ] && . "$f"
- done
- unset f
-fi
-
-# NextCloud
-exec nextcloud &
-
-# Screenlock
-exec xautolock -time 3 -locker i3lock &
-
-# Keyborad layouts switcher
-exec xxkb &
-
-###############################################################
 # Windows management
 #################
 exec i3
-
