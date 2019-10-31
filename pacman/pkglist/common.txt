@@ -17,6 +17,7 @@ intel-ucode
 keepassxc
 lm_sensors
 mc
+mpv
 mtr
 netctl
 nextcloud-client
@@ -29,7 +30,6 @@ rawtherapee
 rofi
 rsync
 shadowsocks-libev
-smplayer
 sudo
 telegram-desktop
 tmux

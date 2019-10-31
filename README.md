@@ -74,6 +74,14 @@ sudo systemctl enable hddtemp.service
 sudo systemctl start hddtemp.service
 ```
 
+### mpv
+
+```shell
+
+mkdir -p $HOME/.config/mpv
+ln -s $HOME/dotfiles/mpv.conf $HOME/.config/mpv/
+```
+
 ### netctl
 
 For more information see https://wiki.archlinux.org/index.php/Netctl
