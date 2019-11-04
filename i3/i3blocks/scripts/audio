@@ -1,29 +1,42 @@
 #!/usr/bin/env bash
 #
-# Based on https://github.com/Anachron/i3blocks
+# Show and control sound volume
+#
+# Requirements:  sudo pacman -S alsa-utils
+#
+# If you not see $label below use other font :)
 
 # Left click
-if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
   amixer -q sset Master 5%+
 # Middle click
-elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
+elif [[ "$BLOCK_BUTTON" -eq 2 ]]; then
   amixer -q sset Master toggle
 # Right click
-elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
+elif [[ "$BLOCK_BUTTON" -eq 3 ]]; then
   amixer -q sset Master 5%-
 fi
 
-statusLine=$(amixer get Master | tail -n 1)
-status=$(echo "${statusLine}" | grep -wo "on")
-volume=$(echo "${statusLine}" | awk -F ' ' '{print $4}' | tr -d '[]%')
+background="#002B36"
+code=0
+color="#93A1A1"
+label="蓼"
 
-label="${BLOCK_LABEL:-蓼}"
-color=""
-if [[ "${status}" != "on" ]]; then
-  label="遼"
+data=$(amixer get Master | tail -n 1)
+enabled=$(echo "$data" | grep -wo 'on')
+volume=$(echo "$data" | awk -F ' ' '{print $4}' | tr -d '[]%')
+
+if [[ "$enabled" != "on" ]]; then
   color="#B58900"
+  label="遼"
 fi
 
-echo "${label} ${volume}%"
-echo "${label} ${volume}%"
-echo "${color}"
+text_full="$label $volume%"
+text_short="$text_full"
+
+echo "$text_full"
+echo "$text_short"
+echo "$color"
+echo "$background"
+
+exit "$code"

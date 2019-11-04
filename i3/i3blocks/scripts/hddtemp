@@ -1,44 +1,41 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 #
 # Show temperature of HDD in Solarized Dark colorscheme
 #
 # Requirements:
-#  `hddtemp` as service:
-#    sudo pacman -S hddtemp
-#    sudo systemctl enable hddtemp.service
-#    sudo systemctl start hddtemp.service
-#  `netcat`:
-#    sudo pacman -S gnu-netcat
-#  Font with support of icons:
-#    if you not see $LABEL below use other font :)
+#   sudo pacman -S hddtemp gnu-netcat
+#   systemctl enable hddtemp.service
+#   systemctl start hddtemp.service
+#
+# If you not see $label below use other font :)
 
-crit_color="#DC322F"
-crit_label=""
-crit_threshold=60    # °C
-
+background="#002B36"
+code=0
+color="#93A1A1"
 label=""
 
-warn_color="#B58900"
-warn_label=""
-warn_threshold=50    # °C
+data="$(nc localhost 7634 | awk -F'|' '{print $4}')"
 
-temperature="$(nc localhost 7634 | awk -F'|' '{print $4}')"
-
-if [[ "$temperature" -ge "$warn_threshold" ]] ; then
-  color="$warn_color"
-  label="$warn_label"
+warn_threshold=50  # °C
+if [[ "$data" -ge "$warn_threshold" ]]; then
+  color="#B58900"
+  label=""
 fi
 
-if [[ "$temperature" -ge "$crit_threshold" ]] ; then
-  crit=true
-  color="$crit_color"
-  label="$crit_label"
+crit_threshold=60  # °C
+if [[ "$data" -ge "$crit_threshold" ]]; then
+  background="#CB4B16"
+  code=33
+  color="#FDF6E3"
+  label=""
 fi
 
-echo "$label $temperature°C"
-echo "$label $temperature°C"
+text_full="$label $data°C"
+text_short="$text_full"
 
-[[ -n $color ]] && echo "$color"
-[[ "$crit" = true ]] && exit 33
+echo "$text_full"
+echo "$text_short"
+echo "$color"
+echo "$background"
 
-exit 0
+exit "$code"

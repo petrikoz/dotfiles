@@ -2,69 +2,34 @@
 #
 # Please see man i3blocks for a complete reference!
 # The man page is also hosted at http://vivien.github.io/i3blocks
-#
-# List of valid properties:
-#
-# align
-# color
-# command
-# full_text
-# instance
-# interval
-# label
-# min_width
-# name
-# separator
-# separator_block_width
-# short_text
-# signal
-# urgent
 
 # Global properties
 #
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
-color="#EEE8D5"
 command=~/.i3/i3blocks/scripts/$BLOCK_NAME
 markup=pango
 separator_block_width=15
 
 # Packages available
-#
 [packages]
 interval=300
-label=
 
 # System monitor
-#
-[cpu]
-interval=10
-separator=false
-separator_block_width=7
-
-# Temperature
-#
-# Support multiple chips, though lm-sensors.
-# The script may be called with -w and -c switches to specify thresholds,
-# see the script for details.
-[temperature]
-color=#859900
-interval=10
-separator=false
-separator_block_width=7
-
 [load]
+interval=10
+separator=false
+separator_block_width=7
+
+[temperature]
 interval=10
 
 # Memory usage
-#
-# The type defaults to "mem" if the instance is not specified.
 [memory]
 instance=mem;free
 interval=30
 
 # Disk usage
-#
 [disk]
 interval=30
 separator=false
@@ -74,46 +39,28 @@ separator_block_width=7
 color=#859900
 interval=10
 
-# Network
-#
-[ssid]
-interval=60
-separator=false
-separator_block_width=7
-
+# Wifi
 [network]
 instance=wlp2s0
 interval=10
 
+# Ethernet
+[network]
+instance=enp4s0
+interval=10
+
 # Volume indicator
-#
 [audio]
 interval=1
 
 # Weather
-#
 [weather]
+color=#93A1A1
 command=~/.i3/i3blocks/scripts/$BLOCK_NAME/$BLOCK_NAME.py
 interval=300
 
 # Date Time
-#
 [time]
+color=#93A1A1
 command=date '+ %d.%m.%Y  %H:%M'
 interval=5
-
-# Key indicators
-#
-# Add the following bindings to i3 config file:
-#
-# bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
-# bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
-#[keyindicator]
-#instance=CAPS
-#interval=once
-#signal=11
-
-#[keyindicator]
-#instance=NUM
-#interval=once
-#signal=11

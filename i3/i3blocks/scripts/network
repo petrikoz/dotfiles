@@ -1,25 +1,50 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
+# Show IP for ethernet / SSID for wifi connection
+#
+# Requirements (for wifi only):  sudo pacman -S iw
+#
+# If you not see $label below use other font :)
 
+background="#002B36"
+code=0
+color="#93A1A1"
 device="${BLOCK_INSTANCE:-wlan0}"
-data="$(cat /sys/class/net/$device/operstate)"
+label=""
 
-URGENT_VALUE=20
+if [[ -d "/sys/class/net/$device/wireless" ]]; then
+  data=$(grep $device /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+  text="$(iwgetid -r) ($data%)"
 
-if [[ "$data" == "up" ]]; then
-  let text="on"
-  let code=0
+  warn_threshold=50
+  [[ "$data" -ge "$warn_threshold" ]] && color="#B58900"
 
-  if [[ -d "/sys/class/net/$device/wireless" ]]; then
-    quality=$(grep $device /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
-    text="$quality%"
-    if [[ "$quality" -le "$URGENT_VALUE" ]]; then
-      code=33
-    fi
+  crit_threshold=20
+  if [[ "$data" -ge "$crit_threshold" ]]; then
+    background="#CB4B16"
+    code=33
+    color="#FDF6E3"
   fi
+else
+  data="$(ip addr show $device 2> /dev/null)" || exit
+  label=""
+  text="$(echo $data | grep -oP '(?<=inet\s)\d+(\.\d+){3}')"
 
-  let label="${BLOCK_LABEL:-}"
-  echo "$label $text"
-  echo "$label $text"
-  echo ""
-  exit "$code"
+  state="$(echo $data | grep -oP '(?<=state\s)\w+')"
+  [[ "$state" != "UP" ]] && color="#B58900"
+  if [[ "$state" == "DOWN" ]]; then
+    background="#CB4B16"
+    code=33
+    color="#FDF6E3"
+  fi
 fi
+
+text_full="${BLOCK_LABEL:-$label} $text"
+text_short="$text_full"
+
+echo "$text_full"
+echo "$text_short"
+echo "$color"
+echo "$background"
+
+exit "$code"

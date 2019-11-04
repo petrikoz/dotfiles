@@ -1,18 +1,32 @@
-#!/usr/bin/env sh
-# Based on https://github.com/vivien/i3blocks-contrib
+#!/usr/bin/env bash
+#
+# Show load average
+#
+# Requirements:  sudo pacman -S bc
+#
+# If you not see $label below use other font :)
 
-stat="$(cut -d ' ' -f1 /proc/loadavg)"
+background="#002B36"
+code=0
+color="#93A1A1"
+data="$(cut -d ' ' -f1 /proc/loadavg)"
+label=""
+text_full="$label $data"
+text_short="$text_full"
 
-label="${BLOCK_LABEL:-}"
-echo "$label $stat"
-echo "$label $stat"
+warn_threshold="$(nproc)"
+[[ $(echo "$data>=$warn_threshold" | bc) -ne 0 ]] && color="#B58900"
 
-# color if load is too high
-awk -v cpus="$(nproc)" -v cpuload="$stat" '
-    BEGIN {
-        if (cpus <= cpuload) {
-            print "#DC322F";
-            exit 33;
-        }
-    }
-'
+crit_threshold=$(echo "$warn_threshold*2" | bc)
+if [[ $(echo "$data>=$crit_threshold" | bc) -ne 0 ]]; then
+  background="#CB4B16"
+  code=33
+  color="#FDF6E3"
+fi
+
+echo "$text_full"
+echo "$text_short"
+echo "$color"
+echo "$background"
+
+exit "$code"

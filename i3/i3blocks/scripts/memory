@@ -1,4 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
+# Show free memory in Solarized Dark colorscheme
+#
+# Requirements: sudo pacman -S bc
+#
+# If you not see $label below use other font :)
 
 # First argument is source (mem/swap), second is output value
 # Check /proc/meminfo for possible instances
@@ -23,7 +29,6 @@ ONE_GB=$(echo "${ONE_MB}*1024" | bc -l)
 ONE_TB=$(echo "${ONE_GB}*1024" | bc -l)
 
 # Grep the value and remove KB so we can calculate with it later
-#MEMINFO=$(cat /proc/meminfo | grep "${INSTANCE}" | awk -F ':' '{print $2}' | tr -d ' kB')
 MEMORY_INFOS=$(cat /proc/meminfo)
 SOURCE_TOTAL=$(echo "${MEMORY_INFOS}" | grep -i "${SOURCE}total" | awk -F ':' '{print $2}' | tr -d ' kB')
 
@@ -66,11 +71,28 @@ if [[ "${DISPLAY}" != "perc" ]]; then
   fi
 fi
 
-label="${BLOCK_LABEL:-}"
-echo "$label $MEMINFO"
-echo "$label $MEMINFO"
-echo ""
+background="#002B36"
+code=0
+color="#93A1A1"
+label=""
+text_full="$label $MEMINFO"
+text_short="$text_full"
 
-if [[ "${SOURCE_PERC}" -gt "${URGENT_VALUE}" ]]; then
-  exit 33
+warn_threshold=75  # %
+[[ "$SOURCE" = "swap" ]] && warn_threshold=30
+[[ $(echo "$SOURCE_PERC>=$warn_threshold" | bc) -ne 0 ]] && color="#B58900"
+
+crit_threshold=90  # %
+[[ "$SOURCE" = "swap" ]] && crit_threshold=50
+if [[ $(echo "$SOURCE_PERC>=$crit_threshold" | bc) -ne 0 ]]; then
+  background="#CB4B16"
+  code=33
+  color="#FDF6E3"
 fi
+
+echo "$text_full"
+echo "$text_short"
+echo "$color"
+echo "$background"
+
+exit "$code"

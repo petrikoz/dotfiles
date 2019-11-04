@@ -1,25 +1,34 @@
 #!/usr/bin/env bash
 #
-# Show count of available new packages Solarized Dark colorscheme
+# Show count of availabel updates
+#
+# If you not see $label below use other font :)
 
-crit_color="#DC322F"
-crit_threshold=75
+background="#002B36"
+code=0
+color="#93A1A1"
+label=""
 
-warn_color="#B58900"
-warn_threshold=50
+data=$(pacman -Qu | wc -l)
+[[ "$data" == 0 ]] && exit
 
-count="$(pacman -Qu | wc -l)"
+text_full="$label $data"
+text_short="$text_full"
 
-[[ "${count}" == 0 ]] && exit
+warn_threshold=75
+#[[ $(echo "$data>=$warn_threshold" | bc) -ne 0 ]] && color="#B58900"
+[[ "$data" -ge "$warn_threshold" ]] && color="#B58900"
 
-echo "${count}"
-echo "${count}"
-
-if [[ "${count}" -ge "${crit_threshold}" ]] ; then
-  echo "${crit_color}"
-  exit 33
+crit_threshold=100
+if [[ "$data" -ge "$crit_threshold" ]]; then
+  background="#CB4B16"
+  code=33
+  color="#FDF6E3"
 fi
 
-[[ "${count}" -ge "${warn_threshold}" ]] && echo "${warn_color}"
+echo "$text_full"
+echo "$text_short"
+echo "$color"
+echo "$background"
 
-exit 0
+exit "$code"
