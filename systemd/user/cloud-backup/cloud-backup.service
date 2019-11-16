@@ -1,6 +1,7 @@
 [Unit]
-Description=rclone copy backup <-> cloud
+Description=Backup cloud data
 
 [Service]
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
 ExecStart=%h/dotfiles/systemd/user/cloud-backup/cloud-backup.sh
 Type=oneshot
