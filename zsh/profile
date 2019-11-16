@@ -1,10 +1,3 @@
-# SSH Agent
-agent="$HOME/.ssh/agent"
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-  ssh-agent > "$agent"
-fi
-[[ "$SSH_AGENT_PID" == "" ]] && eval "$(<$agent)"
-
 # Start X if logged local
 [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
