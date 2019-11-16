@@ -22,7 +22,8 @@
 
   umask 0022  # set permissions for files: 0644, for directories: 0755
 
-  export EDITOR="vim"  # default editor
+  export EDITOR="vim"
+  export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
   export TERM="screen-256color"
 
   # Pager
