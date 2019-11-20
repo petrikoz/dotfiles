@@ -1,6 +1,5 @@
 alsa-utils
 bc
-conky
 chromium
 docker
 encfs
@@ -23,8 +22,8 @@ netctl
 nextcloud-client
 openssh
 os-prober
-pacman-contrib
 p7zip
+pacman-contrib
 python
 rawtherapee
 rofi
@@ -47,5 +46,6 @@ xorg-xinit
 xorg-xsetroot
 xss-lock
 xxkb
+youtube-dl
 zsh
 zsh-completions
