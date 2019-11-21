@@ -28,8 +28,19 @@ if type "numlockx" &> /dev/null; then
 fi
 
 ###############################################################
-# Ssh-agent
+# Autostart
 #################
+
+# Global
+sysxinit=/etc/X11/xinit/xinitrc.d
+if [ -d "$sysxinit" ] ; then
+ for f in "$sysxinit"/?*.sh ; do
+  [ -x "$f" ] && . "$f"
+ done
+ unset f
+fi
+
+# Local
 eval `ssh-agent -a $SSH_AUTH_SOCK`
 
 ###############################################################
