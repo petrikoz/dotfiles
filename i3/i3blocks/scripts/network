@@ -9,7 +9,7 @@
 background="#002B36"
 code=0
 color="#93A1A1"
-device="${BLOCK_INSTANCE:-wlan0}"
+device="$BLOCK_INSTANCE"
 label=""
 
 if [[ -d "/sys/class/net/$device/wireless" ]]; then
@@ -17,10 +17,10 @@ if [[ -d "/sys/class/net/$device/wireless" ]]; then
   text="$(iwgetid -r) ($data%)"
 
   warn_threshold=50
-  [[ "$data" -ge "$warn_threshold" ]] && color="#B58900"
+  [[ "$data" -le "$warn_threshold" ]] && color="#B58900"
 
   crit_threshold=20
-  if [[ "$data" -ge "$crit_threshold" ]]; then
+  if [[ "$data" -le "$crit_threshold" ]]; then
     background="#CB4B16"
     code=33
     color="#FDF6E3"
