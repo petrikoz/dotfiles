@@ -201,6 +201,7 @@ makepkg -irs
 ```shell
 
 ln -s $HOME/dotfiles/Xorg/xinitrc $HOME/.xinitrc
+ln -s $HOME/dotfiles/Xorg/xserverrc $HOME/.xserverrc
 ln -s $HOME/dotfiles/Xorg/xxkbrc $HOME/.xxkbrc
 ```
 
