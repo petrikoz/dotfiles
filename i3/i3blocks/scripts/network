@@ -9,10 +9,16 @@
 background="#002B36"
 code=0
 color="#93A1A1"
-device="$BLOCK_INSTANCE"
-label=""
+device="${BLOCK_INSTANCE:-"enp4s0"}"
+label=""
+
+data="$(ip addr show $device 2> /dev/null)" || exit
+state="$(echo $data | grep -oP '(?<=state\s)\w+')"
+[[ "$state" == "DOWN" ]] && exit
+text="$(echo $data | grep -oP '(?<=inet\s)\d+(\.\d+){3}')"
 
 if [[ -d "/sys/class/net/$device/wireless" ]]; then
+  label=""
   data=$(grep $device /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
   text="$(iwgetid -r) ($data%)"
 
@@ -26,13 +32,7 @@ if [[ -d "/sys/class/net/$device/wireless" ]]; then
     color="#FDF6E3"
   fi
 else
-  data="$(ip addr show $device 2> /dev/null)" || exit
-  label=""
-  text="$(echo $data | grep -oP '(?<=inet\s)\d+(\.\d+){3}')"
-
-  state="$(echo $data | grep -oP '(?<=state\s)\w+')"
-  [[ "$state" != "UP" ]] && color="#B58900"
-  if [[ "$state" == "DOWN" ]]; then
+  if [[ "$state" != "UP" ]]; then
     background="#CB4B16"
     code=33
     color="#FDF6E3"

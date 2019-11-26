@@ -46,7 +46,6 @@ interval=10
 
 # Ethernet
 [network]
-instance=enp4s0
 interval=10
 
 # Volume indicator
