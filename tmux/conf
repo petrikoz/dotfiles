@@ -1,6 +1,7 @@
 #== Base ======================================================================
   set -g default-terminal "$TERM"
   set -g main-pane-width 160
+  set-option -sa terminal-overrides ",*256*:Tc"
 
   # Windows
   setw -g allow-rename off
