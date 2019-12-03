@@ -264,7 +264,7 @@ bindsym $mod+space sticky toggle
 # Apps
 
 # Deluge
-assign [class="(?i)deluge"] → number $ws4
+assign [class="(?i)qbittorrent"] → number $ws4
 
 # KeepassXC
 assign [class="keepassxc"] → number $ws3
