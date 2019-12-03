@@ -1,8 +1,8 @@
 cups
-deluge
 go
 libreoffice-still
 numlockx
+qbittorrent
 qmapshack
 steam
 steam-native-runtime
