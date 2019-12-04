@@ -6,39 +6,61 @@ if [[ ! -f "$rclone" ]]; then
   exit 1
 fi
 
-# Backup private data if possible
-decrypted="$HOME/encfs/cloud"
-if [[ ! "$(findmnt -M $decrypted)" ]]; then
-    echo "Please mount encrypted cloud's backup to '$decrypted'"
+################################################################
+# Private to cloud
+################
+decrypted_cloud="$HOME/encfs/cloud"
+cloud_decrypted="$HOME/encfs/cloud"
+if [[ ! "$(findmnt -M $cloud_decrypted)" ]]; then
+    echo "Please mount encrypted cloud's backup to '$cloud_decrypted'"
 else
-    echo "Backup private data: ..."
+    echo "Private to cloud: ..."
 
     # self config
-    echo "  rclone: ..."
-    "$rclone" copy "$HOME/.config/rclone" "$decrypted/rclone"
-    echo "  rclone: done"
+    rsync -az "$HOME/.config/rclone" "$cloud_decrypted"
+    echo "  .config/rclone"
 
     # Google Drive
-    echo "  Google Drive: ..."
-    "$rclone" copy drive:Finances "$decrypted/fin-reports/drive.google.com"
-    echo "  Google Drive: done"
+    "$rclone" copy drive:Finances "$cloud_decrypted/fin-reports/drive.google.com"
+    echo "  drive:Finances"
 
-    # Nextcloud instance config
-    echo "  Nextcloud: ..."
-    nextcloud_remote="wormhole:/var/www/nextcloud"
-    nextcloud_local="$decrypted/nextcloud/"
-    rsync -az "$nextcloud_remote/config/config.php" "$nextcloud_local"
-    rsync -az "$nextcloud_remote/data/owncloud.db" "$nextcloud_local"
-    echo "  Nextcloud: done"
+    echo "Private to cloud: done"
 fi
 
+################################################################
+# Cloud to raid0
+################
+raid0_cloud_decrypted="$HOME/encfs/raid0/wormcloud"
+if [[ ! "$(findmnt -M $raid0_cloud_decrypted)" ]]; then
+    echo "Please mount encrypted cloud's backup to '$raid0_cloud_decrypted'"
+else
+    remote="wormhole:/var/www/nextcloud"
 
-# Sync backup with storages
-backup="$HOME/cloud/backup"
-storages=(/mnt/raid0/cloud dropbox:backup)
-echo "Sync storages:"
-for storage in "${storages[@]}"; do
-    echo "  '$storage': ..."
-    "$rclone" sync "$backup" "$storage"
-    echo "  '$storage': done"
-done
+    echo "Cloud to raid0: ..."
+
+    rsync -az "$remote/config/config.php" "$raid0_cloud_decrypted/config/"
+    echo "  config/config.php"
+
+    rsync -az "$remote/data/owncloud.db" "$raid0_cloud_decrypted/data/"
+    echo "  data/owncloud.db"
+
+    for f in $(find "$raid0_cloud_decrypted/data/"* -prune -type d); do
+        subdata="$(basename $f)"
+        rsync -az "$remote/data/$subdata" "$raid0_cloud_decrypted/data/"
+        echo "  data/$subdata"
+    done
+
+    echo "Cloud to raid0: done"
+fi
+
+# Pack encrypted volume to archive
+raid0_cloud=/mnt/raid0/wormcloud
+raid0_cloud_archive="$raid0_cloud.tar"
+echo "Create archive on raid0: ..."
+tar -cf "$raid0_cloud_archive" "$raid0_cloud"
+echo "Create archive on raid0: done"
+
+# Sync archive to Dropbox
+echo "Archive to Dropbox: ..."
+"$rclone" sync "$raid0_cloud_archive" dropbox:backup
+echo "Archive to Dropbox: done"
