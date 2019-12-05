@@ -7,60 +7,77 @@ if [[ ! -f "$rclone" ]]; then
 fi
 
 ################################################################
-# Private to cloud
+# My data
 ################
-decrypted_cloud="$HOME/encfs/cloud"
 cloud_decrypted="$HOME/encfs/cloud"
 if [[ ! "$(findmnt -M $cloud_decrypted)" ]]; then
-    echo "Please mount encrypted cloud's backup to '$cloud_decrypted'"
+    echo "Please mount encrypted volume to '$cloud_decrypted'"
 else
-    echo "Private to cloud: ..."
+    echo "My data: ..."
+
+    echo "  to cloud: ..."
 
     # self config
     rsync -az "$HOME/.config/rclone" "$cloud_decrypted"
-    echo "  .config/rclone"
+    echo "    .config/rclone"
 
     # Google Drive
     "$rclone" copy drive:Finances "$cloud_decrypted/fin-reports/drive.google.com"
-    echo "  drive:Finances"
+    echo "    drive:Finances"
 
-    echo "Private to cloud: done"
+    echo "  to cloud: done"
+
+    cloud_archive=/tmp/wormcloud.tar
+    cloud_encrypted="$HOME/cloud/.encrypted"
+    tar -cf "$cloud_archive" "$cloud_encrypted"
+    echo "  to archive: done"
+
+    echo "  to Dropbox: ..."
+    "$rclone" sync "$cloud_archive" dropbox:
+    echo "  to Dropbox: done"
+
+    rm -f "$cloud_archive"
+    echo "  remove archive: done"
+
+    echo "My data: done"
 fi
 
 ################################################################
-# Cloud to raid0
+# All cloud
 ################
 raid0_cloud_decrypted="$HOME/encfs/raid0/wormcloud"
 if [[ ! "$(findmnt -M $raid0_cloud_decrypted)" ]]; then
-    echo "Please mount encrypted cloud's backup to '$raid0_cloud_decrypted'"
+    echo "Please mount encrypted volume to '$raid0_cloud_decrypted'"
 else
     remote="wormhole:/var/www/nextcloud"
 
-    echo "Cloud to raid0: ..."
+    echo "All cloud: ..."
+
+    echo "  to raid0: ..."
 
     rsync -az "$remote/config/config.php" "$raid0_cloud_decrypted/config/"
-    echo "  config/config.php"
+    echo "    config/config.php"
 
     rsync -az "$remote/data/owncloud.db" "$raid0_cloud_decrypted/data/"
-    echo "  data/owncloud.db"
+    echo "    data/owncloud.db"
 
     for f in $(find "$raid0_cloud_decrypted/data/"* -prune -type d); do
         subdata="$(basename $f)"
         rsync -az "$remote/data/$subdata" "$raid0_cloud_decrypted/data/"
-        echo "  data/$subdata"
+        echo "    data/$subdata"
     done
 
-    echo "Cloud to raid0: done"
+    echo "  to raid0: done"
+
+    raid0_cloud=/mnt/raid0/wormcloud
+    raid0_cloud_archive="$raid0_cloud.tar"
+    tar -cf "$raid0_cloud_archive" "$raid0_cloud"
+    echo "  to archive: done"
+
+    echo "  to my Mail.ru Cloud: ..."
+    "$rclone" sync "$raid0_cloud_archive" mailru:
+    echo "  to my Mail.ru Cloud: done"
+
+    rm -f "$raid0_cloud_archive"
+    echo "  remove archive: done"
 fi
-
-# Pack encrypted volume to archive
-raid0_cloud=/mnt/raid0/wormcloud
-raid0_cloud_archive="$raid0_cloud.tar"
-echo "Create archive on raid0: ..."
-tar -cf "$raid0_cloud_archive" "$raid0_cloud"
-echo "Create archive on raid0: done"
-
-# Sync archive to Dropbox
-echo "Archive to Dropbox: ..."
-"$rclone" sync "$raid0_cloud_archive" dropbox:backup
-echo "Archive to Dropbox: done"
