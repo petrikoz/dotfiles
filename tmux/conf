@@ -16,5 +16,5 @@
   bind F3 resize-pane -Z
 
 #== Plugins ===================================================================
-  source "$HOME/.tmux/solarized-dark.conf"
+  source "$HOME/.tmux/solarized-256.conf"
 
