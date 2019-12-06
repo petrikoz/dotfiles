@@ -22,7 +22,6 @@ netctl
 nextcloud-client
 openssh
 os-prober
-p7zip
 pacman-contrib
 python
 rawtherapee
