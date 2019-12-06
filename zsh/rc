@@ -68,14 +68,3 @@
     local target="${2:-$HOME/encfs/cloud}"
     [[ ! "$(ls -A $target)" ]] && encfs "$src" "$target"
   }
-
-# Extract archives with p7zip
-  function x() {
-    if ! type "7z" &> /dev/null; then
-      echo "Please install p7zip: sudo pacman -Sy p7zip"
-      return
-    fi
-    local cmd="7z x $1"
-    [[ ! -z "$2" ]] && cmd="$cmd -O$2"
-    eval "$cmd"
-  }
