@@ -4,6 +4,7 @@ chromium
 docker
 encfs
 firefox
+firejail
 git
 gnu-netcat
 grub

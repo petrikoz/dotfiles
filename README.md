@@ -39,6 +39,15 @@ systemctl --user enable $HOME/dotfiles/systemd/user/cloud-backup/cloud-backup.ti
 systemctl --user start cloud-backup.timer
 ```
 
+### firejail
+
+Example how run GOG game with firejail:
+
+```shell
+
+firejail --profile=$HOME/dotfiles/firejail/gog.profile "GAME-DIR-IN-games-LOCAL-DIR/start.sh"
+```
+
 ### fonts
 
 ```shell
