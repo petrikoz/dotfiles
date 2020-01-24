@@ -10,7 +10,6 @@
 	d = diff
 	fo = fetch -v origin
 	foc = !git fetch -v origin "$(git rev-parse --abbrev-ref HEAD)"
-	k = !gitk --all --branches
 	l = log
 	ll = log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 	m = merge
