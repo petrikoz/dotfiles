@@ -23,6 +23,7 @@ netctl
 nextcloud-client
 openssh
 os-prober
+p7zip
 pacman-contrib
 python
 rawtherapee
@@ -34,7 +35,6 @@ telegram-desktop
 tmux
 ttf-dejavu
 udisks2
-unzip
 vim
 wget
 xautolock
