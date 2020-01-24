@@ -58,7 +58,7 @@
 # Functions
 ################################################################
 
-# EncFS from Dropbox
+# Decrypt EncFS
   function encbox() {
     if ! type "encfs" &> /dev/null; then
       echo "Please install encfs: sudo pacman -Sy encfs"
@@ -68,3 +68,19 @@
     local target="${2:-$HOME/encfs/cloud}"
     [[ ! "$(ls -A $target)" ]] && encfs "$src" "$target"
   }
+
+# Mount / unmount usb flash
+  function pmount() {
+    local device="/dev/$1"
+    local target="$(findmnt --output TARGET $device | sed -n 2p)"
+    if [[ "$target" ]]; then
+      echo "Alredy mounted to: $target"
+      return
+    fi
+    udisksctl mount -b "$device"
+  }
+
+  function pumount() {
+    udisksctl unmount -b "/dev/$1"
+  }
+
