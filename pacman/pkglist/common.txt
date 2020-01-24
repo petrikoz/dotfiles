@@ -33,6 +33,7 @@ sudo
 telegram-desktop
 tmux
 ttf-dejavu
+udisks2
 unzip
 vim
 wget

@@ -117,15 +117,6 @@ sudo systemctl start netctl-auto@INTERFACE.service
 sudo cp -r $HOME/dotfiles/pacman/hooks /etc/pacman.d/
 ```
 
-### pmount
-
-```shell
-
-git clone https://aur.archlinux.org/pmount.git
-cd pmount
-makepkg -irs
-```
-
 ### python
 
 ```shell
