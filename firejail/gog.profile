@@ -1,6 +1,14 @@
 # Firejail profile for GOG Games
 
-# Persistent global definitions
+# common
+env TERM=xterm
+noexec /tmp
+private ${HOME}/games
+
+# specific games
+noblacklist ${HOME}/.local/share/Terraria
+
+# predefined with package
 include /etc/firejail/globals.local
 
 include /etc/firejail/disable-common.inc
@@ -28,8 +36,4 @@ disable-mnt
 private-cache
 private-dev
 private-tmp
-
-# games
-noexec /tmp
-private ${HOME}/games
 
