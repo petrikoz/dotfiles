@@ -29,7 +29,6 @@ python
 rawtherapee
 rofi
 rsync
-shadowsocks-libev
 sudo
 telegram-desktop
 tmux
@@ -50,3 +49,5 @@ xxkb
 youtube-dl
 zsh
 zsh-completions
+wireguard-arch
+wireguard-tools
