@@ -18,7 +18,7 @@ else
     echo "  to cloud: ..."
 
     # self config
-    rsync -az "$HOME/.config/rclone" "$cloud_decrypted"
+    rsync -zz --archive "$HOME/.config/rclone" "$cloud_decrypted"
     echo "    .config/rclone"
 
     # Google Drive
@@ -55,15 +55,15 @@ else
 
     echo "  to raid0: ..."
 
-    rsync -az "$remote/config/config.php" "$raid0_cloud_decrypted/config/"
+    rsync -zz --archive "$remote/config/config.php" "$raid0_cloud_decrypted/config/"
     echo "    config/config.php"
 
-    rsync -az "$remote/data/owncloud.db" "$raid0_cloud_decrypted/data/"
+    rsync -zz --archive "$remote/data/owncloud.db" "$raid0_cloud_decrypted/data/"
     echo "    data/owncloud.db"
 
     for f in $(find "$raid0_cloud_decrypted/data/"* -prune -type d); do
         subdata="$(basename $f)"
-        rsync -az "$remote/data/$subdata" "$raid0_cloud_decrypted/data/"
+        rsync -zz --archive "$remote/data/$subdata" "$raid0_cloud_decrypted/data/"
         echo "    data/$subdata"
     done
 
