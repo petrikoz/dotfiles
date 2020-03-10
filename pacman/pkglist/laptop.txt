@@ -1,2 +1,3 @@
 dialog
+ifplugd
 wpa_supplicant
