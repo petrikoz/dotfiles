@@ -26,7 +26,6 @@ os-prober
 p7zip
 pacman-contrib
 python
-rawtherapee
 rofi
 rsync
 sudo
@@ -36,6 +35,8 @@ ttf-dejavu
 udisks2
 vim
 wget
+wireguard-arch
+wireguard-tools
 xautolock
 xcape
 xfce4-screenshooter
@@ -49,5 +50,3 @@ xxkb
 youtube-dl
 zsh
 zsh-completions
-wireguard-arch
-wireguard-tools
