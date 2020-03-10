@@ -26,6 +26,7 @@ os-prober
 p7zip
 pacman-contrib
 python
+qpdfview
 rofi
 rsync
 sudo
