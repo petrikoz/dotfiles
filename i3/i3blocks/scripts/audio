@@ -2,19 +2,17 @@
 #
 # Show and control sound volume
 #
-# Requirements:  sudo pacman -S alsa-utils
-#
 # If you not see $label below use other font :)
 
 # Left click
 if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
-  amixer -q sset Master 5%+
+  pactl set-sink-mute @DEFAULT_SINK@ yes
 # Middle click
 elif [[ "$BLOCK_BUTTON" -eq 2 ]]; then
-  amixer -q sset Master toggle
+  pavucontrol &
 # Right click
 elif [[ "$BLOCK_BUTTON" -eq 3 ]]; then
-  amixer -q sset Master 5%-
+  pactl set-sink-mute @DEFAULT_SINK@ no
 fi
 
 background="#002B36"
@@ -22,16 +20,16 @@ code=0
 color="#93A1A1"
 label="蓼"
 
-data=$(amixer get Master | tail -n 1)
-enabled=$(echo "$data" | grep -wo 'on')
-volume=$(echo "$data" | awk -F ' ' '{print $4}' | tr -d '[]%')
+data=$(pactl list sinks)
+mute=$(echo "$data" | grep "^[[:space:]]Mute:" | grep -o -w "yes")
+volume=$(echo "$data" | grep "^[[:space:]]Volume:" | grep -o -E "[[:digit:]]+%" | head -1)
 
-if [[ "$enabled" != "on" ]]; then
+if [[ "$mute" ]]; then
   color="#B58900"
   label="遼"
 fi
 
-text_full="$label $volume%"
+text_full="$label $volume"
 text_short="$text_full"
 
 echo "$text_full"
@@ -40,3 +38,4 @@ echo "$color"
 echo "$background"
 
 exit "$code"
+

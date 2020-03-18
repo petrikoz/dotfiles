@@ -49,9 +49,9 @@ bindsym Print exec xfce4-screenshooter
 # fn keys on laptop
 #################
 # audio
-bindsym  XF86AudioRaiseVolume  exec --no-startup-id amixer -q sset Master 5%+
-bindsym  XF86AudioLowerVolume  exec --no-startup-id amixer -q sset Master 5%-
-bindsym  XF86AudioMute         exec --no-startup-id amixer -q sset Master toggle
+bindsym  XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1.0dB
+bindsym  XF86AudioLowerVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1.0dB
+bindsym  XF86AudioMute         exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # brightness
 bindsym  XF86MonBrightnessUp    exec xbacklight -inc 20
