@@ -25,6 +25,7 @@ os-prober
 p7zip
 pacman-contrib
 pavucontrol
+playerctl
 python
 qpdfview
 rofi
