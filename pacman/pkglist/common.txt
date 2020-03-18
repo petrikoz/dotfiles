@@ -24,6 +24,7 @@ openssh
 os-prober
 p7zip
 pacman-contrib
+pavucontrol
 python
 qpdfview
 rofi
