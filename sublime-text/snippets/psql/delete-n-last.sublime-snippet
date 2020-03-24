@@ -1,0 +1,14 @@
+<snippet>
+    <content><![CDATA[
+DELETE FROM ${1:django_migrations}
+WHERE ctid IN (
+    SELECT ctid
+    FROM ${1:django_migrations}
+    ORDER BY ${3:applied} DESC
+    LIMIT 1
+) AND app = '${2:app}';
+]]></content>
+    <tabTrigger>delete-n-last</tabTrigger>
+    <scope>source.sql</scope>
+    <description>PostgreSQL query 'DELETE' n last rows in table</description>
+</snippet>
