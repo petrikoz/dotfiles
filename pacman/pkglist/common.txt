@@ -44,7 +44,9 @@ xcape
 xfce4-screenshooter
 xorg-server
 xorg-setxkbmap
+xorg-xauth
 xorg-xbacklight
+xorg-xhost
 xorg-xinit
 xorg-xsetroot
 xss-lock
