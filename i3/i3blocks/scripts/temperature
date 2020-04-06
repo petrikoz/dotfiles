@@ -11,7 +11,7 @@ code=0
 color="#93A1A1"
 label=""
 
-data=$(sensors | awk '/temp1/ { gsub(/^\+|\.[[:digit:]]+|[^0-9]+$/, "", $2); print $2 }')
+data=$(sensors | awk '/Core 0/ { gsub(/^\+|\.[[:digit:]]+|[^0-9]+$/, "", $3); print $3 }')
 
 warn_threshold=70  # °C
 if [[ "$data" -ge "$warn_threshold" ]]; then
