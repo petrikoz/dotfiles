@@ -23,8 +23,8 @@
 
   # Load the theme.
   DEFAULT_USER=$USER
-  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs context dir_writable root_indicator time)
+  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs)
+  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs context root_indicator time)
   antigen theme bhilburn/powerlevel9k powerlevel9k
 
   # Tell antigen that you're done.
