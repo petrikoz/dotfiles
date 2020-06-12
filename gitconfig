@@ -22,3 +22,5 @@
 	resh = reset --hard
 	s = status
 	ss = status -s
+[pull]
+	rebase = true
