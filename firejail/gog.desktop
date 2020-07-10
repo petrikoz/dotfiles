@@ -1,0 +1,7 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=GAME
+Icon=/home/petr/games/GAME/support/icon.png
+Exec=firejail --profile=/home/petr/games/gog.profile "GAME/start.sh"
+Categories=Game;
