@@ -41,11 +41,11 @@ systemctl --user start cloud-backup.timer
 
 ### firejail
 
-Example how run GOG game with firejail:
-
 ```shell
+sudo firecfg
 
-firejail --profile=$HOME/dotfiles/firejail/gog.profile "GAME-DIR-IN-games-LOCAL-DIR/start.sh"
+# allow PulseAudio in jailed apps
+firecfg --fix-audio
 ```
 
 ### fonts
@@ -54,6 +54,26 @@ firejail --profile=$HOME/dotfiles/firejail/gog.profile "GAME-DIR-IN-games-LOCAL-
 
 ln -s $HOME/dotfiles/fonts $HOME/.fonts
 fc-cache -f -v
+```
+
+### games
+
+Run GOG game with firejail:
+
+```shell
+
+mkdir -p $HOME/games
+ln -s $HOME/dotfiles/games/gog.profile $HOME/games
+firejail --profile=$HOME/games/gog.profile "GAME-DIR-IN-games-LOCAL-DIR/start.sh"
+```
+
+Add desktop entry for GOG game:
+
+```shell
+
+mkdir -p $HOME/.local/share/applications
+cp $HOME/dotfiles/games/gog.desktop $HOME/.local/share/applications/GAME-NAME.desktop
+vi $HOME/.local/share/applications/GAME-NAME.desktop
 ```
 
 ### golang
