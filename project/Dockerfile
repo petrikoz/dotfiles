@@ -4,7 +4,7 @@ MAINTAINER Petr Zelenin (po.zelenin@gmail.com)
 
 ### Global
 RUN pip install --upgrade pip ptpython ipdb
-RUN pip install --upgrade django-extensions
+RUN pip install --upgrade django-debug-toolbar django-extensions
 
 ### Project
 RUN mkdir /code
