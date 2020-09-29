@@ -5,9 +5,6 @@ env TERM=xterm
 noexec /tmp
 private ${HOME}/games
 
-# specific games
-noblacklist ${HOME}/.local/share/Terraria
-
 # predefined with package
 include /etc/firejail/globals.local
 
