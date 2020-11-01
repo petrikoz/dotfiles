@@ -41,7 +41,7 @@ if [ -d "$sysxinit" ] ; then
 fi
 
 # Local
-eval `ssh-agent`
+eval `ssh-agent -a $SSH_AUTH_SOCK`
 
 ###############################################################
 # Windows management
