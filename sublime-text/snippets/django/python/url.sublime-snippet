@@ -1,8 +1,8 @@
 <snippet>
     <content><![CDATA[
-url(r'^${1:(?P<slug>[-_\w]+)}/\$', ${2:views.ClassView.as_view()}, name='${3:url-name}'),
+path('${1:<slug:slug>}/', ${2:views.ClassView.as_view()}, name='${3:url-name}'),
 ]]></content>
     <tabTrigger>url</tabTrigger>
     <scope>source.python</scope>
-    <description>Django's 'url'</description>
+    <description>'path' in Django URLconfs</description>
 </snippet>

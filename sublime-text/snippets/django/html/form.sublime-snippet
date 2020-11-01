@@ -1,0 +1,14 @@
+<!-- See http://www.sublimetext.com/docs/snippets for more information -->
+<snippet>
+	<content><![CDATA[
+<form method="post"
+	  {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>
+	{% csrf_token %}
+	${1:{{ form \}\}}
+	<input type="submit" value="${2:Отправить}">
+</form>
+]]>	</content>
+    <tabTrigger>form</tabTrigger>
+    <scope>text.html.django</scope>
+    <description>render Django Forms in HTML</description>
+</snippet>

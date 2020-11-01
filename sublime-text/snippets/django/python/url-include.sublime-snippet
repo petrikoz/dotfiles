@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+path('${1:<slug:slug>}/', include([
+    path('${2}', ${3:views.ClassView.as_view()}, name='${4:url-name}'),
+])),
+]]></content>
+    <tabTrigger>urlinc</tabTrigger>
+    <scope>source.python</scope>
+    <description>'path' with 'include' in Django URLconfs</description>
+</snippet>
