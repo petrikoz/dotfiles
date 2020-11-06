@@ -26,6 +26,7 @@ p7zip
 pacman-contrib
 pavucontrol
 playerctl
+pulseaudio-alsa
 python
 qpdfview
 rofi
