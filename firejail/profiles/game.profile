@@ -2,7 +2,6 @@
 
 # common
 env TERM=xterm
-noexec /tmp
 private ${HOME}/games
 
 # predefined with package
