@@ -20,7 +20,7 @@ code=0
 color="#93A1A1"
 label="蓼"
 
-data=$(pactl list sinks)
+data=$(pactl list sinks | grep -A10 -w "RUNNING")
 mute=$(echo "$data" | grep "^[[:space:]]Mute:" | grep -o -w "yes")
 volume=$(echo "$data" | grep "^[[:space:]]Volume:" | grep -o -E "[[:digit:]]+%" | head -1)
 
