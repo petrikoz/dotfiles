@@ -1,0 +1,16 @@
+<snippet>
+    <content><![CDATA[
+def get_readonly_fields(self, request, obj=None):
+    if obj is None:
+        return super().get_readonly_fields(request, obj=obj)
+    readonly_fields = [
+        field.name
+        for field in obj._meta.get_fields()
+        if field.name not in ('id', ${1:'name', 'name1', ...})
+    ]
+    return readonly_fields
+]]></content>
+    <tabTrigger>getreadonlyfields</tabTrigger>
+    <scope>source.python</scope>
+    <description>Extend Django's admin.ModelAdmin.get_readonly_fields</description>
+</snippet>
