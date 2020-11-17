@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-#
-# Copyright 2018 Petr Zelenin (po.zelenin@gmail.com)
+# Copyright 2020 Petr Zelenin (po.zelenin@gmail.com)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,6 +29,21 @@ env.project = os.path.basename(os.path.dirname(__file__))
 env.container = f'{env.project}-server'
 
 psql = f'psql --username={env.project} --dbname={env.project}'
+
+
+@task
+def db_dump(filepath='/tmp-host/sql/local.sql'):
+    """Dump data form DB into SQL-file.
+
+    Args:
+        filepath (string): Path to SQL-file.
+
+    """
+    pg_dump = (f'pg_dump -U {env.project} -d {env.project} -f {filepath}'
+               ' -bcOv --column-inserts')
+    command = f' {env.compose} exec {env.db_service} {pg_dump}'
+
+    return local(command)
 
 
 @task
@@ -101,7 +114,7 @@ def dj_server(recreate=False):
         local(f'{env.compose} start {services}')
 
     local(f'{env.docker} start {container}')
-    st_anaconda()
+    st_lsp()
 
     return local(f'{env.docker} attach {container}')
 
@@ -174,9 +187,9 @@ def project_exec(command, options='--interactive --tty', user=None):
 
 
 @task
-def st_anaconda():
-    """Run server for Sublime Text's plugin 'Anaconda'."""
-    command = '/opt/anaconda/anaconda_server/docker/start python 19360'
+def st_lsp():
+    """Run Python Language Server for Sublime Text."""
+    command = 'pyls --tcp --host 0.0.0.0 --port 19360'
     project_exec(command, options='--detach')
 
 

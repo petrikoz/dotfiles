@@ -5,7 +5,6 @@
 	],
 	"installed_packages":
 	[
-		"Anaconda",
 		"AutoDocstring",
 		"Dockerfile Syntax Highlighting",
 		"EditorConfig",
@@ -13,6 +12,7 @@
 		"Git",
 		"GitGutter",
 		"HTML5",
+		"LSP",
 		"MarkdownEditing",
 		"nginx",
 		"Package Control",

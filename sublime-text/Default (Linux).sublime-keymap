@@ -6,9 +6,6 @@
     { "keys": ["ctrl+alt+g"], "command": "goto_definition" },
     { "keys": ["ctrl+shift+o"], "command": "prompt_add_folder" },
 
-    // Anaconda
-    { "keys": ["alt+shift+d"], "command": "anaconda_doc" },
-
     // Yapf
     { "keys": ["ctrl+alt+r"], "command": "yapf_selection" },
 ]

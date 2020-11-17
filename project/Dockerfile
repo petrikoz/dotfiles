@@ -2,8 +2,13 @@ FROM python:3.7
 
 MAINTAINER Petr Zelenin (po.zelenin@gmail.com)
 
+# Install custom soft. Ex. WKHTMLTOPDF
+#COPY ./tmp/wkhtmltox.deb /tmp/wkhtmltox.deb
+#RUN apt-get update
+#RUN apt-get install -y /tmp/wkhtmltox.deb
+
 ### Global
-RUN pip install --upgrade pip ptpython ipdb
+RUN pip install --upgrade ipdb pip ptpython python-language-server
 RUN pip install --upgrade django-debug-toolbar django-extensions
 
 ### Project
