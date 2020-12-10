@@ -4,8 +4,8 @@ class ${1:Model}(models.Model):
 
     ${6:put your fields here}
 
-    class Meta(object):
-        _splash = '${2:name}'
+    class Meta:
+        _splash = '${2:name}%s'
         verbose_name = _splash % '$3'
         verbose_name_plural = _splash % '$4'
 
