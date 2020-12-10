@@ -33,7 +33,7 @@
 ################################################################
 # Set ZSH options
 ################################################################
-#== History ================
+#== History ====================
   setopt APPEND_HISTORY          # history appends to existing file
   setopt HIST_FIND_NO_DUPS       # history search finds once only
   setopt HIST_IGNORE_ALL_DUPS    # remove all earlier duplicate lines
@@ -45,18 +45,19 @@
   SAVEHIST=1000000               # max number of history lines saved
 
 ################################################################
-# Aliases
-################################################################
-
-  alias :q='exit'
-  alias todo='todo.sh'
-
-  vimcat="$HOME/.vim/bundle/vimpager/vimcat"
-  [[ -x $vimcat ]] && alias cat="$vimcat"
-
-################################################################
 # Functions
 ################################################################
+#== Builtin ====================
+
+# calculator
+# docs: https://github.com/zsh-users/zsh/blob/master/Functions/Misc/zcalc
+autoload zcalc
+
+# bulk rename / copy / make links
+# docs: https://github.com/zsh-users/zsh/blob/master/Functions/Misc/zmv
+autoload zmv
+
+#== Custom =====================
 
 # Decrypt EncFS
   function encbox() {
@@ -84,3 +85,21 @@
     udisksctl unmount -b "/dev/$1"
   }
 
+# Extract archives with 7z
+  function x() {
+    local archive="$1"
+    local output="${archive%.*}"
+    7z x "$archive" -o"${2:-$output}"
+  }
+
+################################################################
+# Aliases
+################################################################
+
+  alias :q='exit'
+  alias zcp="zmv -C"
+  alias zln="zmv -L"
+  alias todo='todo.sh'
+
+  vimcat="$HOME/.vim/bundle/vimpager/vimcat"
+  [[ -x $vimcat ]] && alias cat="$vimcat"
