@@ -17,7 +17,19 @@
     ],
     "settings":
     {
-        "python_interpreter": "tcp://localhost:19360?pathmap=${project_path},/code",
+        "LSP": {
+            "pyls": {
+                "command": [],
+                "enabled": true,
+                "tcp_port": 19360,
+                "settings": {
+                    "pyls": {
+                        "env": {"PYTHONPATH": "/code:/itcase"},
+                        "plugins": {"jedi_completion": {"fuzzy": true}}
+                    }
+                },
+            },
+        },
         "SublimeLinter.linters.flake8.show-code": true
     }
 }
