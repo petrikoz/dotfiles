@@ -32,7 +32,7 @@ set $font DejaVuSansMono Nerd Font
 font pango:$font 8
 
 # start a terminal
-bindsym $mod+Return exec st -f '$font Mono' tmux
+bindsym $mod+Return exec st -f '$font Mono' tmux new-session -A -s main
 
 # Default border style for new windows
 default_border           pixel 1

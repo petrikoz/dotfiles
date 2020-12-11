@@ -1,4 +1,4 @@
-#== Base ======================================================================
+#== Base =======================================================
   set -g default-terminal "$TERM"
   set -g main-pane-width 160
   set-option -sa terminal-overrides ",*256*:Tc"
@@ -7,14 +7,14 @@
   setw -g allow-rename off
   setw -g automatic-rename off
 
-#== Keys ======================================================================
+#== Keys =======================================================
   # Vim-style navigation in copy-mode
   set-window-option -g mode-keys vi
   # reloaded local config
-  bind R source-file "$HOME/.tmux.conf" \; display-message 'Reload config from "$HOME/.tmux.conf"...'
+  bind R source-file "$HOME/.tmux.conf" \; display-message "Reload config from \"$HOME/.tmux.conf\"..."
   # Un/Zoom current pane
   bind F3 resize-pane -Z
 
-#== Plugins ===================================================================
+#== Plugins ====================================================
   source "$HOME/.tmux/solarized-256.conf"
 
