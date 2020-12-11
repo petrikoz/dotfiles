@@ -13,7 +13,6 @@
   antigen bundle command-not-found  # suggests package name with relevant command
   antigen bundle docker
   antigen bundle git-flow-avh
-  antigen bundle history            # aliases: h for history, hsi for grepping history
   antigen bundle pip
 
   # Additional completion definitions for Zsh.
@@ -68,6 +67,11 @@ autoload zmv
     local src="${1:-$HOME/cloud/.encrypted}"
     local target="${2:-$HOME/encfs/cloud}"
     [[ ! "$(ls -A $target)" ]] && encfs "$src" "$target"
+  }
+
+# Grepping history
+  function hsi() {
+    history | grep -i "$1"
   }
 
 # Mount / unmount usb flash
