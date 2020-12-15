@@ -71,7 +71,7 @@ autoload zmv
 
 # Grepping history
   function hsi() {
-    history | grep -i "$1"
+    history | grep -i $1
   }
 
 # Mount / unmount usb flash
