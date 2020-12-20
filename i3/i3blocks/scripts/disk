@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # Show free space in Solarized Dark colorscheme
 #
@@ -18,10 +18,10 @@ text_full="$label $avail ($size)"
 text_short="$text_full"
 
 warn_threshold=75  # %
-[[ "$use" -ge "$warn_threshold" ]] && color="#B58900"
+[ "$use" -ge "$warn_threshold" ] && color="#B58900"
 
 crit_threshold=90  # %
-if [[ "$use" -ge "$crit_threshold" ]] ; then
+if [ "$use" -ge "$crit_threshold" ]; then
   background="#CB4B16"
   code=33
   color="#FDF6E3"

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # Show count of availabel updates
 #
@@ -10,17 +10,16 @@ color="#93A1A1"
 label=""
 
 data=$(pacman -Qu | wc -l)
-[[ "$data" == 0 ]] && exit
+[ "$data" = "0" ] && exit
 
 text_full="$label $data"
 text_short="$text_full"
 
 warn_threshold=75
-#[[ $(echo "$data>=$warn_threshold" | bc) -ne 0 ]] && color="#B58900"
-[[ "$data" -ge "$warn_threshold" ]] && color="#B58900"
+[ "$data" -ge "$warn_threshold" ] && color="#B58900"
 
 crit_threshold=100
-if [[ "$data" -ge "$crit_threshold" ]]; then
+if [ "$data" -ge "$crit_threshold" ]; then
   background="#CB4B16"
   code=33
   color="#FDF6E3"

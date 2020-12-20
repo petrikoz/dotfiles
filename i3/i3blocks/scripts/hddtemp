@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # Show temperature of HDD in Solarized Dark colorscheme
 #
@@ -17,13 +17,13 @@ label=""
 data="$(nc localhost 7634 | awk -F'|' '{print $4}')"
 
 warn_threshold=50  # °C
-if [[ "$data" -ge "$warn_threshold" ]]; then
+if [ "$data" -ge "$warn_threshold" ]; then
   color="#B58900"
   label=""
 fi
 
 crit_threshold=60  # °C
-if [[ "$data" -ge "$crit_threshold" ]]; then
+if [ "$data" -ge "$crit_threshold" ]; then
   background="#CB4B16"
   code=33
   color="#FDF6E3"

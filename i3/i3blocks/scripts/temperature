@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # Show temperature of CPU in Solarized Dark colorscheme
 #
@@ -14,13 +14,13 @@ label=""
 data=$(sensors | awk '/Core 0/ { gsub(/^\+|\.[[:digit:]]+|[^0-9]+$/, "", $3); print $3 }')
 
 warn_threshold=70  # °C
-if [[ "$data" -ge "$warn_threshold" ]]; then
+if [ "$data" -ge "$warn_threshold" ]; then
   color="#B58900"
   label=""
 fi
 
 crit_threshold=90  # °C
-if [[ "$data" -ge "$crit_threshold" ]]; then
+if [ "$data" -ge "$crit_threshold" ]; then
   background="#CB4B16"
   code=33
   color="#FDF6E3"

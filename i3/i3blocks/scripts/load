@@ -1,8 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # Show load average
-#
-# Requirements:  sudo pacman -S bc
 #
 # If you not see $label below use other font :)
 
@@ -15,10 +13,10 @@ text_full="$label $data"
 text_short="$text_full"
 
 warn_threshold="$(nproc)"
-[[ $(echo "$data>=$warn_threshold" | bc) -ne 0 ]] && color="#B58900"
+[ $(echo "$data>=$warn_threshold" | bc) -ne "0" ] && color="#B58900"
 
 crit_threshold=$(echo "$warn_threshold*2" | bc)
-if [[ $(echo "$data>=$crit_threshold" | bc) -ne 0 ]]; then
+if [ $(echo "$data>=$crit_threshold" | bc) -ne 0 ]; then
   background="#CB4B16"
   code=33
   color="#FDF6E3"

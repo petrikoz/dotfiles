@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # Show IP for ethernet / SSID for wifi connection
 #
@@ -14,25 +14,25 @@ label=""
 
 data="$(ip addr show $device 2> /dev/null)" || exit
 state="$(echo $data | grep -oP '(?<=state\s)\w+')"
-[[ "$state" == "DOWN" ]] && exit
+[ "$state" = "DOWN" ] && exit
 text="$(echo $data | grep -oP '(?<=inet\s)\d+(\.\d+){3}')"
 
-if [[ -d "/sys/class/net/$device/wireless" ]]; then
+if [ -d "/sys/class/net/$device/wireless" ]; then
   label=""
   data=$(grep $device /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
   text="$(iwgetid -r) ($data%)"
 
   warn_threshold=50
-  [[ "$data" -le "$warn_threshold" ]] && color="#B58900"
+  [ "$data" -le "$warn_threshold" ] && color="#B58900"
 
   crit_threshold=20
-  if [[ "$data" -le "$crit_threshold" ]]; then
+  if [ "$data" -le "$crit_threshold" ]; then
     background="#CB4B16"
     code=33
     color="#FDF6E3"
   fi
 else
-  if [[ "$state" != "UP" ]]; then
+  if [ "$state" != "UP" ]; then
     background="#CB4B16"
     code=33
     color="#FDF6E3"

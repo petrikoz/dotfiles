@@ -1,17 +1,17 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # Show and control sound volume
 #
 # If you not see $label below use other font :)
 
 # Left click
-if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
+if [ "$BLOCK_BUTTON" = "1" ]; then
   pactl set-sink-mute @DEFAULT_SINK@ yes
 # Middle click
-elif [[ "$BLOCK_BUTTON" -eq 2 ]]; then
+elif [ "$BLOCK_BUTTON" = "2" ]; then
   pavucontrol &
 # Right click
-elif [[ "$BLOCK_BUTTON" -eq 3 ]]; then
+elif [ "$BLOCK_BUTTON" = "3" ]; then
   pactl set-sink-mute @DEFAULT_SINK@ no
 fi
 
@@ -21,10 +21,11 @@ color="#93A1A1"
 label="蓼"
 
 data=$(pactl list sinks | grep -A10 -w "RUNNING")
+[ -z "$data" ] && data=$(pactl list sinks)
 mute=$(echo "$data" | grep "^[[:space:]]Mute:" | grep -o -w "yes")
 volume=$(echo "$data" | grep "^[[:space:]]Volume:" | grep -o -E "[[:digit:]]+%" | head -1)
 
-if [[ "$mute" ]]; then
+if [ "$mute" ]; then
   color="#B58900"
   label="遼"
 fi
@@ -38,4 +39,3 @@ echo "$color"
 echo "$background"
 
 exit "$code"
-
