@@ -20,12 +20,11 @@ code=0
 color="#93A1A1"
 label="蓼"
 
-data=$(pactl list sinks | grep -A10 -w "RUNNING")
-[ -z "$data" ] && data=$(pactl list sinks)
-mute=$(echo "$data" | grep "^[[:space:]]Mute:" | grep -o -w "yes")
-volume=$(echo "$data" | grep "^[[:space:]]Volume:" | grep -o -E "[[:digit:]]+%" | head -1)
+data=$(pacmd list-sinks | awk '/^\s+\* index:/, /^\s+active port:/')
+mute=$(echo "$data" | awk '/^\s+muted:/ {print $2 == "yes"}')
+volume=$(echo "$data" | awk '/^\s+volume:/ {print $5}')
 
-if [ "$mute" ]; then
+if [ "$mute" -eq "1" ]; then
   color="#B58900"
   label="遼"
 fi
