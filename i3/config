@@ -213,14 +213,14 @@ bindsym $mod+Up    focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+Left   move left
+bindsym $mod+Shift+Down   move down
+bindsym $mod+Shift+Up     move up
+bindsym $mod+Shift+Right  move right
 
 # move focused window between monitors
-bindsym $mod+Shift+greater move container to output right
-bindsym $mod+Shift+less move container to output left
+bindsym $mod+Shift+greater  move container to output right
+bindsym $mod+Shift+less     move container to output left
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
