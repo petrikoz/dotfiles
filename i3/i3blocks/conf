@@ -59,7 +59,7 @@ command=~/.i3/i3blocks/scripts/$BLOCK_NAME/$BLOCK_NAME.py
 interval=300
 
 # Date Time
-[time]
+[datetime]
 color=#93A1A1
-command=date '+ %d.%m.%Y  %H:%M'
+command=LANG=ru_RU.utf8 date '+ %x(%a)  %R'
 interval=5
