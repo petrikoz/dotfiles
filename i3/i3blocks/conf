@@ -61,5 +61,5 @@ interval=300
 # Date Time
 [datetime]
 color=#93A1A1
-command=LANG=ru_RU.utf8 date '+ %x(%a)  %R'
+command=date '+ %d.%m.%Y(%a)  %R'
 interval=5
