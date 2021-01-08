@@ -23,6 +23,13 @@ sudo pacman -S - < $HOME/dotfiles/pacman/pkglist/common.txt
 
 For desktop use `pkglist/desktop.txt`. For laptop `pkglist/laptop.txt`.
 
+### conky
+
+```shell
+
+ln -s $HOME/dotfiles/conkyrc $HOME/.conkyrc
+```
+
 ### cron
 
 Use systemd's timers as replacement for cron

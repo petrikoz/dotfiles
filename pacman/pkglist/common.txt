@@ -1,5 +1,6 @@
 bc
 chromium
+conky
 docker
 encfs
 firefox
