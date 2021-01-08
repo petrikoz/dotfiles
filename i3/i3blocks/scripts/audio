@@ -9,7 +9,7 @@ if [ "$BLOCK_BUTTON" = "1" ]; then
   pactl set-sink-mute @DEFAULT_SINK@ yes
 # Middle click
 elif [ "$BLOCK_BUTTON" = "2" ]; then
-  pavucontrol &
+  i3-msg -q exec pavucontrol
 # Right click
 elif [ "$BLOCK_BUTTON" = "3" ]; then
   pactl set-sink-mute @DEFAULT_SINK@ no

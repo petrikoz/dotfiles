@@ -262,11 +262,14 @@ bindsym $mod+space sticky toggle
 ###############
 # Apps
 
-# qBittorrent
-assign [class="(?i)qbittorrent"] → number $ws4
-
 # KeepassXC
 assign [class="keepassxc"] → number $ws3
+
+# Pavucontrol
+for_window [class="(?i)pavucontrol"] floating enable
+
+# qBittorrent
+assign [class="(?i)qbittorrent"] → number $ws4
 
 # Steam
 assign [class="Steam"] → number $ws4
