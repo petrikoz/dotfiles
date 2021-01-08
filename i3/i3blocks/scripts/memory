@@ -4,6 +4,24 @@
 #
 # If you not see $label below use other font :)
 
+################################################################
+# Click
+################################################################
+
+[ -n "$BLOCK_BUTTON" ] && pkill -f conky
+# Left click
+if [ "$BLOCK_BUTTON" = "1" ]; then
+  i3-msg -q exec conky
+# Middle click
+#elif [ "$BLOCK_BUTTON" = "2" ]; then
+# Right click
+#elif [ "$BLOCK_BUTTON" = "3" ]; then
+fi
+
+################################################################
+# Output
+################################################################
+
 # First argument is source (mem/swap), second is output value
 # Check /proc/meminfo for possible instances
 INSTANCE="${BLOCK_INSTANCE:-mem;free}"

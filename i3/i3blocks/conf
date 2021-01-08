@@ -16,12 +16,12 @@ separator_block_width=15
 interval=300
 
 # System monitor
-[load]
+[cpu_load]
 interval=10
 separator=false
 separator_block_width=7
 
-[temperature]
+[cpu_temp]
 interval=10
 
 # Memory usage
@@ -35,7 +35,7 @@ interval=30
 separator=false
 separator_block_width=7
 
-[hddtemp]
+[disk_temp]
 color=#859900
 interval=10
 
