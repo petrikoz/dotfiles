@@ -20,7 +20,7 @@ exec --no-startup-id nextcloud
 exec --no-startup-id xautolock -time 3 -locker i3lock
 
 # Keyborad layouts switcher
-exec_always --no-startup-id xxkb
+exec_always --no-startup-id $HOME/.i3/xxkb.sh
 
 ###############################################################
 
