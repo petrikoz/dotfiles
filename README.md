@@ -80,8 +80,9 @@ vi $HOME/.local/share/applications/GAME-NAME.desktop
 
 ```shell
 
-ln -s $HOME/dotfiles/fonts $HOME/.fonts
-fc-cache -f -v
+git clone https://aur.archlinux.org/nerd-fonts-dejavu-complete.git
+cd nerd-fonts-dejavu-complete
+makepkg -irs
 ```
 
 ### golang

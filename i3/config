@@ -149,6 +149,7 @@ bar {
         inactive_workspace      $baseB0  $baseA2  $baseB1
         urgent_workspace        $baseB0  $orange  $baseB3
     }
+    font            pango:$font 10
     position        top
     status_command  i3blocks -c ~/.i3/i3blocks/conf
     tray_output     primary
