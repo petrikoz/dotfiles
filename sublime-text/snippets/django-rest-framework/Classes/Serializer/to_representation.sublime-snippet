@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[
+def to_representation(self, instance):
+    rep = super().to_representation(instance)
+    rep['${1:key}'] = ${2:variable}
+    return rep
+]]></content>
+    <tabTrigger>torepresentation</tabTrigger>
+    <scope>source.python</scope>
+    <description>Extend Django REST Framework's 'Serializer.to_representation'</description>
+</snippet>
