@@ -24,8 +24,10 @@
                 "tcp_port": 19360,
                 "settings": {
                     "pyls": {
-                        "env": {"PYTHONPATH": "/code:/itcase"},
-                        "plugins": {"jedi_completion": {"fuzzy": true}}
+                        "plugins": {
+                          "jedi": {"extra_paths": ["/code", "/itcase"]},
+                          "jedi_completion": {"fuzzy": true}
+                        }
                     }
                 },
             },

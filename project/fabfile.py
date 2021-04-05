@@ -188,7 +188,10 @@ def project_exec(command, options='--interactive --tty', user=None):
 
 @task
 def st_lsp():
-    """Run Python Language Server for Sublime Text."""
+    """Run Python Language Server for Sublime Text.
+
+    https://lsp.sublimetext.io/language_servers/#pyls
+    """
     command = 'pyls --tcp --host 0.0.0.0 --port 19360'
     project_exec(command, options='--detach')
 
