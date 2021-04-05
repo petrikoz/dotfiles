@@ -1,6 +1,6 @@
 <snippet>
     <content><![CDATA[
-PROJECT=${1:project}; pg_dump -h ${2:localhost} -U ${3:\$PROJECT} -d ${4:\$PROJECT} -f ${5:/tmp/\$PROJECT.sql} -bcOv --column-inserts
+PROJECT=${1:project}; pg_dump -h ${2:localhost} -U ${3:\$PROJECT} -d ${4:\$PROJECT} -f ${5:/tmp/\$PROJECT.sql} -bcOv
 ]]></content>
     <tabTrigger>pg_dump</tabTrigger>
     <scope>source.shell</scope>
