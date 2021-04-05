@@ -1,7 +1,5 @@
 [user]
 	name = Petr Zelenin
-[push]
-	default = simple
 [alias]
 	a = add
 	b = branch
