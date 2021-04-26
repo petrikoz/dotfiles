@@ -25,7 +25,3 @@
   export EDITOR="vim"
   export SSH_AUTH_SOCK="/tmp/ssh-agent.socket"
   export TERM="xterm-256color"
-
-  # Pager
-  vimpager="$HOME/.vim/bundle/vimpager/vimpager"
-  [[ -x $vimpager ]] && export PAGER="$vimpager"

@@ -23,6 +23,14 @@ sudo pacman -S - < $HOME/dotfiles/pacman/pkglist/common.txt
 
 For desktop use `pkglist/desktop.txt`. For laptop `pkglist/laptop.txt`.
 
+### ccat
+
+First install Golang: see bellow.
+
+```shell
+go get -u github.com/owenthereal/ccat
+```
+
 ### conky
 
 ```shell

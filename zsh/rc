@@ -15,9 +15,11 @@
   antigen bundle git-flow-avh
   antigen bundle pip
 
-  # Additional completion definitions for Zsh.
-  antigen bundle zsh-users/zsh-completions src
+  # Bundles from other repos
+  antigen bundle zsh-users/zsh-completions src  # Additional completion definitions for Zsh
   antigen bundle sdurrheimer/docker-compose-zsh-completion
+
+  # Local repos
   antigen bundle $HOME/.zsh/completions --no-local-clone
 
   # Load the theme.
@@ -101,9 +103,11 @@ autoload zmv
 ################################################################
 
   alias :q='exit'
-  alias zcp="zmv -C"
-  alias zln="zmv -L"
+
+  ccat="$GOPATH/bin/ccat"
+  [[ -x $ccat ]] && alias cat="$ccat --color=always"
+
   alias todo='todo.sh'
 
-  vimcat="$HOME/.vim/bundle/vimpager/vimcat"
-  [[ -x $vimcat ]] && alias cat="$vimcat"
+  alias zcp="zmv -C"
+  alias zln="zmv -L"
