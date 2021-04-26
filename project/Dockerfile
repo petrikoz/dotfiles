@@ -8,7 +8,7 @@ MAINTAINER Petr Zelenin (po.zelenin@gmail.com)
 #RUN apt-get install -y /tmp/wkhtmltox.deb
 
 ### Global
-RUN pip install --upgrade ipdb pip ptpython python-language-server
+RUN pip install --upgrade ipdb pip ptpython python-language-server==0.36.2
 RUN pip install --upgrade django-debug-toolbar django-extensions
 
 ### Project
