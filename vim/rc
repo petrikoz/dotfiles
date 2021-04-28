@@ -11,49 +11,47 @@
   " set the runtime path to include Vundle and initialize
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
-  " alternatively, pass a path where Vundle should install plugins
-  "call vundle#begin('~/some/path/here')
 
-  " let Vundle manage Vundle, required
-  Plugin 'gmarik/Vundle.vim'
+    " let Vundle manage Vundle, required
+    Plugin 'VundleVim/Vundle.vim'
 
-  " Keep Plugin commands between vundle#begin/end.
+    " Keep Plugin commands between vundle#begin/end.
 
-    " Nginx syntax highlighting
-    Plugin 'chr4/nginx.vim'
+      " Nginx syntax highlighting
+      Plugin 'chr4/nginx.vim'
 
-    Plugin 'tpope/vim-sensible'
+      Plugin 'tpope/vim-sensible'
 
-    " Nice start screen
-    Plugin 'mhinz/vim-startify'
+      " Nice start screen
+      Plugin 'mhinz/vim-startify'
 
-    " Pretty and functionality statusline.
-    Plugin 'vim-airline/vim-airline'
-    Plugin 'vim-airline/vim-airline-themes'
+      " Pretty and functionality statusline.
+      Plugin 'vim-airline/vim-airline'
+      Plugin 'vim-airline/vim-airline-themes'
 
-    " The best colorscheme.
-    Plugin 'altercation/vim-colors-solarized'
+      " The best colorscheme.
+      Plugin 'altercation/vim-colors-solarized'
 
-    " Perform all your vim insert mode completions with Tab
-    Plugin 'ervandew/supertab'
+      " Perform all your vim insert mode completions with Tab
+      Plugin 'ervandew/supertab'
 
-    " Shows 'Nth match out of M' at every search
-    Plugin 'vim-scripts/IndexedSearch'
+      " Shows 'Nth match out of M' at every search
+      Plugin 'vim-scripts/IndexedSearch'
 
-    " NERDTree. A tree explorer plugin
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'jistr/vim-nerdtree-tabs'
+      " NERDTree. A tree explorer plugin
+      Plugin 'scrooloose/nerdtree'
+      Plugin 'jistr/vim-nerdtree-tabs'
 
-    " Show added / changed / deleted rows by Git.
-    Plugin 'airblade/vim-gitgutter'
+      " Show added / changed / deleted rows by Git.
+      Plugin 'airblade/vim-gitgutter'
 
-    " Best syntax checker
-    Plugin 'scrooloose/syntastic'
+      " Best syntax checker
+      Plugin 'scrooloose/syntastic'
 
-    " Easy config code style
-    Plugin 'editorconfig/editorconfig-vim'
+      " Easy config code style
+      Plugin 'editorconfig/editorconfig-vim'
 
-  " All of your Plugins must be added before the following line
+    " All of your Plugins must be added before the following line
   call vundle#end()  " required
   filetype plugin on  " required
 
@@ -103,6 +101,7 @@
     let g:solarized_termtrans = 1
     set background=dark
     colorscheme solarized
+    autocmd ColorScheme * highlight! link SignColumn LineNr
 
   " Startify
     let g:startify_change_to_dir = 0
