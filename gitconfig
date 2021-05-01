@@ -1,5 +1,3 @@
-[user]
-	name = Petr Zelenin
 [alias]
 	a = add
 	b = branch
@@ -20,5 +18,13 @@
 	resh = reset --hard
 	s = status
 	ss = status -s
+[color]
+	ui = always
+[core]
+	pager = less -r
+[pager]
+	branch = false
 [pull]
 	rebase = true
+[user]
+	name = Petr Zelenin
