@@ -23,6 +23,7 @@ from fabric.operations import local
 
 env.compose = 'docker-compose'
 env.db_service = 'postgres'
+env.django_service = 'django'
 env.docker = 'docker'
 env.manage = 'manage.py'
 env.project = os.path.basename(os.path.dirname(__file__))
@@ -106,7 +107,7 @@ def dj_server(recreate=False):
 
     if not container:
         return local(f'{env.compose} run --name {env.container}'
-                     f' --service-ports {env.project} python -Walways'
+                     f' --service-ports {env.django_service} python -Walways'
                      f' {env.manage} runserver 0.0.0.0:8000')
 
     services = get_compose_services()
@@ -132,7 +133,7 @@ def get_bool(arg):
 def get_compose_services():
     services = local(f'{env.compose} config --services', capture=True)
     services = services.split('\n')
-    services.remove(env.project)
+    services.remove(env.django_service)
     return ' '.join(services)
 
 

@@ -54,6 +54,15 @@ systemctl --user enable $HOME/dotfiles/systemd/user/cloud-backup/cloud-backup.ti
 systemctl --user start cloud-backup.timer
 ```
 
+### Docker
+
+Add custom network ([docs](https://docs.docker.com/engine/reference/commandline/network_create/))
+
+```shell
+
+docker network create -o "com.docker.network.bridge.name"="docker1" docker1
+```
+
 ### firejail
 
 Run applications with security profiles:
