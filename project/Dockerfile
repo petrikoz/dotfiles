@@ -10,8 +10,9 @@ MAINTAINER Petr Zelenin (po.zelenin@gmail.com)
 #RUN apt-get update && apt-get install -y /tmp/wkhtmltox.deb
 
 ### User
-RUN useradd -m -s /bin/bash user \
+RUN useradd -d /user -m -s /bin/bash user \
     && echo "user:password" | chpasswd
+ENV PATH="/user/.local/bin:$PATH"
 
 ### Project
 RUN mkdir /code \
