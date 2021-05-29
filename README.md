@@ -160,6 +160,10 @@ sudo systemctl start netctl-auto@INTERFACE.service
 
 ```shell
 
+# enable color output
+sudo sed -i "/^#Color/c\Color" /etc/pacman.conf
+
+# add hooks
 sudo cp -r $HOME/dotfiles/pacman/hooks /etc/pacman.d/
 ```
 
