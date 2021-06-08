@@ -278,6 +278,9 @@ assign [class="Steam"] → number $ws4
 # Telegram
 assign [class="TelegramDesktop"] → number $ws3
 
+# Wine
+assign [class="explorer.exe"] → number $ws4
+
 ###############################################################
 # Keys
 ######
