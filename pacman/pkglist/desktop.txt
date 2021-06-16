@@ -2,6 +2,7 @@ cups
 go
 libreoffice-still
 numlockx
+nvidia
 qbittorrent
 qmapshack
 steam
