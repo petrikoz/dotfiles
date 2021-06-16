@@ -134,7 +134,7 @@ sudo systemctl start hddtemp.service
 ```shell
 
 mkdir -p $HOME/.config/mpv
-ln -s $HOME/dotfiles/mpv.conf $HOME/.config/mpv/
+ln -s $HOME/dotfiles/mpv/mpv.conf $HOME/.config/mpv/
 ```
 
 ### netctl
