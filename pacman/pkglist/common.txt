@@ -28,7 +28,6 @@ pavucontrol
 playerctl
 pulseaudio-alsa
 python
-qpdfview
 rofi
 rsync
 sudo
@@ -38,7 +37,6 @@ ttf-dejavu
 udisks2
 vim
 wget
-wireguard-arch
 wireguard-tools
 xautolock
 xcape
@@ -52,6 +50,5 @@ xorg-xinit
 xorg-xsetroot
 xss-lock
 xxkb
-youtube-dl
 zsh
 zsh-completions
