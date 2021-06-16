@@ -171,6 +171,16 @@ sudo sed -i "/^#Color/c\Color" /etc/pacman.conf
 sudo cp -r $HOME/dotfiles/pacman/hooks /etc/pacman.d/
 ```
 
+Install packages from `pacman/pkglist/aur.txt`:
+
+```shell
+
+cd ~/Downloads
+git clone https://aur.archlinux.org/PACKAGE-NAME.git
+cd ~/Downloads/PACKAGE-NAME
+makepkg -irs
+```
+
 ### python
 
 ```shell
