@@ -31,6 +31,10 @@ First install Golang: see bellow.
 go get -u github.com/owenthereal/ccat
 ```
 
+### chromium
+
+[Use Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium-archlinux)
+
 ### conky
 
 ```shell
