@@ -1,0 +1,7 @@
+gitflow-avh
+hplip-plugin
+nerd-fonts-dejavu-complete
+rofi-dmenu
+todotxt
+vi-vim-symlink
+virtualbox-ext-oracle
