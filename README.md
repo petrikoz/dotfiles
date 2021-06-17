@@ -240,11 +240,13 @@ ln -s $HOME/.tmux/conf $HOME/.tmux.conf
 
 ```shell
 
-ln -s $HOME/dotfiles/todo $HOME/.todo
-
+# install
 git clone https://aur.archlinux.org/todotxt.git
 cd todotxt
 makepkg -irs
+
+# configure
+ln -s $HOME/cloud/todo $HOME/.todo
 ```
 
 ### vim
