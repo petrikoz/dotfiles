@@ -244,8 +244,26 @@ Section "Monitor"
 EndSection
 ```
 
-### Header Text ###
+### KDE ###
 
+Add SSH's keys to SSH Agent on logon:
+
+```shell
+
+cp $HOME/dotfiles/kde/askpass.sh $HOME/.config/plasma-workspace/env/
+vi $HOME/.config/autostart/ssh-add.desktop
+```
+
+```desktop
+
+[Desktop Entry]
+Exec=/usr/bin/ssh-add -q /home/petr/.ssh/id_key1 /home/petr/.ssh/id_key2 < /dev/null
+Icon=dialog-scripts
+Name=ssh-add
+Path=
+Type=Application
+X-KDE-AutostartScript=true
+```
 
 ### mpv ###
 
