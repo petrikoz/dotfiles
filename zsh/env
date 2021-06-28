@@ -24,5 +24,3 @@
 
   export EDITOR="vim"
   export PAGER="less"
-  export SSH_AUTH_SOCK="/tmp/ssh-agent.socket"
-  export TERM="xterm-256color"

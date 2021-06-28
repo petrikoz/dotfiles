@@ -1,8 +1,8 @@
-# CONFIGS
+# CONFIGS #
 
 Configs for most of my software.
 
-## Install
+## Install ##
 
 ```shell
 
@@ -10,20 +10,28 @@ sudo pacman -Suy base-devel git
 git clone --recursive https://github.com/petrikoz/dotfiles.git
 ```
 
-## Soft
+## Soft ##
 
 This part contains instructions for install and config soft.
 
-### common
+### common ###
 
 ```shell
 
 sudo pacman -S - < $HOME/dotfiles/pacman/pkglist/common.txt
 ```
 
-For desktop use `pkglist/desktop.txt`. For laptop `pkglist/laptop.txt`.
+Specific files in `pacman/pkglist/`:
 
-### ccat
+* `common.txt` — soft for any Arch-based-installation
+* `artix.txt` — soft actual only on [Artix Linux](https://artixlinux.org/)
+* `desktop.txt` — only for desktop PC
+* `desktop-aur.txt` — soft from [AUR](https://aur.archlinux.org/) for desktop PC
+* `i3.txt` — soft actual for installation with [i3wm](https://wiki.archlinux.org/title/I3) on common cases
+* `i3-laptop.txt` — soft actual for installation with i3wm on laptop
+* `kde.txt` — soft actual for installation with [kde](https://wiki.archlinux.org/title/KDE)
+
+### ccat ###
 
 First install Golang: see bellow.
 
@@ -31,18 +39,39 @@ First install Golang: see bellow.
 go get -u github.com/owenthereal/ccat
 ```
 
-### chromium
-
-[Use Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium-archlinux)
-
-### conky
+### conky ###
 
 ```shell
 
 ln -s $HOME/dotfiles/conkyrc $HOME/.conkyrc
 ```
 
-### cron
+### cron ###
+
+#### fsTRIM ####
+
+Actual only for Artix Linux. On systemd-based distros periodic [TRIM](https://wiki.archlinux.org/title/Solid_state_drive#TRIM) run as default
+
+```shell
+
+sudo cp $HOME/dotfiles/cron/weekly/fstrim /etc/cron.weekly/
+sudo chmod +x /etc/cron.weekly/fstrim
+```
+
+#### Cloud backup ####
+
+```shell
+
+crontab -e
+```
+
+```cron
+
+0 16 * * *    $HOME/dotfiles/cron/user/cloud-backup.sh > $HOME/dotfiles/cron/user/cloud-backup.log 2>&1
+```
+
+
+#### SystemD ####
 
 Use systemd's timers as replacement for cron
 
@@ -58,16 +87,31 @@ systemctl --user enable $HOME/dotfiles/systemd/user/cloud-backup/cloud-backup.ti
 systemctl --user start cloud-backup.timer
 ```
 
-### Docker
-
-Add custom network ([docs](https://docs.docker.com/engine/reference/commandline/network_create/))
+### Docker ###
 
 ```shell
 
+# add itself to 'docker' group
+sudo usermod -aG docker $USER
+
+# Add custom network ([docs](https://docs.docker.com/engine/reference/commandline/network_create/))
 docker network create -o "com.docker.network.bridge.name"="docker1" docker1
 ```
 
-### firejail
+Hide connections from [NetworkManager](https://wiki.archlinux.org/title/NetworkManager)
+
+```shell
+
+sudo vi /etc/NetworkManager/conf.d/unmanaged.conf
+```
+
+```conf
+
+[keyfile]
+unmanaged-devices=interface-name:docker*;interface-name:veth*
+```
+
+### firejail ###
 
 Run applications with security profiles:
 
@@ -97,7 +141,7 @@ cp $HOME/dotfiles/firejail/game.desktop $HOME/.local/share/applications/GAME-NAM
 vi $HOME/.local/share/applications/GAME-NAME.desktop
 ```
 
-### fonts
+### fonts ###
 
 ```shell
 
@@ -106,14 +150,14 @@ cd nerd-fonts-dejavu-complete
 makepkg -irs
 ```
 
-### golang
+### golang ###
 
 ```shell
 
 mkdir -p $HOME/go/bin $HOME/go/pkg $HOME/go/src
 ```
 
-### i3wm
+### i3wm ###
 
 ```shell
 
@@ -133,15 +177,7 @@ sudo systemctl enable hddtemp.service
 sudo systemctl start hddtemp.service
 ```
 
-### mpv
-
-```shell
-
-mkdir -p $HOME/.config/mpv
-ln -s $HOME/dotfiles/mpv/mpv.conf $HOME/.config/mpv/
-```
-
-### netctl
+#### netctl ####
 
 For more information see https://wiki.archlinux.org/index.php/Netctl
 
@@ -160,45 +196,7 @@ sudo systemctl enable netctl-auto@INTERFACE.service
 sudo systemctl start netctl-auto@INTERFACE.service
 ```
 
-### pacman
-
-```shell
-
-# enable color output
-sudo sed -i "/^#Color/c\Color" /etc/pacman.conf
-
-# add hooks
-sudo cp -r $HOME/dotfiles/pacman/hooks /etc/pacman.d/
-```
-
-Install packages from `pacman/pkglist/aur.txt`:
-
-```shell
-
-cd ~/Downloads
-git clone https://aur.archlinux.org/PACKAGE-NAME.git
-cd ~/Downloads/PACKAGE-NAME
-makepkg -irs
-```
-
-### python
-
-```shell
-
-pip3 install --upgrade --user pip setuptools wheel
-pip install --requirement=$HOME/dotfiles/pip-reqs.txt
-```
-
-### rclone
-
-```shell
-
-curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && x rclone-current-linux-amd64.zip
-mkdir -p $HOME/.local/bin && mv rclone-*/rclone $HOME/.local/bin/
-rm -rf rclone-*
-```
-
-### rofi-dmenu
+#### rofi-dmenu ####
 
 ```shell
 
@@ -209,60 +207,19 @@ makepkg -irs
 ln -s $HOME/dotfiles/i3/rofi $HOME/.config/
 ```
 
-### st
+#### st ####
 
 ```shell
 
-cd $HOME/dotfiles/st
+git clone https://aur.archlinux.org/st.git
+cd st
+cp config.def.h config.h
+# move differences from `$HOME/dotfiles/st/config.h` to `config.h`
+# then run:
 makepkg -irs
 ```
 
-### sublime text
-
-```shell
-
-curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --add sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
-echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf
-sudo pacman -Syu sublime-text
-
-ln -sf $HOME/dotfiles/sublime-text  $HOME/.config/sublime-text-3/Packages/User
-```
-
-### tmux
-
-```shell
-
-ln -s $HOME/dotfiles/tmux $HOME/.tmux
-ln -s $HOME/.tmux/conf $HOME/.tmux.conf
-```
-
-### todo.sh
-
-```shell
-
-# install
-git clone https://aur.archlinux.org/todotxt.git
-cd todotxt
-makepkg -irs
-
-# configure
-ln -s $HOME/cloud/todo $HOME/.todo
-```
-
-### vim
-
-```shell
-
-ln -s $HOME/dotfiles/vim $HOME/.vim
-ln -s $HOME/.vim/rc $HOME/.vimrc
-
-# replace vi with vim
-git clone https://aur.archlinux.org/vi-vim-symlink.git
-cd vi-vim-symlink
-makepkg -irs
-```
-
-### xorg
+#### xorg ####
 
 ```shell
 
@@ -287,7 +244,101 @@ Section "Monitor"
 EndSection
 ```
 
-### zsh
+### Header Text ###
+
+
+### mpv ###
+
+```shell
+
+mkdir -p $HOME/.config/mpv
+ln -s $HOME/dotfiles/mpv/mpv.conf $HOME/.config/mpv/
+```
+
+### pacman ###
+
+```shell
+
+# enable color output
+sudo sed -i "/^#Color/c\Color" /etc/pacman.conf
+
+# add hooks
+sudo cp -r $HOME/dotfiles/pacman/hooks /etc/pacman.d/
+```
+
+Install packages from `pacman/pkglist/aur.txt`:
+
+```shell
+
+cd ~/Downloads
+git clone https://aur.archlinux.org/PACKAGE-NAME.git
+cd ~/Downloads/PACKAGE-NAME
+makepkg -irs
+```
+
+### python ###
+
+```shell
+
+pip3 install --upgrade --user pip setuptools wheel
+pip install --requirement=$HOME/dotfiles/pip-reqs.txt
+```
+
+### rclone ###
+
+```shell
+
+curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && x rclone-current-linux-amd64.zip
+mkdir -p $HOME/.local/bin && mv rclone-*/rclone $HOME/.local/bin/
+rm -rf rclone-*
+```
+
+### sublime text ###
+
+```shell
+
+curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --add sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
+echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf
+sudo pacman -Syu sublime-text
+
+ln -sf $HOME/dotfiles/sublime-text  $HOME/.config/sublime-text-3/Packages/User
+```
+
+### tmux ###
+
+```shell
+
+ln -s $HOME/dotfiles/tmux $HOME/.tmux
+ln -s $HOME/.tmux/conf $HOME/.tmux.conf
+```
+
+### todo.sh ###
+
+```shell
+
+# install
+git clone https://aur.archlinux.org/todotxt.git
+cd todotxt
+makepkg -irs
+
+# configure
+ln -s $HOME/cloud/todo $HOME/.todo
+```
+
+### vim ###
+
+```shell
+
+ln -s $HOME/dotfiles/vim $HOME/.vim
+ln -s $HOME/.vim/rc $HOME/.vimrc
+
+# replace vi with vim
+git clone https://aur.archlinux.org/vi-vim-symlink.git
+cd vi-vim-symlink
+makepkg -irs
+```
+
+### zsh ###
 
 ```shell
 

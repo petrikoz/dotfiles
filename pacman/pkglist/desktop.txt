@@ -1,9 +1,7 @@
 cups
 go
 libreoffice-still
-numlockx
 nvidia
-qbittorrent
 qmapshack
 steam
 steam-native-runtime

@@ -1,3 +1,17 @@
+################################################################
+# Common
+################################################################
+# Run 'ssh-agent' and preserve only one instance
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! "$SSH_AUTH_SOCK" ]]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi
+
+################################################################
+# i3wm
+################################################################
 # Start X if logged local
-[[ ! $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+#[[ ! $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
