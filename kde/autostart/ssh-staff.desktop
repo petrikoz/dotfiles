@@ -1,0 +1,9 @@
+[Desktop Entry]
+Exec=/home/petr/dotfiles/kde/autostart/ssh-staff
+Icon=dialog-scripts
+Name=ssh-staff
+StartupNotify=true
+Terminal=false
+Type=Application
+X-KDE-AutostartScript=true
+X-KDE-SubstituteUID=false

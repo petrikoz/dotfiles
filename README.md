@@ -246,23 +246,40 @@ EndSection
 
 ### KDE ###
 
+#### EncFS ####
+
+Mount encfs volumes with passwords from Kwallet:
+
+```shell
+
+echo '#!/bin/sh
+
+kdeencfs="$HOME/dotfiles/kde/kdeencfs.sh"
+
+$kdeencfs /path/of/encrypted/target /path/to/mount/point
+' > $HOME/dotfiles/kde/autostart/kdeencfs
+
+cp $HOME/dotfiles/kde/autostart/kdeencfs.desktop $HOME/.config/autostart/
+```
+
+#### SSH ###
+
 Add SSH's keys to SSH Agent on logon:
 
 ```shell
 
 cp $HOME/dotfiles/kde/askpass.sh $HOME/.config/plasma-workspace/env/
-vi $HOME/.config/autostart/ssh-add.desktop
-```
 
-```desktop
+echo '#!/bin/sh
 
-[Desktop Entry]
-Exec=/usr/bin/ssh-add -q /home/petr/.ssh/id_key1 /home/petr/.ssh/id_key2 < /dev/null
-Icon=dialog-scripts
-Name=ssh-add
-Path=
-Type=Application
-X-KDE-AutostartScript=true
+/usr/bin/ssh-add -q /home/petr/.ssh/id_key1 /home/petr/.ssh/id_key2 < /dev/null
+
+# if sshmnt installed on system uncomment bellow
+#sshmnt -m cloud.wormhole
+' >  $HOME/dotfiles/kde/autostart/ssh-staff
+chmod 700 $HOME/dotfiles/kde/autostart/ssh-staff
+
+cp $HOME/dotfiles/kde/autostart/ssh-staff.desktop $HOME/.config/autostart/
 ```
 
 ### mpv ###
@@ -309,6 +326,19 @@ pip install --requirement=$HOME/dotfiles/pip-reqs.txt
 curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && x rclone-current-linux-amd64.zip
 mkdir -p $HOME/.local/bin && mv rclone-*/rclone $HOME/.local/bin/
 rm -rf rclone-*
+```
+
+### sshmnt ###
+
+```shell
+
+# install
+git clone https://aur.archlinux.org/sshmnt.git
+cd sshmnt
+makepkg -irs
+
+# configure
+ln -s $HOME/dotfiles/sshmntconfig $HOME/.config/sshmntconfig
 ```
 
 ### sublime text ###
