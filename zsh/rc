@@ -111,3 +111,14 @@ autoload zmv
 
   alias zcp="zmv -C"
   alias zln="zmv -L"
+
+################################################################
+# Autostart
+################################################################
+# Run 'ssh-agent' and preserve only one instance
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! "$SSH_AUTH_SOCK" ]]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi
