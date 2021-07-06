@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 rclone="$HOME/.local/bin/rclone"
 if [[ ! -f "$rclone" ]]; then
@@ -49,7 +49,7 @@ raid0_cloud_decrypted="$HOME/encfs/raid0/wormcloud"
 if [[ ! "$(findmnt -M $raid0_cloud_decrypted)" ]]; then
     echo "Please mount encrypted volume to '$raid0_cloud_decrypted'"
 else
-    remote="wormhole:/var/www/nextcloud"
+    remote="/run/user/1000/sshmnt/cloud.wormhole"
 
     echo "All cloud: ..."
 
