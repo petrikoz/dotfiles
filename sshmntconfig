@@ -1,0 +1,15 @@
+#CONFIG#
+mountpath=/run/user/1000/sshmnt:
+editor=vim:
+#PROFILES#
+#After each heading you must put an '=' and after each value you must put a ':'
+#Available headings:
+# location: this is the name of the profile (required)
+# login: the name of the user to login as (required)
+# ip: the url or ip of the server (required, ipv6 addresses must be surrounded in [ and ])
+# port: the port the ssh daemon is running on (required, the default port used by most daemons is 22)
+# path: the remote directory to use as the highest level of the mounted share (required, mount only)
+# mntopts: sshfs mount options exactly as they'd appear following the -o option (optional, mount only)
+#Example:
+# location=name:login=username:ip=address:port=22:path=/basepath/of/mount:mntopts=uid=99,gid=99:
+location=cloud.wormhole:login=root:ip=10.192.122.1:port=22:path=/var/www/nextcloud:
