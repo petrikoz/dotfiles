@@ -4,7 +4,7 @@
 # Antigen
 ################################################################
 
-  source $HOME/.zsh/antigen/antigen.zsh
+  source "$HOME/.zsh/antigen/antigen.zsh"
 
   # Load the oh-my-zsh's library.
   antigen use oh-my-zsh
@@ -20,13 +20,14 @@
   antigen bundle sdurrheimer/docker-compose-zsh-completion
 
   # Local repos
-  antigen bundle $HOME/.zsh/completions --no-local-clone
+  antigen bundle "$HOME/.zsh/completions" --no-local-clone
 
   # Load the theme.
-  DEFAULT_USER=$USER
+  DEFAULT_USER="$USER"
   POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs)
-  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs context root_indicator time)
-  antigen theme bhilburn/powerlevel9k powerlevel9k
+  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs direnv virtualenv time)
+  GITSTATUS_DAEMON="$HOME/.local/bin/gitstatusd-linux-x86_64"
+  antigen theme romkatv/powerlevel10k
 
   # Tell antigen that you're done.
   antigen apply
@@ -41,7 +42,7 @@
   setopt HIST_REDUCE_BLANKS      # trim multiple insgnificant blanks in history
   setopt HIST_NO_STORE           # remove the history (fc -l) command from the history when invoked
 
-  HISTFILE=$HOME/.zsh/history    # history file location
+  HISTFILE="$HOME/.zsh/history"    # history file location
   HISTSIZE=1000000               # number of history lines kept internally
   SAVEHIST=1000000               # max number of history lines saved
 
@@ -122,3 +123,8 @@ fi
 if [[ ! "$SSH_AUTH_SOCK" ]]; then
     source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
 fi
+
+# Hook direnv in shell
+# https://github.com/direnv/direnv
+export DIRENV_LOG_FORMAT=
+eval "$(direnv hook zsh)"
