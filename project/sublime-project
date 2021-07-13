@@ -6,6 +6,7 @@
                 "**/__*.css*",
             ],
             "folder_exclude_patterns": [
+                ".direnv",
                 "__build",
                 "__pycache__",
                 "example",
@@ -18,17 +19,11 @@
     "settings":
     {
         "LSP": {
-            "pyls": {
-                "command": [],
+            "pylsp": {
                 "enabled": true,
-                "tcp_port": 19360,
+                "command": ["$project_path/.direnv/python-3.9.6/bin/pylsp"],
                 "settings": {
-                    "pyls": {
-                        "plugins": {
-                          "jedi": {"extra_paths": ["/code", "/itcase"]},
-                          "jedi_completion": {"fuzzy": true}
-                        }
-                    }
+                    "pylsp.plugins.jedi.extra_paths": ["$project_path"],
                 },
             },
         },

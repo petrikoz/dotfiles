@@ -10,6 +10,35 @@ sudo pacman -Suy base-devel git
 git clone --recursive https://github.com/petrikoz/dotfiles.git
 ```
 
+## Project ##
+
+### Direnv ###
+
+Autoconfigure environment when enter to watched directory.
+See https://github.com/direnv/direnv for more details.
+
+```shell
+
+git clone https://aur.archlinux.org/direnv.git
+cd direnv
+makepkg -irs
+```
+
+### Install ###
+
+```shell
+
+cp -r $HOME/dotfiles/project PROJECT_PATH/PROJECT_NAME
+cd PROJECT_PATH/PROJECT_NAME
+mv editorconfig .editorconfig
+mv envrc .envrc
+mv sublime-project $(basename $PWD).sublime-project
+ln -s ../itcase-dev ./
+git clone PROJECT_REPO src
+```
+
+Add local modules to `requirements-local.txt` then run `inv pip-install-requirements`.
+
 ## Soft ##
 
 This part contains instructions for install and config soft.

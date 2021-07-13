@@ -1,0 +1,8 @@
+-e ./itcase-dev/itcase-plugin
+
+django-debug-toolbar
+django-extensions
+
+ipdb
+ptpython
+python-lsp-server[yapf]
