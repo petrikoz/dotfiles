@@ -1,22 +1,6 @@
 # vim: syntax=zsh
 
 ################################################################
-# Extend pathes
-################################################################
-
-  # Local
-  localbin="$HOME/.local/bin"
-  [[ -d $localbin ]] && PATH="$localbin:$PATH"
-
-  # Golang
-  export GOPATH="$HOME/go"
-  [[ -d "$GOPATH" ]] && PATH="$GOPATH/bin:$PATH"
-
-  # Android
-  export ANDROID_HOME="$HOME/Android/Sdk"
-  [[ -d $ANDROID_HOME ]] && PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
-
-################################################################
 # Environment variables
 ################################################################
 
@@ -24,3 +8,21 @@
 
   export EDITOR="vim"
   export PAGER="less"
+
+  [[ ! "$XDG_CONFIG_HOME" ]] && export XDG_CONFIG_HOME="$HOME/.config"
+
+################################################################
+# Extend pathes
+################################################################
+
+  # Local
+  localbin="$HOME/.local/bin"
+  [[ -d "$localbin" ]] && PATH="$localbin:$PATH"
+
+  # Golang
+  export GOPATH="$HOME/go"
+  [[ -d "$GOPATH" ]] && PATH="$GOPATH/bin:$PATH"
+
+  # Android
+  export ANDROID_HOME="$HOME/Android/Sdk"
+  [[ -d "$ANDROID_HOME" ]] && PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
