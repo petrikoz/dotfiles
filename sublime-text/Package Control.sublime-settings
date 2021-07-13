@@ -22,8 +22,6 @@
 		"SublimeLinter",
 		"SublimeLinter-annotations",
 		"SublimeLinter-flake8",
-		"SublimeLinter-json",
-		"SublimeLinter-pydocstyle",
-		"WordHighlight"
-	]
+		"WordHighlight",
+	],
 }

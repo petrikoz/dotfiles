@@ -1,0 +1,20 @@
+{
+    "clients": {
+        "pylsp": {
+            "enabled": false,  // we will enable PyLSP at the project level
+            "selector": "source.python",
+            "settings": {
+                "pylsp.plugins.autopep8.enabled": false, // enabled by default
+                "pylsp.plugins.mccabe.enabled": false, // enabled by default
+                "pylsp.plugins.pydocstyle.enabled": false, // enabled by default
+                "pylsp.plugins.pylint.enabled": false, // enabled by default
+                "pylsp.plugins.pyflakes.enabled": false, // enabled by default
+                "pylsp.plugins.pycodestyle.enabled": false, // enabled by default
+                "pylsp.plugins.flake8.enabled": false,  // enabled by default
+                "pylsp.plugins.jedi_completion.enabled": true,  // included in pyls
+                "pylsp.plugins.jedi_completion.fuzzy": true,
+                "pylsp.plugins.jedi_rename.enabled": true,  // included in pyls
+            },
+        },
+    },
+}
