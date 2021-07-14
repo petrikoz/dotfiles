@@ -27,16 +27,19 @@ else
 
     echo "  to cloud: done"
 
-    cloud_archive=/tmp/wormcloud.tar
+    cloud_compressed_path=/tmp/wormcloud
+    cloud_compressed="$cloud_compressed_path/cloud.tar.zst"
     cloud_encrypted="$HOME/cloud/.encrypted"
-    tar -cf "$cloud_archive" "$cloud_encrypted"
+
+    mkdir -m 700 -p "$cloud_compressed_path"
+    tar --absolute-names --auto-compress --create --file="$cloud_compressed" "$cloud_encrypted"
     echo "  to archive: done"
 
     echo "  to Dropbox: ..."
-    "$rclone" sync "$cloud_archive" dropbox:
+    "$rclone" --quiet copy "$cloud_compressed" dropbox:
     echo "  to Dropbox: done"
 
-    rm -f "$cloud_archive"
+    rm -rf "$cloud_compressed_path"
     echo "  remove archive: done"
 
     echo "My data: done"
@@ -49,35 +52,49 @@ raid0_cloud_decrypted="$HOME/encfs/raid0/wormcloud"
 if [[ ! "$(findmnt -M $raid0_cloud_decrypted)" ]]; then
     echo "Please mount encrypted volume to '$raid0_cloud_decrypted'"
 else
-    remote="/run/user/1000/sshmnt/cloud.wormhole"
-
     echo "All cloud: ..."
 
     echo "  to raid0: ..."
+    remote="/run/user/1000/sshmnt/cloud.wormhole"
+    rsync="rsync -zz --archive"
 
-    rsync -zz --archive "$remote/config/config.php" "$raid0_cloud_decrypted/config/"
+    $rsync "$remote/config/config.php" "$raid0_cloud_decrypted/config/"
     echo "    config/config.php"
 
-    rsync -zz --archive "$remote/data/owncloud.db" "$raid0_cloud_decrypted/data/"
+    $rsync "$remote/data/owncloud.db" "$raid0_cloud_decrypted/data/"
     echo "    data/owncloud.db"
 
     for f in $(find "$raid0_cloud_decrypted/data/"* -prune -type d); do
         subdata="$(basename $f)"
-        rsync -zz --archive "$remote/data/$subdata" "$raid0_cloud_decrypted/data/"
+        $rsync "$remote/data/$subdata" "$raid0_cloud_decrypted/data/"
         echo "    data/$subdata"
     done
 
     echo "  to raid0: done"
 
-    raid0_cloud=/mnt/raid0/wormcloud
-    raid0_cloud_archive="$raid0_cloud.tar"
-    tar -cf "$raid0_cloud_archive" "$raid0_cloud"
+    echo "  to archive: ..."
+    raid0_uncompressed=/mnt/raid0/wormcloud
+    raid0_compressed_path=/tmp/wormcloud
+    raid0_compressed_file=wormcloud.tar.zst
+    raid0_compressed="$raid0_compressed_path/$raid0_compressed_file"
+    raid0_compressed_parts_suffix=.part
+    raid0_compressed_parted="$raid0_compressed$raid0_compressed_parts_suffix"
+
+    chown -R "$USER":"$USER" "$raid0_uncompressed"
+
+    mkdir -m 700 -p "$raid0_compressed_path"
+    tar --absolute-names --auto-compress --create --file="$raid0_compressed" "$raid0_uncompressed"
+    echo "    $raid0_compressed"
+
+    split -b 2G "$raid0_compressed" "$raid0_compressed_parted"
+    echo "    $raid0_compressed_parted*"
+
     echo "  to archive: done"
 
     echo "  to my Mail.ru Cloud: ..."
-    "$rclone" sync "$raid0_cloud_archive" mailru:
+    "$rclone" --quiet --include "$raid0_compressed_file$raid0_compressed_parts_suffix*" copy "$raid0_compressed_path" mailru:
     echo "  to my Mail.ru Cloud: done"
 
-    rm -f "$raid0_cloud_archive"
+    rm -rf "$raid0_compressed_path"
     echo "  remove archive: done"
 fi
