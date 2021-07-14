@@ -123,7 +123,10 @@ def dj_exec(c, cmd, pdb=False):
 def dj_server(c, addr='127.0.0.1', port=8000):
     """Start Django's development server."""
     docker_redis_cli(c, 'FLUSHALL')
+    # docker_elasticsearch(c)
     dj_exec(c, f'runserver {addr}:{port}')
+    # print()
+    # docker_kill(c, 'elasticsearch')
 
 
 @task
@@ -152,6 +155,12 @@ def docker_elasticsearch(c, image='elasticsearch'):
         f' --name {image} --rm {image}:{tag}',
         echo=True,
         hide='stdout')
+
+
+@task
+def docker_kill(c, container):
+    """Kill Docker's container."""
+    c.run(f'docker kill {container} || true', echo=True, hide='stdout')
 
 
 @task
