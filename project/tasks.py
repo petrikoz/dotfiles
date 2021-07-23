@@ -171,7 +171,9 @@ def docker_redis_cli(c, cmd=None, image='redis'):
     if not result.stdout:
         tag = docker_get_image_tag(c, image)
         c.run(f'docker run -d -p 127.0.0.1:6379:6379 --name {image}'
-              f' --rm {image}:{tag}')
+              f' --rm {image}:{tag}'
+              echo=True,
+              hide='stdout')
 
     pty = cmd is None
     tty = ''
