@@ -1,11 +1,5 @@
 #!/bin/sh
 
-rclone="$HOME/.local/bin/rclone"
-if [[ ! -f "$rclone" ]]; then
-  echo "Please install 'rclone': see README.md for more details"
-  exit 1
-fi
-
 ################################################################
 # My data
 ################
@@ -22,7 +16,7 @@ else
     echo "    .config/rclone"
 
     # Google Drive
-    "$rclone" copy drive:Finances "$cloud_decrypted/fin-reports/drive.google.com"
+    rclone copy drive:Finances "$cloud_decrypted/fin-reports/drive.google.com"
     echo "    drive:Finances"
 
     echo "  to cloud: done"
@@ -36,7 +30,7 @@ else
     echo "  to archive: done"
 
     echo "  to Dropbox: ..."
-    "$rclone" --quiet copy "$cloud_compressed" dropbox:
+    rclone --quiet copy "$cloud_compressed" dropbox:
     echo "  to Dropbox: done"
 
     rm -rf "$cloud_compressed_path"
@@ -92,7 +86,7 @@ else
     echo "  to archive: done"
 
     echo "  to my Mail.ru Cloud: ..."
-    "$rclone" --quiet --include "$raid0_compressed_file$raid0_compressed_parts_suffix*" copy "$raid0_compressed_path" mailru:
+    rclone --quiet --include "$raid0_compressed_file$raid0_compressed_parts_suffix*" copy "$raid0_compressed_path" mailru:
     echo "  to my Mail.ru Cloud: done"
 
     rm -rf "$raid0_compressed_path"

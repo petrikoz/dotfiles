@@ -350,12 +350,7 @@ pip install --requirement=$HOME/dotfiles/pip-reqs.txt
 
 ### rclone ###
 
-```shell
-
-curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && x rclone-current-linux-amd64.zip
-mkdir -p $HOME/.local/bin && mv rclone-*/rclone $HOME/.local/bin/
-rm -rf rclone-*
-```
+Add config from cloud backup to `$HOME/.config/rclone/`
 
 ### sshmnt ###
 
