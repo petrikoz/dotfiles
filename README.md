@@ -326,6 +326,9 @@ ln -s $HOME/dotfiles/mpv/mpv.conf $HOME/.config/mpv/
 # enable color output
 sudo sed -i "/^#Color/c\Color" /etc/pacman.conf
 
+# comparing versions before updating
+sudo sed -i "/^#VerbosePkgLists/c\VerbosePkgLists" /etc/pacman.conf
+
 # add hooks
 sudo cp -r $HOME/dotfiles/pacman/hooks /etc/pacman.d/
 ```
