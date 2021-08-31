@@ -1,5 +1,6 @@
 flake8
 http-prompt
 invoke
+mypy
 pydocstyle
 yapf
