@@ -21,6 +21,7 @@
 		"Solarized Color Scheme",
 		"SublimeLinter",
 		"SublimeLinter-annotations",
+		"SublimeLinter-contrib-mypy",
 		"SublimeLinter-flake8",
 		"WordHighlight",
 	],

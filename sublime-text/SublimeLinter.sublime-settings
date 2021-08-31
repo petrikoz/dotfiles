@@ -12,6 +12,10 @@
             // - save: only when a file is saved
             "lint_mode": "manual",
         },
+        "mypy": {
+            "args": ["--ignore-missing-imports"],
+            "follow-imports": "skip"
+        },
     },
 
     // Provide extra paths to be searched when locating system executables.
