@@ -23,6 +23,7 @@
 		"SublimeLinter-annotations",
 		"SublimeLinter-contrib-mypy",
 		"SublimeLinter-flake8",
+		"SublimeLinter-json",
 		"WordHighlight",
 	],
 }
