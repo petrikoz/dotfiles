@@ -98,7 +98,7 @@ def db_reset(c,
     })
 def db_shell(c, dbname=PROJECT, user=PROJECT):
     """Run 'psql'."""
-    c.run(f'psql -U {user} -d {dbname}')
+    c.run(f'psql -U {user} -d {dbname}', pty=True)
 
 
 @task(
