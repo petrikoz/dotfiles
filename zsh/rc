@@ -63,7 +63,7 @@ autoload zmv
 
 # Decrypt EncFS
   function encbox() {
-    if ! type "encfs" &> /dev/null; then
+    if ! (type encfs &> /dev/null); then
       echo "Please install encfs: sudo pacman -Sy encfs"
       return
     fi
@@ -79,6 +79,10 @@ autoload zmv
 
 # Mount / unmount usb flash
   function pmount() {
+    if ! (type udisksctl &> /dev/null); then
+      echo "Please install udisksctl: sudo pacman -Sy udisksctl"
+      return
+    fi
     local device="/dev/$1"
     local target="$(findmnt --output TARGET $device | sed -n 2p)"
     if [[ "$target" ]]; then
@@ -89,14 +93,31 @@ autoload zmv
   }
 
   function pumount() {
+    if ! (type udisksctl &> /dev/null); then
+      echo "Please install udisksctl: sudo pacman -Sy udisksctl"
+      return
+    fi
     udisksctl unmount -b "/dev/$1"
   }
 
 # Extract archives with 7z
   function x() {
+    if ! (type 7z &> /dev/null); then
+      echo "Please install 7zip: sudo pacman -Sy p7zip"
+      return
+    fi
     local archive="$1"
     local output="${archive%.*}"
     7z x "$archive" -o"${2:-$output}"
+  }
+
+# Download MP3 audio with YouTube-DL
+  function youtube-dl-audio() {
+    if ! (type youtube-dl &> /dev/null); then
+      echo "Please install YouTube-DL: sudo pacman -Sy youtube-dl"
+      return
+    fi
+    youtube-dl -f "bestaudio/best" -ciw -o "%(title)s.%(ext)s" -v --extract-audio --audio-format mp3 --audio-quality 0 --yes-playlist "$1"
   }
 
 ################################################################
