@@ -26,7 +26,7 @@
   DEFAULT_USER="$USER"
   POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs)
   POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs direnv virtualenv time)
-  GITSTATUS_DAEMON="$HOME/.local/bin/gitstatusd-linux-x86_64"
+  GITSTATUS_DAEMON=/usr/share/gitstatus/usrbin/gitstatusd
   antigen theme romkatv/powerlevel10k
 
   # Tell antigen that you're done.
