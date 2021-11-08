@@ -114,10 +114,10 @@ autoload zmv
 # Download MP3 audio with YouTube-DL
   function youtube-dl-audio() {
     if ! (type youtube-dl &> /dev/null); then
-      echo "Please install YouTube-DL: sudo pacman -Sy youtube-dl"
+      echo "Please install YT-DLP: sudo pacman -Sy yt-dlp"
       return
     fi
-    youtube-dl -f "bestaudio/best" -ciw -o "%(title)s.%(ext)s" -v --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --yes-playlist "$1"
+    yt-dlp -f "bestaudio/best" -ciw -o "%(title)s.%(ext)s" -v --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --yes-playlist "$1"
   }
 
 ################################################################

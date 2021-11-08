@@ -28,5 +28,6 @@ wget
 wireguard-tools
 xfce4-screenshooter
 xorg-xhost
+yt-dlp
 zsh
 zsh-completions
