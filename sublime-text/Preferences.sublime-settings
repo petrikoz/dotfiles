@@ -1,14 +1,9 @@
 {
-	"color_scheme": "Packages/Color Scheme - Default/Monokai.sublime-color-scheme",
+	"color_scheme": "Monokai.sublime-color-scheme",
 	"draw_white_space": "all",
 	"fallback_encoding": "Cyrillic (Windows 1251)",
 	"font_face": "DejaVuSansMono Nerd Font",
 	"highlight_modified_tabs": true,
-	"ignored_packages":
-	[
-		"Markdown",
-		"Vintage",
-	],
 	"mini_diff": false,
 	"show_definitions": false,
 	"show_encoding": true,
@@ -17,4 +12,9 @@
 	"trim_trailing_white_space_on_save": true,
 	"theme": "Default.sublime-theme",
 	"font_size": 11,
+	"ignored_packages":
+	[
+		"Markdown",
+		"Vintage",
+	],
 }
