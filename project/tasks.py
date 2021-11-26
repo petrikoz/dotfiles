@@ -185,12 +185,3 @@ def docker_redis_cli(c, cmd=None, image='redis'):
           echo=True,
           hide='stdout',
           pty=pty)
-
-
-@task
-def pip_install_requirements(c):
-    """Install requirements for project."""
-    with c.cd(DIR_BASE):
-        c.run('pip install -r requirements-local.txt')
-    with c.cd(DIR_SRC):
-        c.run('pip install -r requirements.txt')

@@ -1,4 +1,6 @@
--e ./itcase-dev/itcase-plugin
+#-e ./itcase-dev/itcase-plugin
+
+# -r ./src/requirements.txt
 
 django-debug-toolbar
 django-extensions
