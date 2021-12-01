@@ -6,7 +6,6 @@
                 "**/__*.css*",
             ],
             "folder_exclude_patterns": [
-                ".direnv",
                 "__build",
                 "__pycache__",
                 "example",
