@@ -7,88 +7,88 @@ cloud_decrypted="$HOME/encfs/cloud"
 if [[ ! "$(findmnt -M $cloud_decrypted)" ]]; then
     echo "Please mount encrypted volume to '$cloud_decrypted'"
 else
-    echo "My data: ..."
+    echo "$(date +'%Y-%m-%d %X') My data: ..."
 
-    echo "  to cloud: ..."
+    echo "$(date +'%Y-%m-%d %X')   to cloud: ..."
 
     # self config
     rsync -zz --archive "$HOME/.config/rclone" "$cloud_decrypted"
-    echo "    .config/rclone"
+    echo "$(date +'%Y-%m-%d %X')     .config/rclone"
 
     # Google Drive
     rclone copy drive:Finances "$cloud_decrypted/fin-reports/drive.google.com"
-    echo "    drive:Finances"
+    echo "$(date +'%Y-%m-%d %X')     drive:Finances"
 
-    echo "  to cloud: done"
+    echo "$(date +'%Y-%m-%d %X')   to cloud: done"
 
-    cloud_compressed_path=/tmp/wormcloud
-    cloud_compressed="$cloud_compressed_path/cloud.tar.zst"
+    echo "$(date +'%Y-%m-%d %X')   to archive: ..."
+    cloud_compressed="$HOME/.cache/wormcloud.tar.zst"
     cloud_encrypted="$HOME/cloud/.encrypted"
 
-    mkdir -m 700 -p "$cloud_compressed_path"
     tar --absolute-names --auto-compress --create --file="$cloud_compressed" "$cloud_encrypted"
-    echo "  to archive: done"
+    echo "$(date +'%Y-%m-%d %X')   to archive: done"
 
-    echo "  to Dropbox: ..."
+    echo "$(date +'%Y-%m-%d %X')   to Dropbox: ..."
     rclone --quiet copy "$cloud_compressed" dropbox:
-    echo "  to Dropbox: done"
+    echo "$(date +'%Y-%m-%d %X')   to Dropbox: done"
 
-    rm -rf "$cloud_compressed_path"
-    echo "  remove archive: done"
+    rm -rf "$cloud_compressed"
+    echo "$(date +'%Y-%m-%d %X')   remove archive: done"
 
-    echo "My data: done"
+    echo "$(date +'%Y-%m-%d %X') My data: done"
 fi
 
 ################################################################
-# All cloud
-################
-raid0_cloud_decrypted="$HOME/encfs/raid0/wormcloud"
+# Mail.ru Cloud backup
+######################
+raid0_cloud_decrypted="$HOME/encfs/raid0"
 if [[ ! "$(findmnt -M $raid0_cloud_decrypted)" ]]; then
     echo "Please mount encrypted volume to '$raid0_cloud_decrypted'"
 else
-    echo "All cloud: ..."
+    echo "$(date +'%Y-%m-%d %X') Mail.ru Cloud backup: ..."
 
-    echo "  to raid0: ..."
+    echo "$(date +'%Y-%m-%d %X')   cloud.wormhole: ..."
+    nextcloud_decrypted="$raid0_cloud_decrypted/nextcloud"
     remote="/run/user/1000/sshmnt/cloud.wormhole"
     rsync="rsync -zz --archive"
 
-    $rsync "$remote/config/config.php" "$raid0_cloud_decrypted/config/"
-    echo "    config/config.php"
+    $rsync "$remote/config/config.php" "$nextcloud_decrypted/config/"
+    echo "$(date +'%Y-%m-%d %X')     config/config.php"
 
-    $rsync "$remote/data/owncloud.db" "$raid0_cloud_decrypted/data/"
-    echo "    data/owncloud.db"
+    $rsync "$remote/data/owncloud.db" "$nextcloud_decrypted/data/"
+    echo "$(date +'%Y-%m-%d %X')     data/owncloud.db"
 
-    for f in $(find "$raid0_cloud_decrypted/data/"* -prune -type d); do
+    for f in $(find "$nextcloud_decrypted/data/"* -prune -type d); do
         subdata="$(basename $f)"
-        $rsync "$remote/data/$subdata" "$raid0_cloud_decrypted/data/"
-        echo "    data/$subdata"
+        $rsync "$remote/data/$subdata" "$nextcloud_decrypted/data/"
+        echo "$(date +'%Y-%m-%d %X')     data/$subdata"
     done
 
-    echo "  to raid0: done"
+    echo "$(date +'%Y-%m-%d %X')   cloud.wormhole: done"
 
-    echo "  to archive: ..."
-    raid0_uncompressed=/mnt/raid0/wormcloud
-    raid0_compressed_path=/tmp/wormcloud
-    raid0_compressed_file=wormcloud.tar.zst
-    raid0_compressed="$raid0_compressed_path/$raid0_compressed_file"
-    raid0_compressed_parts_suffix=.part
-    raid0_compressed_parted="$raid0_compressed$raid0_compressed_parts_suffix"
+    echo "$(date +'%Y-%m-%d %X')   to archive: ..."
+    backup_uncompressed=/mnt/raid0/backup
+    backup_compressed_path=/tmp/backup
+    backup_compressed_file=backup.tar.zst
+    backup_compressed="$backup_compressed_path/$backup_compressed_file"
+    backup_compressed_parts_suffix=.part
+    backup_compressed_parted="$backup_compressed$backup_compressed_parts_suffix"
 
-    chown -R "$USER":"$USER" "$raid0_uncompressed"
+    chown -R "$USER":"$USER" "$backup_uncompressed"
 
-    mkdir -m 700 -p "$raid0_compressed_path"
-    tar --absolute-names --auto-compress --create --file="$raid0_compressed" "$raid0_uncompressed"
-    echo "    $raid0_compressed"
+    mkdir -m 700 -p "$backup_compressed_path"
+    tar --absolute-names --auto-compress --create --file="$backup_compressed" "$backup_uncompressed"
+    echo "$(date +'%Y-%m-%d %X')     $backup_compressed"
 
-    split -b 2G "$raid0_compressed" "$raid0_compressed_parted"
-    echo "    $raid0_compressed_parted*"
+    split -b 2G "$backup_compressed" "$backup_compressed_parted"
+    echo "$(date +'%Y-%m-%d %X')     $backup_compressed_parted*"
 
-    echo "  to archive: done"
+    echo "$(date +'%Y-%m-%d %X')   to archive: done"
 
-    echo "  to my Mail.ru Cloud: ..."
-    rclone --quiet --include "$raid0_compressed_file$raid0_compressed_parts_suffix*" copy "$raid0_compressed_path" mailru:
-    echo "  to my Mail.ru Cloud: done"
+    echo "$(date +'%Y-%m-%d %X')   to my Mail.ru Cloud: ..."
+    rclone --quiet --include "$backup_compressed_file$backup_compressed_parts_suffix*" copy "$backup_compressed_path" mailru:
+    echo "$(date +'%Y-%m-%d %X')   to my Mail.ru Cloud: done"
 
-    rm -rf "$raid0_compressed_path"
-    echo "  remove archive: done"
+    rm -rf "$backup_compressed_path"
+    echo "$(date +'%Y-%m-%d %X')   remove archive: done"
 fi
