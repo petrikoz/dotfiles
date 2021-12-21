@@ -31,78 +31,6 @@ PROJECT = getenv('PROJECT', DIR_BASE.stem)
 
 @task(
     help={
-        'filepath': ('Path to save SQL-file.'
-                     ' Default: {DIR_BASE}/tmp/sql/prod.sql'),
-        'dbname': f'Database name. Default: {PROJECT}',
-        'user': f'User for "pg_dump". Default: {PROJECT}'
-    })
-def db_dump(c, filepath='tmp/sql/local.sql', dbname=PROJECT, user=PROJECT):
-    """Dump data form RDBMS PostgreSQL into SQL-file."""
-    filepath = Path(filepath)
-    if not filepath.is_absolute():
-        filepath = DIR_BASE.joinpath(filepath).absolute()
-        print(f'Save file "{filepath}"')
-    c.run(f'pg_dump -U {user} -d {dbname} -f {filepath} -bcOv')
-
-
-@task(
-    help={
-        'filepath': 'Path to SQL. Example: tmp/sql/prod.sql',
-        'dbname': f'Database name. Default: {PROJECT}',
-        'user': f'User for "psql". Default: {PROJECT}'
-    })
-def db_loadsql(c, filepath, dbname=PROJECT, user=PROJECT):
-    """Load data form SQL-file into RDBMS PostgreSQL."""
-    filepath = Path(filepath)
-    if not filepath.is_absolute():
-        filepath = DIR_BASE.joinpath(filepath).absolute()
-        print(f'Load file "{filepath}"')
-    c.run(f'psql -U {user} -d {dbname} -f {filepath} --echo-errors')
-
-
-@task(
-    help={
-        'dbname': f'Database name. Default: {PROJECT}',
-        'owner': f'Database owner. Default: {PROJECT}',
-        'owner_password': ('Password for owner role.'
-                           f' Default: {PROJECT}-password'),
-        'user': f'User for "psql". Default: {POSTGRES_ROOT}',
-        'loadsql': ('Path to SQL-file wich will be load after.'
-                    ' Example: tmp/sql/prod.sql')
-    })
-def db_reset(c,
-             dbname=PROJECT,
-             owner=PROJECT,
-             owner_password=f'{PROJECT}-password',
-             user=POSTGRES_ROOT,
-             loadsql=None):
-    """Re/create database for project in RDBMS PostgreSQL."""
-    queries = (
-        f'DROP DATABASE IF EXISTS {dbname};',
-        f'DROP ROLE IF EXISTS {owner};',
-        f"CREATE ROLE {owner} WITH LOGIN PASSWORD '{owner_password}';",
-        f'CREATE DATABASE {dbname} WITH OWNER {owner};',
-        f'GRANT ALL ON DATABASE {dbname} TO {owner};',
-    )
-    for query in queries:
-        c.run(f'psql -U {user} -c "{query}"')
-
-    if isinstance(loadsql, str):
-        db_loadsql(c, loadsql, dbname=dbname, user=owner)
-
-
-@task(
-    help={
-        'dbname': f'Database name. Default: {PROJECT}',
-        'user': f'User for "psql". Default: {PROJECT}'
-    })
-def db_shell(c, dbname=PROJECT, user=PROJECT):
-    """Run 'psql'."""
-    c.run(f'psql -U {user} -d {dbname}', pty=True)
-
-
-@task(
-    help={
         'cmd': "Any available Django's management command. Example: help",
         'pdb': 'Enable `ipdb` for command'
     })
@@ -185,3 +113,91 @@ def docker_redis_cli(c, cmd=None, image='redis'):
           echo=True,
           hide='stdout',
           pty=pty)
+
+
+
+@task(
+    help={
+        'filepath': f'Path to save dump. Default: {DIR_BASE}/tmp/sql/local',
+        'dbname': f'Database name. Default: {PROJECT}',
+        'user': f'User for "pg_dump". Default: {PROJECT}',
+        'custom': 'Use "custom" (default) or SQL (plain text) format for dump.'
+    })
+def pg_dump(c,
+            filepath='tmp/sql/local',
+            dbname=PROJECT,
+            user=PROJECT,
+            custom=True):
+    """Dump data form RDBMS PostgreSQL into SQL-file."""
+    if not custom:
+        filepath += '.sql'
+
+    filepath = Path(filepath)
+    if not filepath.is_absolute():
+        filepath = DIR_BASE.joinpath(filepath).absolute()
+        print(f'Save file "{filepath}"')
+
+    cmd = f'pg_dump -U {user} -d {dbname} -f {filepath} -bcOv'
+    if custom:
+        cmd += ' -F c'
+    c.run(cmd)
+
+
+@task(
+    help={
+        'dbname': f'Database name. Default: {PROJECT}',
+        'owner': f'Database owner. Default: {PROJECT}',
+        'owner_password': ('Password for owner role.'
+                           f' Default: {PROJECT}-password'),
+        'user': f'User for "psql". Default: {POSTGRES_ROOT}',
+        'restore': 'Path to dump wich will be restore after. Ex.: tmp/sql/prod'
+    })
+def pg_reset(c,
+             dbname=PROJECT,
+             owner=PROJECT,
+             owner_password=f'{PROJECT}-password',
+             user=POSTGRES_ROOT,
+             restore=None):
+    """Re/create database for project in RDBMS PostgreSQL."""
+    queries = (
+        f'DROP DATABASE IF EXISTS {dbname};',
+        f'DROP ROLE IF EXISTS {owner};',
+        f"CREATE ROLE {owner} WITH LOGIN PASSWORD '{owner_password}';",
+        f'CREATE DATABASE {dbname} WITH OWNER {owner};',
+        f'GRANT ALL ON DATABASE {dbname} TO {owner};',
+    )
+    for query in queries:
+        c.run(f'psql -U {user} -c "{query}"')
+
+    if isinstance(restore, str):
+        pg_restore(c, restore, dbname=dbname, user=owner)
+
+
+@task(
+    help={
+        'filepath': 'Path to SQL. Ex.: tmp/sql/prod.sql',
+        'dbname': f'Database name. Default: {PROJECT}',
+        'user': f'User for "psql". Default: {PROJECT}'
+    })
+def pg_restore(c, filepath, dbname=PROJECT, user=PROJECT):
+    """Load data form dump into RDBMS PostgreSQL."""
+    filepath = Path(filepath)
+    if not filepath.is_absolute():
+        filepath = DIR_BASE.joinpath(filepath).absolute()
+        print(f'Load file "{filepath}"')
+    result = c.run(f'pg_restore -U {user} -d {dbname} -v {filepath}',
+                   warn=True)
+    if not result.ok:
+        result = c.run(
+            f'psql -U {user} -d {dbname} -f {filepath} --echo-errors')
+
+
+@task(
+    help={
+        'dbname': f'Database name. Default: {PROJECT}',
+        'user': f'User for "psql". Default: {PROJECT}'
+    })
+def pg_shell(c, dbname=PROJECT, user=PROJECT):
+    """Run 'psql'."""
+    c.run(f'psql -U {user} -d {dbname}', pty=True)
+
