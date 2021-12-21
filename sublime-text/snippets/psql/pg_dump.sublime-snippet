@@ -4,5 +4,5 @@ PROJECT=${1:project}; pg_dump -h ${2:localhost} -U ${3:\$PROJECT} -d ${4:\$PROJE
 ]]></content>
     <tabTrigger>pg_dump</tabTrigger>
     <scope>source.shell</scope>
-    <description>Create dump with `pg_dump`</description>
+    <description>Create SQL (plain text) dump with `pg_dump`</description>
 </snippet>

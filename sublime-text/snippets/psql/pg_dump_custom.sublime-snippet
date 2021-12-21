@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[
+PROJECT=${1:project}; pg_dump -h ${2:localhost} -U ${3:\$PROJECT} -d ${4:\$PROJECT} -f ${5:/tmp/\$PROJECT} -F c -bcOv
+]]></content>
+    <tabTrigger>pg_dump_custom</tabTrigger>
+    <scope>source.shell</scope>
+    <description>Create dump of "custom" type with `pg_dump`</description>
+</snippet>

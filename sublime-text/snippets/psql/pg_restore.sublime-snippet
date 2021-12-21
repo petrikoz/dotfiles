@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[
+PROJECT=${1:project}; pg_restore -h ${2:localhost} -U ${3:\$PROJECT} -d ${4:\$PROJECT} -v ${5:/tmp/\$PROJECT}
+]]></content>
+    <tabTrigger>pg_restore</tabTrigger>
+    <scope>source.shell</scope>
+    <description>Restore dump of "custom" type with `pg_restore`</description>
+</snippet>
