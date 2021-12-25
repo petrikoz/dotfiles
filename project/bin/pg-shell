@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# ****************************************************************
+# DEFAULTS
+
+dbname="$PROJECT"
+user="$PROJECT"
+
+args=""
+
+# ****************************************************************
+# OPTIONS
+
+while getopts ":d:F:f:u:" opt; do
+   case $opt in
+      d) dbname="$OPTARG"   ;;
+      u) user="$OPTARG"     ;;
+
+      # Option error handling
+      ?) shift "$(($#-1))" # читаем все аргументы, начиная с неверного
+         args="$@" ;;
+   esac
+done
+
+# если никаких опций не было послано, то читаем всё
+if [ $OPTIND -eq 1 ]; then args="$@"; fi
+
+# ****************************************************************
+# EXECUTION
+
+psql -U "$user" -d "$dbname" $args

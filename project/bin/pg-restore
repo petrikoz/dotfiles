@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# ****************************************************************
+# DEFAULTS
+
+dbname="$PROJECT"
+sql=false
+user="$PROJECT"
+
+# ****************************************************************
+# OPTIONS
+
+while getopts ":d:f:su:" opt; do
+    case $opt in
+        d) dbname="$OPTARG"   ;;
+        f) filepath="$OPTARG" ;;
+        s) sql=true           ;;
+        u) user="$OPTARG"     ;;
+    esac
+done
+
+# если никаких опций не было, то читаем как файл
+if [ $OPTIND -eq 1 ]; then filepath="$1"; fi
+
+if [ -z $filepath ]; then
+    echo "Нужно указать путь к файлу"
+    exit
+fi
+
+# ****************************************************************
+# EXECUTION
+
+# если тип файла SQL (plain text), то загружаем через psql
+if $sql; then
+    psql -U "$user" -d "$dbname" -f "$filepath" --echo-errors
+else
+    pg_restore -U "$user" -d "$dbname" -v "$filepath"
+fi

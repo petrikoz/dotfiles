@@ -1,0 +1,51 @@
+#!/bin/sh
+
+# ****************************************************************
+# DEFAULTS
+
+addr="127.0.0.1"
+port="8000"
+
+args=""
+
+# ****************************************************************
+# OPTIONS
+
+while getopts ":a:p:" opt; do
+   case $opt in
+      a) addr="$OPTARG" ;;
+      p) port="$OPTARG" ;;
+
+      # Option error handling
+      ?) shift "$(($#-1))" # читаем все аргументы, начиная с неверного
+         args="$@" ;;
+   esac
+done
+
+# если никаких опций не было послано, то читаем всё
+if [ $OPTIND -eq 1 ]; then args="$@"; fi
+
+# ****************************************************************
+# EXECUTION
+
+# ********************************
+# docker
+
+redis_image="redis"
+if [ -z $(docker ps -qf "name=$redis_image") ]; then
+    echo "REDIS: run container"
+    docker run -d -p 127.0.0.1:6379:6379 \
+               --name "$redis_image" \
+               --rm "$redis_image:alpine" \
+               redis-server --maxmemory 512mb --maxmemory-policy volatile-lru --appendonly yes \
+        > /dev/null
+else
+    echo "REDIS: alredy runned"
+fi
+
+echo # добавляем пустую строку для красивого вывода
+
+# ********************************
+# django
+
+dj-exec runserver "$addr:$port" $args

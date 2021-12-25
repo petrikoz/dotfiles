@@ -1,0 +1,44 @@
+#!/bin/sh
+
+# ****************************************************************
+# DEFAULTS
+
+dbname="$PROJECT"
+owner="$PROJECT"
+password="$PROJECT-password"
+restore=""
+
+# ****************************************************************
+# OPTIONS
+
+while getopts ":d:o:p:r:" opt; do
+   case $opt in
+      d) dbname="$OPTARG"   ;;
+      o) owner="$OPTARG"    ;;
+      p) password="$OPTARG" ;;
+      r) restore="$OPTARG"  ;;
+   esac
+done
+
+# ****************************************************************
+# EXECUTION
+
+# ********************************
+# reset
+
+queries=(
+    "DROP DATABASE IF EXISTS $dbname;"
+    "DROP ROLE IF EXISTS $owner;"
+    "CREATE ROLE $owner WITH LOGIN PASSWORD '$password';"
+    "CREATE DATABASE $dbname WITH OWNER $owner;"
+    "GRANT ALL ON DATABASE $dbname TO $owner;"
+)
+
+for query in "${queries[@]}"; do
+    psql -U postgres -c "$query"
+done
+
+# ********************************
+# restore
+
+if [ $restore ];then pg-restore -f "$restore"; fi
