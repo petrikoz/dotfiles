@@ -7,5 +7,6 @@ elogind-openrc
 mdadm-openrc
 networkmanager-openrc
 openrc
+openssh-openrc
 sddm-openrc
 ungoogled-chromium

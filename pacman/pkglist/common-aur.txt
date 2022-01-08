@@ -1,1 +1,7 @@
+gitflow-avh
 gitstatus
+hunspell-ru-aot
+nerd-fonts-dejavu-complete
+sshmnt
+todotxt
+vi-vim-symlink

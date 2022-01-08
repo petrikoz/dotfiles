@@ -31,10 +31,14 @@ makepkg -irs
 cp -r $HOME/dotfiles/project PROJECT_PATH/PROJECT_NAME
 cd PROJECT_PATH/PROJECT_NAME
 mv editorconfig .editorconfig
+# 'direnv' part
 mv envrc .envrc
+direnv allow
+# / 'direnv' part
 mv sublime-project $(basename $PWD).sublime-project
-ln -s ../itcase-dev ./
 git clone PROJECT_REPO src
+# for ITCase's projects only:
+ln -s ../itcase-dev ./
 ```
 
 Add local modules to `requirements-local.txt` then run `inv pip-install-requirements`.
@@ -42,23 +46,38 @@ Add local modules to `requirements-local.txt` then run `inv pip-install-requirem
 ## Soft ##
 
 This part contains instructions for install and config soft.
+All soft separated in files by desktop / laptop and common / specific usage.
+See `$HOME/dotfiles/pacman/pkglist` directory:
 
-### common ###
+* **artix.txt** — soft required for systems on [Artix Linux](https://artixlinux.org/)
+* **common.txt** — soft required for all systems
+* **common-aur.txt** — soft required for all systems, but available only in [AUR](https://aur.archlinux.org/)
+* **desktop.txt** — soft required for desktop PC
+* **desktop-aur.txt** — soft required for desktop PC, but available only in [AUR](https://aur.archlinux.org/)
+* **i3.txt** — soft required for all systems with [i3wm](https://wiki.archlinux.org/title/I3)
+* **i3-laptop.txt** — soft required for laptop with [i3wm](https://wiki.archlinux.org/title/I3)
+* **kde.txt** — soft required for systmes with [KDE](https://wiki.archlinux.org/title/KDE)
+
+Regular packages install with `pacman`. Ex.:
 
 ```shell
 
 sudo pacman -S - < $HOME/dotfiles/pacman/pkglist/common.txt
 ```
 
-Specific files in `pacman/pkglist/`:
+AUR-packages should clone with git and install with `makepkg`. Ex.:
 
-* `common.txt` — soft for any Arch-based-installation
-* `artix.txt` — soft actual only on [Artix Linux](https://artixlinux.org/)
-* `desktop.txt` — only for desktop PC
-* `desktop-aur.txt` — soft from [AUR](https://aur.archlinux.org/) for desktop PC
-* `i3.txt` — soft actual for installation with [i3wm](https://wiki.archlinux.org/title/I3) on common cases
-* `i3-laptop.txt` — soft actual for installation with i3wm on laptop
-* `kde.txt` — soft actual for installation with [kde](https://wiki.archlinux.org/title/KDE)
+```shell
+
+cd $HOME/Downloads
+while read i; do
+    git clone "https://aur.archlinux.org/$i.git"
+    cd "$i"
+    makepkg -irs --needed --noconfirm
+    cd ..
+    rm -rf "$i"
+done < "$HOME/dotfiles/pacman/pkglist/common-aur.txt"
+```
 
 ### ccat ###
 
@@ -91,14 +110,8 @@ sudo chmod +x /etc/cron.weekly/fstrim
 
 ```shell
 
-crontab -e
+(crontab -l ; echo "0 */3 * * *    $HOME/dotfiles/cron/user/cloud-backup.sh > $HOME/dotfiles/cron/user/cloud-backup.log 2>&1") | sort - | uniq - | crontab -
 ```
-
-```cron
-
-0 16 * * *    $HOME/dotfiles/cron/user/cloud-backup.sh > $HOME/dotfiles/cron/user/cloud-backup.log 2>&1
-```
-
 
 #### SystemD ####
 
@@ -331,16 +344,6 @@ sudo sed -i "/^#VerbosePkgLists/c\VerbosePkgLists" /etc/pacman.conf
 
 # add hooks
 sudo cp -r $HOME/dotfiles/pacman/hooks /etc/pacman.d/
-```
-
-Install packages from `pacman/pkglist/aur.txt`:
-
-```shell
-
-cd ~/Downloads
-git clone https://aur.archlinux.org/PACKAGE-NAME.git
-cd ~/Downloads/PACKAGE-NAME
-makepkg -irs
 ```
 
 ### python ###

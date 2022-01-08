@@ -1,2 +1,1 @@
-hplip-plugin
-virtualbox-ext-oracle
+sane-epson-perfection-firmware

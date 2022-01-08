@@ -1,6 +1,5 @@
 ark
 clementine
-discover
 dolphin
 dolphin-plugins
 gwenview
@@ -8,11 +7,11 @@ kcalc
 kcron
 kdeconnect
 kimageformats
+kmail
 konsole
 ktorrent
 kwalletmanager
 okular
-packagekit-qt5
 plasma
 print-manager
 sddm
