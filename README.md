@@ -169,6 +169,23 @@ vi $HOME/.local/share/applications/GAME-NAME.desktop
 mkdir -p $HOME/go/bin $HOME/go/pkg $HOME/go/src
 ```
 
+### GRUB ###
+
+Hide GRUB unless the Shift key is held down:
+
+```shell
+
+sudo cat <<EOT >> /etc/default/grub
+# Hide GRUB unless the Shift key is held down
+GRUB_FORCE_HIDDEN_MENU="true"
+EOT
+
+sudo cp $HOME/dotfiles/grub/31_hold_shift /etc/grub.d/
+sudo chmod a+x /etc/grub.d/31_hold_shift
+
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
+
 ### i3wm ###
 
 Directory `$HOME/dotfiles/i3wm` contains configs for soft which used with [i3wm](https://wiki.archlinux.org/title/I3).
