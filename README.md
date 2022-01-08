@@ -298,7 +298,17 @@ $kdeencfs /path/of/encrypted/target /path/to/mount/point
 cp $HOME/dotfiles/kde/autostart/kdeencfs.desktop $HOME/.config/autostart/
 ```
 
-#### SSH ###
+#### NetworkManager ####
+
+Enable WireGuard-connection: copy needed config from cloud backup. Ex.:
+
+```shell
+
+sudo cp CLOUD-BACKUP-DIRECTORY/soft/NetworkManager/system-connections/petr-desktop-wg0.nmconnection /etc/NetworkManager/system-connections/wg0.nmconnection
+sudo chmod -R 600 /etc/NetworkManager/system-connections/wg0.nmconnection
+```
+
+#### SSH ####
 
 Add SSH's keys to SSH Agent on logon:
 
