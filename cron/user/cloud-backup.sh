@@ -12,7 +12,7 @@ else
     echo "$(date +'%Y-%m-%d %X')   to cloud: ..."
 
     # self config
-    rsync -zz --archive "$HOME/.config/rclone" "$cloud_decrypted"
+    rsync -zz --archive "$HOME/.config/rclone" "$cloud_decrypted/soft/"
     echo "$(date +'%Y-%m-%d %X')     .config/rclone"
 
     # Google Drive

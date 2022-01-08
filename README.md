@@ -364,6 +364,8 @@ Example (replace all variables with `<>` around):
 <volume user="<USERNAME>" fstype="tmpfs" mountpoint="~/.cache" options="size=1G,noexec,nodev,nosuid,uid=%(USER),gid=%(USER),mode=1700" />
 ```
 
+[Enable `pam_mount` in login manager](https://wiki.archlinux.org/title/Pam_mount#Login_manager_configuration)
+
 ### python ###
 
 ```shell
