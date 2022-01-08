@@ -12,20 +12,6 @@ git clone --recursive https://github.com/petrikoz/dotfiles.git
 
 ## Project ##
 
-### Direnv ###
-
-Autoconfigure environment when enter to watched directory.
-See https://github.com/direnv/direnv for more details.
-
-```shell
-
-git clone https://aur.archlinux.org/direnv.git
-cd direnv
-makepkg -irs
-```
-
-### Install ###
-
 ```shell
 
 cp -r $HOME/dotfiles/project PROJECT_PATH/PROJECT_NAME
@@ -41,7 +27,7 @@ git clone PROJECT_REPO src
 ln -s ../itcase-dev ./
 ```
 
-Add local modules to `requirements-local.txt` then run `inv pip-install-requirements`.
+Fix dependencies in `PROJECT_PATH/requirements-local.txt` then run `pip install -r PROJECT_PATH/requirements-local.txt`.
 
 ## Soft ##
 
@@ -353,12 +339,6 @@ Add config from cloud backup to `$HOME/.config/rclone/`
 
 ```shell
 
-# install
-git clone https://aur.archlinux.org/sshmnt.git
-cd sshmnt
-makepkg -irs
-
-# configure
 ln -s $HOME/dotfiles/sshmntconfig $HOME/.config/sshmntconfig
 ```
 
@@ -385,12 +365,6 @@ ln -s $HOME/.tmux/conf $HOME/.tmux.conf
 
 ```shell
 
-# install
-git clone https://aur.archlinux.org/todotxt.git
-cd todotxt
-makepkg -irs
-
-# configure
 ln -s $HOME/cloud/todo $HOME/.todo
 ```
 
@@ -400,11 +374,6 @@ ln -s $HOME/cloud/todo $HOME/.todo
 
 ln -s $HOME/dotfiles/vim $HOME/.vim
 ln -s $HOME/.vim/rc $HOME/.vimrc
-
-# replace vi with vim
-git clone https://aur.archlinux.org/vi-vim-symlink.git
-cd vi-vim-symlink
-makepkg -irs
 ```
 
 ### zsh ###
