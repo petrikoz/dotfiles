@@ -87,13 +87,6 @@ First install Golang: see bellow.
 go get -u github.com/owenthereal/ccat
 ```
 
-### conky ###
-
-```shell
-
-ln -s $HOME/dotfiles/conkyrc $HOME/.conkyrc
-```
-
 ### cron ###
 
 #### fsTRIM ####
@@ -183,15 +176,6 @@ cp $HOME/dotfiles/firejail/game.desktop $HOME/.local/share/applications/GAME-NAM
 vi $HOME/.local/share/applications/GAME-NAME.desktop
 ```
 
-### fonts ###
-
-```shell
-
-git clone https://aur.archlinux.org/nerd-fonts-dejavu-complete.git
-cd nerd-fonts-dejavu-complete
-makepkg -irs
-```
-
 ### golang ###
 
 ```shell
@@ -200,6 +184,10 @@ mkdir -p $HOME/go/bin $HOME/go/pkg $HOME/go/src
 ```
 
 ### i3wm ###
+
+Directory `$HOME/dotfiles/i3wm` contains configs for soft which used with [i3wm](https://wiki.archlinux.org/title/I3).
+
+#### i3 ####
 
 ```shell
 
@@ -217,6 +205,13 @@ sudo sensors-detect --auto
 # for run only on localhost add in 'ExecStart': `-l 127.0.0.1`
 sudo systemctl enable hddtemp.service
 sudo systemctl start hddtemp.service
+```
+
+#### conky ####
+
+```shell
+
+ln -s $HOME/dotfiles/conkyrc $HOME/.conkyrc
 ```
 
 #### netctl ####
@@ -241,10 +236,6 @@ sudo systemctl start netctl-auto@INTERFACE.service
 #### rofi-dmenu ####
 
 ```shell
-
-git clone https://aur.archlinux.org/rofi-dmenu.git
-cd rofi-dmenu
-makepkg -irs
 
 ln -s $HOME/dotfiles/i3/rofi $HOME/.config/
 ```
