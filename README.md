@@ -370,6 +370,15 @@ sudo pacman -Syu sublime-text
 ln -sf $HOME/dotfiles/sublime-text  $HOME/.config/sublime-text-3/Packages/User
 ```
 
+### Sudo ###
+
+Allow 'wheel' group use `sudo`:
+
+```shell
+
+sudo cp $HOME/dotfiles/sudo/g_wheel /etc/sudoers.d/
+```
+
 ### tmux ###
 
 ```shell
