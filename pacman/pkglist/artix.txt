@@ -8,5 +8,6 @@ mdadm-openrc
 networkmanager-openrc
 openrc
 openssh-openrc
+privoxy-openrc
 sddm-openrc
 ungoogled-chromium

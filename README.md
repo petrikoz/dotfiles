@@ -366,6 +366,11 @@ Example (replace all variables with `<>` around):
 
 [Enable `pam_mount` in login manager](https://wiki.archlinux.org/title/Pam_mount#Login_manager_configuration)
 
+### Privoxy ###
+
+Listen remote Socks5 proxy through WireGuard.
+Ex. add in `/etc/privoxy/config` something like this: `forward-socks5    /    10.192.122.1:1080    .`
+
 ### python ###
 
 ```shell
