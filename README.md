@@ -350,6 +350,20 @@ sudo sed -i "/^#VerbosePkgLists/c\VerbosePkgLists" /etc/pacman.conf
 sudo cp -r $HOME/dotfiles/pacman/hooks /etc/pacman.d/
 ```
 
+### pam_mount ###
+
+Auto mount LUKS partition and tmpfs volume: edit part 'Volumes' in `/etc/security/pam_mount.conf.xml`.
+Example (replace all variables with `<>` around):
+
+```xml
+
+<!-- LUKS -->
+<volume user="<USERNAME>" fstype="crypt" path="/dev/disk/by-uuid/<UUID-OF-LUKS-PARTITION>" mountpoint="~" options="allow_discard,crypto_name=home-<USERNAME>,fsck" />
+
+<!-- User's cache in memory -->
+<volume user="<USERNAME>" fstype="tmpfs" mountpoint="~/.cache" options="size=1G,noexec,nodev,nosuid,uid=%(USER),gid=%(USER),mode=1700" />
+```
+
 ### python ###
 
 ```shell

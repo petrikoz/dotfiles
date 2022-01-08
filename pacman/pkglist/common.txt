@@ -17,6 +17,7 @@ openssh
 os-prober
 p7zip
 pacman-contrib
+pam_mount
 pulseaudio-alsa
 python
 rsync
