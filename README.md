@@ -403,6 +403,13 @@ Allow 'wheel' group use `sudo`:
 sudo cp $HOME/dotfiles/sudo/g_wheel /etc/sudoers.d/
 ```
 
+### sysctl ###
+
+```shell
+
+sudo cp $HOME/dotfiles/sysctl/99-sysctl.conf /etc/sysctl.d/
+```
+
 ### tmux ###
 
 ```shell
