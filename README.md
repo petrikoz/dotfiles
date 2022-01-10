@@ -39,7 +39,6 @@ See `$HOME/dotfiles/pacman/pkglist` directory:
 * **common.txt** — soft required for all systems
 * **common-aur.txt** — soft required for all systems, but available only in [AUR](https://aur.archlinux.org/)
 * **desktop.txt** — soft required for desktop PC
-* **desktop-aur.txt** — soft required for desktop PC, but available only in [AUR](https://aur.archlinux.org/)
 * **i3.txt** — soft required for all systems with [i3wm](https://wiki.archlinux.org/title/I3)
 * **i3-laptop.txt** — soft required for laptop with [i3wm](https://wiki.archlinux.org/title/I3)
 * **kde.txt** — soft required for systmes with [KDE](https://wiki.archlinux.org/title/KDE)
