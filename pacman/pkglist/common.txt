@@ -4,6 +4,7 @@ docker
 encfs
 firejail
 git
+git-lfs
 grub
 intel-ucode
 keepassxc
