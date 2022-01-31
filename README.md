@@ -360,7 +360,7 @@ Example (replace all variables with `<>` around):
 <volume user="<USERNAME>" fstype="crypt" path="/dev/disk/by-uuid/<UUID-OF-LUKS-PARTITION>" mountpoint="~" options="allow_discard,crypto_name=home-<USERNAME>,fsck" />
 
 <!-- User's cache in memory -->
-<volume user="<USERNAME>" fstype="tmpfs" mountpoint="~/.cache" options="size=1G,noexec,nodev,nosuid,uid=%(USER),gid=%(USER),mode=1700" />
+<volume user="<USERNAME>" fstype="tmpfs" path="tmpfs" mountpoint="~/.cache" options="size=1G,noexec,nodev,nosuid,uid=%(USER),gid=%(USER),mode=1700" />
 ```
 
 [Enable `pam_mount` in login manager](https://wiki.archlinux.org/title/Pam_mount#Login_manager_configuration)
