@@ -1,9 +1,38 @@
 [
     /****************************************************************
-        Sublime Text 3
+        Sublime Text
     ****************************************************************/
-    { "keys": ["ctrl+alt+g"], "command": "goto_definition" },
     { "keys": ["ctrl+shift+o"], "command": "prompt_add_folder" },
+
+    /****************************************************************
+        LSP
+    ****************************************************************/
+    {
+        "command": "lsp_symbol_definition",
+        "args": {
+            "side_by_side": false
+        },
+        "keys": [
+            "ctrl+alt+g"
+        ],
+        "context": [
+            {
+                "key": "lsp.session_with_capability",
+                "operator": "equal",
+                "operand": "definitionProvider"
+            },
+            {
+                "key": "auto_complete_visible",
+                "operator": "equal",
+                "operand": false
+            }
+        ]
+    },
+
+    /****************************************************************
+        Pretty JSON
+    ****************************************************************/
+    { "keys": ["ctrl+alt+j"], "command": "pretty_json" },
 
     /****************************************************************
         Yapf

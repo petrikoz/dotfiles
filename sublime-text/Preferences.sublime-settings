@@ -4,6 +4,7 @@
 	"fallback_encoding": "Cyrillic (Windows 1251)",
 	"font_face": "DejaVuSansMono Nerd Font",
 	"highlight_modified_tabs": true,
+	"index_files": false,
 	"mini_diff": false,
 	"show_definitions": false,
 	"show_encoding": true,
