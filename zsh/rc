@@ -23,11 +23,9 @@
   antigen bundle "$HOME/.zsh/completions" --no-local-clone
 
   # Load the theme.
-  DEFAULT_USER="$USER"
-  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs)
-  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs direnv virtualenv time)
   GITSTATUS_DAEMON=/usr/share/gitstatus/usrbin/gitstatusd
   antigen theme romkatv/powerlevel10k
+  [[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"  # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
 
   # Tell antigen that you're done.
   antigen apply
