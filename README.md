@@ -281,6 +281,17 @@ EndSection
 
 ### KDE ###
 
+#### Akonadi ####
+
+Install without MariaDB:
+
+```shell
+
+sudo pacman -S akonadi --assume-installed mariadb
+mkdir -p "$HOME/.config/akonadi"
+cp "$HOME/dotfiles/kde/akonadi/akonadiserverrc "$HOME/.config/akonadi/"
+```
+
 #### EncFS ####
 
 Mount encfs volumes with passwords from Kwallet:
