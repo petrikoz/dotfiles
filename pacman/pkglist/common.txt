@@ -15,7 +15,6 @@ mpv
 mtr
 nextcloud-client
 openssh
-os-prober
 p7zip
 pacman-contrib
 pam_mount
@@ -28,7 +27,6 @@ telegram-desktop
 vim
 wget
 wireguard-tools
-xorg-xhost
 yt-dlp
 zsh
 zsh-completions
