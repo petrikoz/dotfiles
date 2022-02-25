@@ -17,4 +17,5 @@ plasma
 print-manager
 sddm
 sddm-kcm
+skanlite
 spectacle
