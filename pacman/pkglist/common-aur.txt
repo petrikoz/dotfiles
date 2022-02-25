@@ -1,3 +1,4 @@
+ccat
 gitflow-avh
 gitstatus
 hunspell-ru-aot

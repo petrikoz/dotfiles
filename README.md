@@ -64,14 +64,6 @@ while read i; do
 done < "$HOME/dotfiles/pacman/pkglist/common-aur.txt"
 ```
 
-### ccat ###
-
-First install Golang: see bellow.
-
-```shell
-go get -u github.com/owenthereal/ccat
-```
-
 ### cron ###
 
 #### fsTRIM ####
