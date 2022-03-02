@@ -7,7 +7,6 @@ kcalc
 kcron
 kdeconnect
 kimageformats
-kmail
 konsole
 ktorrent
 kwalletmanager

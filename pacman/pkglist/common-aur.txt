@@ -4,5 +4,6 @@ gitstatus
 hunspell-ru-aot
 nerd-fonts-dejavu-complete
 sshmnt
+systray-x-git
 todotxt
 vi-vim-symlink
