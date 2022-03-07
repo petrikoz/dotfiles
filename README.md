@@ -43,6 +43,42 @@ See `$HOME/dotfiles/pacman/pkglist` directory:
 * **i3-laptop.txt** — soft required for laptop with [i3wm](https://wiki.archlinux.org/title/I3)
 * **kde.txt** — soft required for systmes with [KDE](https://wiki.archlinux.org/title/KDE)
 
+### Artix
+
+Add [Universe repo](https://wiki.artixlinux.org/Main/Repositories#Universe):
+
+```shell
+sudo cat <<EOT >> /etc/pacman.conf
+# Universe is a repository maintained by Artix package maintainers and
+# contains some programs which are not provided in the 4 main
+# repositories - mostly programs from the AUR
+[universe]
+Server = https://universe.artixlinux.org/\$arch
+Server = https://mirror1.artixlinux.org/universe/\$arch
+Server = https://mirror.pascalpuffke.de/artix-universe/\$arch
+Server = https://artixlinux.qontinuum.space:4443/artixlinux/universe/os/\$arch
+Server = https://mirror1.cl.netactuate.com/artix/universe/\$arch
+
+EOT
+```
+
+After install `artix-archlinux-support` package inable it:
+
+```shell
+sudo cat <<EOT >> pacman.conf
+# Arch repositories from artix-archlinux-support
+[extra]
+Include = /etc/pacman.d/mirrorlist-arch
+[community]
+Include = /etc/pacman.d/mirrorlist-arch
+#[multilib]
+#Include = /etc/pacman.d/mirrorlist-arch
+
+EOT
+sudo pacman-key --populate archlinux
+sudo pacman -Sy
+```
+
 Regular packages install with `pacman`. Ex.:
 
 ```shell
@@ -389,7 +425,8 @@ curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --
 echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf
 sudo pacman -Syu sublime-text
 
-ln -sf $HOME/dotfiles/sublime-text  $HOME/.config/sublime-text-3/Packages/User
+ln -sf $HOME/dotfiles/sublime-text  $HOME/.config/sublime-text/Packages/User
+sudo chattr +i $HOME/dotfiles/sublime-text/Markdown.sublime-settings
 ```
 
 ### Sudo ###

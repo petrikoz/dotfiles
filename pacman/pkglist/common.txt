@@ -1,8 +1,10 @@
 base-devel
 cryptsetup
+direnv
 docker
 encfs
 firejail
+fscrypt
 git
 git-lfs
 grub
@@ -28,7 +30,6 @@ thunderbird
 thunderbird-i18n-ru
 vim
 wget
-wireguard-tools
 yt-dlp
 zsh
 zsh-completions
