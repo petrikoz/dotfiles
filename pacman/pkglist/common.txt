@@ -20,7 +20,6 @@ openssh
 p7zip
 pacman-contrib
 pam_mount
-privoxy
 pulseaudio-alsa
 python
 rsync
