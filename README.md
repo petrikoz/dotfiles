@@ -42,6 +42,7 @@ See `$HOME/dotfiles/pacman/pkglist` directory:
 * **i3.txt** — soft required for all systems with [i3wm](https://wiki.archlinux.org/title/I3)
 * **i3-laptop.txt** — soft required for laptop with [i3wm](https://wiki.archlinux.org/title/I3)
 * **kde.txt** — soft required for systmes with [KDE](https://wiki.archlinux.org/title/KDE)
+* **kde-desktop.txt** — soft required for desktop systmes with [KDE](https://wiki.archlinux.org/title/KDE)
 
 ### Artix
 
