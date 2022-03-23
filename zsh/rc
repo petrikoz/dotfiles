@@ -78,7 +78,7 @@
 
   # Download MP3 audio with YouTube-DL
   function youtube-dl-audio() {
-    if ! (type youtube-dl &> /dev/null); then
+    if ! (type yt-dlp &> /dev/null); then
       echo "Please install YT-DLP: sudo pacman -Sy yt-dlp"
       return
     fi
