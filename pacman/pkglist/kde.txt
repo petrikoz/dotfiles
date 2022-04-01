@@ -19,6 +19,7 @@ ksshaskpass
 ktorrent
 kwallet-pam
 kwalletmanager
+noto-fonts-emoji
 ntp
 okular
 plasma-desktop
