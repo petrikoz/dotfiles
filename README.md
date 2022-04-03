@@ -1,8 +1,8 @@
-# CONFIGS #
+# CONFIGS
 
 Configs for most of my software.
 
-## Install ##
+## Install
 
 ```shell
 
@@ -10,7 +10,7 @@ sudo pacman -Suy base-devel git
 git clone --recursive https://github.com/petrikoz/dotfiles.git
 ```
 
-## Project ##
+## Project
 
 ```shell
 
@@ -18,8 +18,7 @@ cp -r $HOME/dotfiles/project PROJECT_PATH/PROJECT_NAME
 cd PROJECT_PATH/PROJECT_NAME
 mv editorconfig .editorconfig
 # 'direnv' part
-mv envrc .envrc
-direnv allow
+mv envrc .envrc && direnv allow
 # / 'direnv' part
 mv sublime-project $(basename $PWD).sublime-project
 git clone PROJECT_REPO src
@@ -29,7 +28,7 @@ ln -s ../itcase-dev ./
 
 Fix dependencies in `PROJECT_PATH/requirements-local.txt` then run `pip install -r PROJECT_PATH/requirements-local.txt`.
 
-## Soft ##
+## Soft
 
 This part contains instructions for install and config soft.
 All soft separated in files by desktop / laptop and common / specific usage.
@@ -101,9 +100,9 @@ while read i; do
 done < "$HOME/dotfiles/pacman/pkglist/common-aur.txt"
 ```
 
-### cron ###
+### cron
 
-#### fsTRIM ####
+#### fsTRIM
 
 Actual only for Artix Linux. On systemd-based distros periodic [TRIM](https://wiki.archlinux.org/title/Solid_state_drive#TRIM) run as default
 
@@ -113,14 +112,14 @@ sudo cp $HOME/dotfiles/cron/weekly/fstrim /etc/cron.weekly/
 sudo chmod +x /etc/cron.weekly/fstrim
 ```
 
-#### Cloud backup ####
+#### Cloud backup
 
 ```shell
 
 (crontab -l ; echo "0 */3 * * *    $HOME/dotfiles/cron/user/cloud-backup.sh > $HOME/dotfiles/cron/user/cloud-backup.log 2>&1") | sort - | uniq - | crontab -
 ```
 
-#### SystemD ####
+#### SystemD
 
 Use systemd's timers as replacement for cron
 
@@ -136,7 +135,14 @@ systemctl --user enable $HOME/dotfiles/systemd/user/cloud-backup/cloud-backup.ti
 systemctl --user start cloud-backup.timer
 ```
 
-### Docker ###
+### direnv
+
+```shell
+
+ln -s $HOME/dotfiles/direnv $HOME/.config/
+```
+
+### Docker
 
 ```shell
 
@@ -160,7 +166,7 @@ sudo vi /etc/NetworkManager/conf.d/unmanaged.conf
 unmanaged-devices=interface-name:docker*;interface-name:veth*
 ```
 
-### firejail ###
+### firejail
 
 Run applications with security profiles:
 
@@ -190,14 +196,14 @@ cp $HOME/dotfiles/firejail/game.desktop $HOME/.local/share/applications/GAME-NAM
 vi $HOME/.local/share/applications/GAME-NAME.desktop
 ```
 
-### golang ###
+### golang
 
 ```shell
 
 mkdir -p $HOME/go/bin $HOME/go/pkg $HOME/go/src
 ```
 
-### GRUB ###
+### GRUB
 
 Hide GRUB unless the Shift key is held down:
 
@@ -214,11 +220,11 @@ sudo chmod a+x /etc/grub.d/31_hold_shift
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-### i3wm ###
+### i3wm
 
 Directory `$HOME/dotfiles/i3wm` contains configs for soft which used with [i3wm](https://wiki.archlinux.org/title/I3).
 
-#### i3 ####
+#### i3
 
 ```shell
 
@@ -238,14 +244,14 @@ sudo systemctl enable hddtemp.service
 sudo systemctl start hddtemp.service
 ```
 
-#### conky ####
+#### conky
 
 ```shell
 
 ln -s $HOME/dotfiles/conkyrc $HOME/.conkyrc
 ```
 
-#### netctl ####
+#### netctl
 
 For more information see https://wiki.archlinux.org/index.php/Netctl
 
@@ -264,14 +270,14 @@ sudo systemctl enable netctl-auto@INTERFACE.service
 sudo systemctl start netctl-auto@INTERFACE.service
 ```
 
-#### rofi-dmenu ####
+#### rofi-dmenu
 
 ```shell
 
 ln -s $HOME/dotfiles/i3/rofi $HOME/.config/
 ```
 
-#### st ####
+#### st
 
 ```shell
 
@@ -283,7 +289,7 @@ cp config.def.h config.h
 makepkg -irs
 ```
 
-#### xorg ####
+#### xorg
 
 ```shell
 
@@ -308,9 +314,9 @@ Section "Monitor"
 EndSection
 ```
 
-### KDE ###
+### KDE
 
-#### EncFS ####
+#### EncFS
 
 Mount encfs volumes with passwords from Kwallet:
 
@@ -326,7 +332,7 @@ $kdeencfs /path/of/encrypted/target /path/to/mount/point
 cp $HOME/dotfiles/kde/autostart/kdeencfs.desktop $HOME/.config/autostart/
 ```
 
-#### NetworkManager ####
+#### NetworkManager
 
 Enable WireGuard-connection: copy needed config from cloud backup. Ex.:
 
@@ -336,7 +342,7 @@ sudo cp CLOUD-BACKUP-DIRECTORY/soft/NetworkManager/system-connections/petr-deskt
 sudo chmod -R 600 /etc/NetworkManager/system-connections/wg0.nmconnection
 ```
 
-#### SSH ####
+#### SSH
 
 Add SSH's keys to SSH Agent on logon:
 
@@ -356,7 +362,7 @@ chmod 700 $HOME/dotfiles/kde/autostart/ssh-staff
 cp $HOME/dotfiles/kde/autostart/ssh-staff.desktop $HOME/.config/autostart/
 ```
 
-### mpv ###
+### mpv
 
 ```shell
 
@@ -364,7 +370,7 @@ mkdir -p $HOME/.config/mpv
 ln -s $HOME/dotfiles/mpv/mpv.conf $HOME/.config/mpv/
 ```
 
-### pacman ###
+### pacman
 
 ```shell
 
@@ -378,7 +384,7 @@ sudo sed -i "/^#VerbosePkgLists/c\VerbosePkgLists" /etc/pacman.conf
 sudo cp -r $HOME/dotfiles/pacman/hooks /etc/pacman.d/
 ```
 
-### pam_mount ###
+### pam_mount
 
 Auto mount LUKS partition and tmpfs volume: edit part 'Volumes' in `/etc/security/pam_mount.conf.xml`.
 Example (replace all variables with `<>` around):
@@ -394,7 +400,7 @@ Example (replace all variables with `<>` around):
 
 [Enable `pam_mount` in login manager](https://wiki.archlinux.org/title/Pam_mount#Login_manager_configuration)
 
-### python ###
+### python
 
 ```shell
 
@@ -402,18 +408,18 @@ pip3 install --upgrade --user pip setuptools wheel
 pip install --requirement=$HOME/dotfiles/pip-reqs.txt
 ```
 
-### rclone ###
+### rclone
 
 Add config from cloud backup to `$HOME/.config/rclone/`
 
-### sshmnt ###
+### sshmnt
 
 ```shell
 
 ln -s $HOME/dotfiles/sshmntconfig $HOME/.config/sshmntconfig
 ```
 
-### sublime text ###
+### sublime text
 
 ```shell
 
@@ -425,7 +431,7 @@ ln -sf $HOME/dotfiles/sublime-text  $HOME/.config/sublime-text/Packages/User
 sudo chattr +i $HOME/dotfiles/sublime-text/Markdown.sublime-settings
 ```
 
-### Sudo ###
+### Sudo
 
 Allow 'wheel' group use `sudo`:
 
@@ -434,14 +440,14 @@ Allow 'wheel' group use `sudo`:
 sudo cp $HOME/dotfiles/sudo/g_wheel /etc/sudoers.d/
 ```
 
-### sysctl ###
+### sysctl
 
 ```shell
 
 sudo cp $HOME/dotfiles/sysctl/99-sysctl.conf /etc/sysctl.d/
 ```
 
-### tmux ###
+### tmux
 
 ```shell
 
@@ -449,14 +455,14 @@ ln -s $HOME/dotfiles/tmux $HOME/.tmux
 ln -s $HOME/.tmux/conf $HOME/.tmux.conf
 ```
 
-### todo.sh ###
+### todo.sh
 
 ```shell
 
 ln -s $HOME/cloud/todo $HOME/.todo
 ```
 
-### vim ###
+### vim
 
 ```shell
 
@@ -464,7 +470,7 @@ ln -s $HOME/dotfiles/vim $HOME/.vim
 ln -s $HOME/.vim/rc $HOME/.vimrc
 ```
 
-### zsh ###
+### zsh
 
 ```shell
 
