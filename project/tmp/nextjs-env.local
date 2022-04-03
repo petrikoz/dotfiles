@@ -1,0 +1,3 @@
+AUTH_TOKEN=236cdd541215b122fd3415de0155664f7512221a
+PROJECT_URL=http://localhost:8001/
+REST_BASE_URL=http://localhost:8000/rest/
