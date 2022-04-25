@@ -1,5 +1,6 @@
 flake8
-http-prompt
+httpie
 mypy
+ptpython
 pydocstyle
 yapf
