@@ -2,7 +2,6 @@ artix-archlinux-support
 cronie
 cronie-openrc
 cups-openrc
-docker-openrc
 elogind-openrc
 mdadm-openrc
 networkmanager-openrc

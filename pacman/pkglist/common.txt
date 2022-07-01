@@ -1,10 +1,10 @@
 base-devel
 cryptsetup
 direnv
-docker
 encfs
 firejail
 fscrypt
+fuse-overlayfs
 git
 git-lfs
 grub
@@ -20,6 +20,8 @@ openssh
 p7zip
 pacman-contrib
 pam_mount
+podman
+podman-docker
 pulseaudio-alsa
 python
 rsync

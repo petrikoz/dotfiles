@@ -1,6 +1,6 @@
 #!/bin/sh
 
-docker run --rm --name=$PROJECT --net=host --user $(id -u):$(id -g) \
+podman run --rm --name=$PROJECT --net=host --user $(id -u):$(id -g) \
            -v "$PROJECT_SRC_NODE":/code -w /code -it \
            node:lts-alpine \
            npm "$@"

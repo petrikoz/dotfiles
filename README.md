@@ -141,31 +141,6 @@ systemctl --user start cloud-backup.timer
 
 ln -s $HOME/dotfiles/direnv $HOME/.config/
 ```
-
-### Docker
-
-```shell
-
-# add itself to 'docker' group
-sudo usermod -aG docker $USER
-
-# Add custom network ([docs](https://docs.docker.com/engine/reference/commandline/network_create/))
-docker network create -o "com.docker.network.bridge.name"="docker1" docker1
-```
-
-Hide connections from [NetworkManager](https://wiki.archlinux.org/title/NetworkManager)
-
-```shell
-
-sudo vi /etc/NetworkManager/conf.d/unmanaged.conf
-```
-
-```conf
-
-[keyfile]
-unmanaged-devices=interface-name:docker*;interface-name:veth*
-```
-
 ### firejail
 
 Run applications with security profiles:
@@ -399,6 +374,14 @@ Example (replace all variables with `<>` around):
 ```
 
 [Enable `pam_mount` in login manager](https://wiki.archlinux.org/title/Pam_mount#Login_manager_configuration)
+
+### podman
+
+```shell
+
+sudo touch /etc/subuid /etc/subgid
+sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 $USER
+```
 
 ### python
 

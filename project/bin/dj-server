@@ -29,12 +29,12 @@ if [ $OPTIND -eq 1 ]; then args="$@"; fi
 # EXECUTION
 
 # ********************************
-# docker
+# podman
 
 redis_image="redis"
-if [ -z $(docker ps -qf "name=$redis_image") ]; then
+if [ -z $(podman ps -qf "name=$redis_image") ]; then
     echo "REDIS: run container"
-    docker run -d -p 127.0.0.1:6379:6379 \
+    podman run -d -p 127.0.0.1:6379:6379 \
                --name "$redis_image" \
                --rm "$redis_image:alpine" \
                redis-server --maxmemory 512mb --maxmemory-policy volatile-lru --appendonly yes \
