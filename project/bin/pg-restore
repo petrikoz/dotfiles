@@ -34,5 +34,5 @@ fi
 if $sql; then
     psql -U "$user" -d "$dbname" -f "$filepath" --echo-errors
 else
-    pg_restore -U "$user" -d "$dbname" -v "$filepath"
+    pg_restore -U "$user" -d "$dbname" -Ov "$filepath"
 fi

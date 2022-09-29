@@ -20,7 +20,7 @@
         "LSP": {
             "pylsp": {
                 "enabled": true,
-                "command": ["$project_path/.direnv/python-3.10.5/bin/pylsp"],
+                "command": ["$project_path/.direnv/python-3.10.7/bin/pylsp"],
                 "settings": {
                     "pylsp.plugins.jedi.extra_paths": ["$project_path"],
                 },
