@@ -22,9 +22,10 @@
 		"Solarized Color Scheme",
 		"SublimeLinter",
 		"SublimeLinter-annotations",
-		"SublimeLinter-contrib-mypy",
 		"SublimeLinter-flake8",
 		"SublimeLinter-json",
+		"SublimeLinter-mypy",
+		"Vue Syntax Highlight",
 		"WordHighlight",
 	],
 }
