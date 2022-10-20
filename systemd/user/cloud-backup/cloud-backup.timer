@@ -1,9 +1,0 @@
-[Unit]
-Description=Run `cloud-backup` hourly after login
-
-[Timer]
-OnUnitActiveSec=1h
-OnStartupSec=1h
-
-[Install]
-WantedBy=timers.target

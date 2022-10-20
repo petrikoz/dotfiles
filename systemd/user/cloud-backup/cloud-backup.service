@@ -1,7 +1,0 @@
-[Unit]
-Description=Backup cloud data
-
-[Service]
-Environment=SSH_AUTH_SOCK=%T/ssh-agent.socket
-ExecStart=%h/dotfiles/systemd/user/cloud-backup/cloud-backup.sh
-Type=oneshot

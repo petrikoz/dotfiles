@@ -41,7 +41,6 @@ See `$HOME/dotfiles/pacman/pkglist` directory:
 * **i3.txt** — soft required for all systems with [i3wm](https://wiki.archlinux.org/title/I3)
 * **i3-laptop.txt** — soft required for laptop with [i3wm](https://wiki.archlinux.org/title/I3)
 * **kde.txt** — soft required for systmes with [KDE](https://wiki.archlinux.org/title/KDE)
-* **kde-desktop.txt** — soft required for desktop systmes with [KDE](https://wiki.archlinux.org/title/KDE)
 
 ### Artix
 
@@ -102,37 +101,11 @@ done < "$HOME/dotfiles/pacman/pkglist/common-aur.txt"
 
 ### cron
 
-#### fsTRIM
-
-Actual only for Artix Linux. On systemd-based distros periodic [TRIM](https://wiki.archlinux.org/title/Solid_state_drive#TRIM) run as default
-
-```shell
-
-sudo cp $HOME/dotfiles/cron/weekly/fstrim /etc/cron.weekly/
-sudo chmod +x /etc/cron.weekly/fstrim
-```
-
 #### Cloud backup
 
 ```shell
 
 (crontab -l ; echo "0 */3 * * *    $HOME/dotfiles/cron/user/cloud-backup.sh > $HOME/dotfiles/cron/user/cloud-backup.log 2>&1") | sort - | uniq - | crontab -
-```
-
-#### SystemD
-
-Use systemd's timers as replacement for cron
-
-```shell
-
-# Check updates
-sudo cp $HOME/dotfiles/systemd/check-updates/* /etc/systemd/system/
-systemctl enable check-updates.timer
-
-# Cloud backup
-systemctl --user enable $HOME/dotfiles/systemd/user/cloud-backup/cloud-backup.service
-systemctl --user enable $HOME/dotfiles/systemd/user/cloud-backup/cloud-backup.timer
-systemctl --user start cloud-backup.timer
 ```
 
 ### direnv
@@ -235,14 +208,6 @@ See network interfaces:
 ```shell
 
 ip link
-```
-
-Enable systemd service:
-
-```shell
-
-sudo systemctl enable netctl-auto@INTERFACE.service
-sudo systemctl start netctl-auto@INTERFACE.service
 ```
 
 #### rofi-dmenu
@@ -442,7 +407,7 @@ ln -s $HOME/.tmux/conf $HOME/.tmux.conf
 
 ```shell
 
-ln -s $HOME/cloud/todo $HOME/.todo
+ln -s $HOME/Nextcloud/todo $HOME/.todo
 ```
 
 ### vim

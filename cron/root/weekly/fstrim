@@ -1,3 +1,0 @@
-#!/bin/sh
-
-/usr/bin/fstrim -av > /var/log/trim.log || true
