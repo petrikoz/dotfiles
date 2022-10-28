@@ -3,10 +3,10 @@
 # ****************************************************************
 # DEFAULTS
 
-dbname="$PROJECT"
+dbname="${PROJECT//-/_}"
 filepath="$PROJECT_TMP/sql/local"
 format="c"
-user="$PROJECT"
+user="$dbname"
 
 args=""
 

@@ -3,8 +3,8 @@
 # ****************************************************************
 # DEFAULTS
 
-dbname="$PROJECT"
-user="$PROJECT"
+dbname="${PROJECT//-/_}"
+user="$dbname"
 
 args=""
 

@@ -3,8 +3,8 @@
 # ****************************************************************
 # DEFAULTS
 
-dbname="$PROJECT"
-owner="$PROJECT"
+dbname="${PROJECT//-/_}"
+owner="$dbname"
 password="$PROJECT-password"
 restore=""
 
