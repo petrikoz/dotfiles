@@ -22,6 +22,7 @@ kwalletmanager
 noto-fonts-emoji
 ntp
 okular
+partitionmanager
 plasma-desktop
 plasma-disks
 plasma-firewall
