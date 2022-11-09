@@ -1,1 +1,2 @@
-yandex-browser.profile
+# Redirect
+include yandex-browser.profile
