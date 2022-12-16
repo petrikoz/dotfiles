@@ -101,11 +101,19 @@ done < "$HOME/dotfiles/pacman/pkglist/common-aur.txt"
 
 ### cron
 
+#### fsTRIM
+
+Actual only for Artix Linux. On systemd-based distros periodic TRIM run as default
+
+```shell
+sudo sh -c "(crontab -l ; echo '0 1 * * 5    /usr/bin/fstrim -av > /var/log/trim.log 2>&1') | sort - | uniq - | crontab -"
+```
+
 #### Cloud backup
 
 ```shell
 
-(crontab -l ; echo "0 */3 * * *    $HOME/dotfiles/cron/user/cloud-backup.sh > $HOME/dotfiles/cron/user/cloud-backup.log 2>&1") | sort - | uniq - | crontab -
+(crontab -l ; echo "0 11 * * 1,3,5,6    $HOME/dotfiles/cron/user/cloud-backup.sh > $HOME/dotfiles/cron/user/cloud-backup.log 2>&1") | sort - | uniq - | crontab -
 ```
 
 ### direnv
