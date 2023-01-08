@@ -4,6 +4,3 @@ libreoffice-still
 nvidia
 qmapshack
 rclone
-steam
-steam-native-runtime
-virtualbox

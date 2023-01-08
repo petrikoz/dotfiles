@@ -29,6 +29,7 @@ plasma-firewall
 plasma-nm
 plasma-pa
 plasma-systemmonitor
+plasma5-applets-weather-widget
 print-manager
 qt5-imageformats
 sddm
