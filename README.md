@@ -152,6 +152,13 @@ cp $HOME/dotfiles/firejail/game.desktop $HOME/.local/share/applications/GAME-NAM
 vi $HOME/.local/share/applications/GAME-NAME.desktop
 ```
 
+### git
+
+```shell
+
+ln -s $HOME/dotfiles/gitconfig $HOME/.gitconfig
+```
+
 ### golang
 
 ```shell
@@ -159,7 +166,7 @@ vi $HOME/.local/share/applications/GAME-NAME.desktop
 mkdir -p $HOME/go/bin $HOME/go/pkg $HOME/go/src
 ```
 
-### GRUB
+### grub
 
 Hide GRUB unless the Shift key is held down:
 
@@ -434,4 +441,5 @@ ln -s $HOME/dotfiles/zsh $HOME/.zsh
 ln -s $HOME/.zsh/env $HOME/.zshenv
 ln -s $HOME/.zsh/profile $HOME/.zprofile
 ln -s $HOME/.zsh/rc $HOME/.zshrc
+ln -s $HOME/.zsh/p10k.zsh $HOME/.p10k.zsh
 ```
