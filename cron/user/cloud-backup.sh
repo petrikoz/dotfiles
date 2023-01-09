@@ -2,7 +2,7 @@
 
 ################################################################
 # My data
-################
+#########
 cloud_decrypted="$HOME/encfs/cloud"
 if [[ ! "$(findmnt -M $cloud_decrypted)" ]]; then
     echo "Please mount encrypted volume to '$cloud_decrypted'"
@@ -23,7 +23,7 @@ else
 
     echo "$(date +'%Y-%m-%d %X')   to archive: ..."
     cloud_compressed="$HOME/Documents/cloud.tar.zst"
-    cd "$HOME/cloud/.encrypted" && tar --absolute-names --auto-compress --create --file="$cloud_compressed" ./
+    cd "$HOME/Nextcloud/.encrypted" && tar --absolute-names --auto-compress --create --file="$cloud_compressed" ./
     echo "$(date +'%Y-%m-%d %X')   to archive: done"
 
     echo "$(date +'%Y-%m-%d %X')   to Dropbox: ..."
@@ -37,11 +37,11 @@ else
 fi
 
 ################################################################
-# Mail.ru Cloud backup
-######################
-raid0_cloud_decrypted="$HOME/encfs/raid0"
-if [[ ! "$(findmnt -M $raid0_cloud_decrypted)" ]]; then
-    echo "Please mount encrypted volume to '$raid0_cloud_decrypted'"
+# Backup Nextcloud's data to other clouds
+#########################################
+cloud_backup_decrypted="$HOME/encfs/cloud-backup"
+if [[ ! "$(findmnt -M $cloud_backup_decrypted)" ]]; then
+    echo "Please mount encrypted volume to '$cloud_backup_decrypted'"
 else
     remote_name="cloud.wormhole"
     remote="/run/user/1000/sshmnt/$remote_name"
@@ -53,11 +53,11 @@ else
       exit 1
     fi
 
-    echo "$(date +'%Y-%m-%d %X') RAID0 backup: ..."
+    echo "$(date +'%Y-%m-%d %X') Cloud backup: ..."
 
     echo "$(date +'%Y-%m-%d %X')   cloud.wormhole: ..."
 
-    nextcloud_decrypted="$raid0_cloud_decrypted/nextcloud"
+    nextcloud_decrypted="$cloud_backup_decrypted/nextcloud"
     mkdir -m 700 -p "$nextcloud_decrypted"
 
     rsync="rsync -zz --archive"
@@ -71,21 +71,21 @@ else
     echo "$(date +'%Y-%m-%d %X')     data/nextcloud.pg-dump: done"
 
     echo "$(date +'%Y-%m-%d %X')   to archive: ..."
-    nextcloud_backup_file="$raid0_cloud_decrypted/nextcloud_$(date +'%Y-%m-%d').tar.zst"
+    nextcloud_backup_file="$cloud_backup_decrypted/nextcloud_$(date +'%Y-%m-%d').tar.zst"
     cd "$nextcloud_decrypted" && tar --absolute-names --auto-compress --create --file="$nextcloud_backup_file" ./
     echo "$(date +'%Y-%m-%d %X')   to archive: done"
 
     echo "$(date +'%Y-%m-%d %X')   remove old archives: ..."
-    cd "$raid0_cloud_decrypted" && ls -t *.tar.zst | tail -n +5 | xargs -I {} rm -- {}
+    cd "$cloud_backup_decrypted" && ls -t *.tar.zst | tail -n +5 | xargs -I {} rm -- {}
     echo "$(date +'%Y-%m-%d %X')   remove old archives: done"
 
     echo "$(date +'%Y-%m-%d %X')   cloud.wormhole: done"
 
     echo "$(date +'%Y-%m-%d %X')   to archive: ..."
-    backup_uncompressed=/mnt/raid0/backup
+    backup_uncompressed="$HOME/cloud-backup"
     chown -R "$USER":"$USER" "$backup_uncompressed"
 
-    backup_compressed="$HOME/Documents/raid0.tar.zst"
+    backup_compressed="$HOME/Documents/cloud-backup.tar.zst"
     cd "$backup_uncompressed" && tar --absolute-names --auto-compress --create --file="$backup_compressed" ./
     echo "$(date +'%Y-%m-%d %X')   to archive: done"
 
@@ -100,5 +100,5 @@ else
     rm -rf "$backup_compressed"
     echo "$(date +'%Y-%m-%d %X')   remove temp archive: done"
 
-    echo "$(date +'%Y-%m-%d %X') RAID0 backup: done"
+    echo "$(date +'%Y-%m-%d %X') Cloud backup: done"
 fi
