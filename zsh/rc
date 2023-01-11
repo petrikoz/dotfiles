@@ -15,6 +15,7 @@
   antigen bundle docker
   antigen bundle git-flow-avh
   antigen bundle pip
+  antigen bundle rsync
 
   # Bundles from other repos
   antigen bundle zsh-users/zsh-completions src  # Additional completion definitions for Zsh
