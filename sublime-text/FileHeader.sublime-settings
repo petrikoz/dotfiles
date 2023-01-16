@@ -21,5 +21,5 @@
     you write your own header files. The file name should be a language,
     "Python.tmpl" for example.
     */
-    "custom_template_header_path": "~/.config/sublime-text-3/Packages/User/FileHeader",
+    "custom_template_header_path": "~/.config/sublime-text/Packages/User/FileHeader",
 }

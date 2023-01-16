@@ -390,6 +390,8 @@ curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --
 echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf
 sudo pacman -Syu sublime-text
 
+mkdir -p $HOME/.config/sublime-text/Packages
+git clone git@github.com:shiyanhui/FileHeader.git $HOME/.config/sublime-text/Packages/FileHeader
 ln -sf $HOME/dotfiles/sublime-text  $HOME/.config/sublime-text/Packages/User
 sudo chattr +i $HOME/dotfiles/sublime-text/Markdown.sublime-settings
 ```
