@@ -26,6 +26,8 @@
 	branch = false
 [pull]
 	rebase = true
+[push]
+	autoSetupRemote = true
 [user]
 	name = Petr Zelenin
 [filter "lfs"]
