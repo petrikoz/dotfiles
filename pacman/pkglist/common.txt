@@ -30,6 +30,7 @@ sudo
 telegram-desktop
 thunderbird
 thunderbird-i18n-ru
+veracrypt
 vim
 wget
 yt-dlp
