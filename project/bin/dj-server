@@ -31,19 +31,19 @@ if [ $OPTIND -eq 1 ]; then args="$@"; fi
 # ********************************
 # podman
 
-redis_image="redis"
-if $(podman start "$redis_image" > /dev/null 2>&1); then
-    echo "REDIS: start container"
-else
-    echo "REDIS: run container"
-    podman run -d -p 127.0.0.1:6379:6379 \
-               --name "$redis_image" \
-               --rm "$redis_image:alpine" \
-               redis-server --maxmemory 512mb --maxmemory-policy volatile-lru --appendonly yes \
-        > /dev/null
-fi
-
-echo # добавляем пустую строку для красивого вывода
+#redis_image="redis"
+#if $(podman start "$redis_image" > /dev/null 2>&1); then
+#    echo "REDIS: start container"
+#else
+#    echo "REDIS: run container"
+#    podman run -d -p 127.0.0.1:6379:6379 \
+#               --name "$redis_image" \
+#               --rm "$redis_image:alpine" \
+#               redis-server --maxmemory 512mb --maxmemory-policy volatile-lru --appendonly yes \
+#        > /dev/null
+#fi
+#
+#echo # добавляем пустую строку для красивого вывода
 
 # ********************************
 # django
