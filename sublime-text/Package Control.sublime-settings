@@ -6,6 +6,7 @@
 	"installed_packages":
 	[
 		"AutoDocstring",
+		"Babel",
 		"Dockerfile Syntax Highlighting",
 		"EditorConfig",
 		"FileHeader",
@@ -18,6 +19,7 @@
 		"nginx",
 		"Package Control",
 		"Pretty JSON",
+		"python-black",
 		"PyYapf Python Formatter",
 		"Solarized Color Scheme",
 		"SublimeLinter",
