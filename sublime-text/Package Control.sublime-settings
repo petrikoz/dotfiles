@@ -27,6 +27,7 @@
 		"SublimeLinter-flake8",
 		"SublimeLinter-json",
 		"SublimeLinter-mypy",
+		"TOML",
 		"Vue Syntax Highlight",
 		"WordHighlight",
 	],
