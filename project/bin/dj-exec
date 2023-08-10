@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 "$PROJECT_SRC/manage.py" "$@"
 
 # old Django's projects run in container

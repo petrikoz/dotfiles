@@ -1,0 +1,13 @@
+#!/bin/bash
+
+node_container="$PROJECT-node"
+if [ -z $(podman ps -qf "name=$node_container") ]; then
+    echo "NODE: run container"
+    podman run --rm --name=$node_container --net=host \
+               -v "$PROJECT_SRC_NODE":/code -w /code -it \
+               node:lts \
+               "$@"
+else
+    echo "NODE: alredy runned"
+    podman exec -it "$node_container" "$@"
+fi

@@ -1,6 +1,0 @@
-#!/bin/sh
-
-podman run --rm --name=$PROJECT --net=host \
-           -v "$PROJECT_SRC_NODE":/code -w /code -it \
-           node:lts \
-           npm "$@"
