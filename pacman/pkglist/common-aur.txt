@@ -3,7 +3,6 @@ gitflow-avh
 gitstatus
 hunspell-ru-aot
 nekoray-git
-nerd-fonts-dejavu-complete
 sing-geoip
 sing-geosite
 sshmnt
