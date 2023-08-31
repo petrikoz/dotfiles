@@ -2,9 +2,11 @@ ccat
 gitflow-avh
 gitstatus
 hunspell-ru-aot
+nekoray-git
 nerd-fonts-dejavu-complete
+sing-geoip
+sing-geosite
 sshmnt
-systray-x-git
 todotxt
 vi-vim-symlink
 yandex-browser

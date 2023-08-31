@@ -35,3 +35,4 @@ qt5-imageformats
 sddm
 sddm-kcm
 spectacle
+systray-x-kde
