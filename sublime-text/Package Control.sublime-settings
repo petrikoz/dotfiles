@@ -7,6 +7,7 @@
 	[
 		"AutoDocstring",
 		"Babel",
+		"Color Highlight",
 		"Dockerfile Syntax Highlighting",
 		"EditorConfig",
 		"FileHeader",
