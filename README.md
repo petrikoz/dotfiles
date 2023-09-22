@@ -93,7 +93,7 @@ cd $HOME/Downloads
 while read i; do
     git clone "https://aur.archlinux.org/$i.git"
     cd "$i"
-    makepkg -irs --needed --noconfirm
+    makepkg -irs --noconfirm
     cd ..
     rm -rf "$i"
 done < "$HOME/dotfiles/pacman/pkglist/common-aur.txt"
