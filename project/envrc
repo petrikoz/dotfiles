@@ -2,7 +2,8 @@ layout python
 export PROJECT="$(basename $PWD)"
 export PROJECT_ROOT="$PWD"
 export PROJECT_SRC="$PROJECT_ROOT/src"
-export PROJECT_SRC_NODE="$PROJECT_SRC/nextjs"
+export PROJECT_NODE_PORT="8001"
+export PROJECT_NODE_SRC="$PROJECT_ROOT/front"
 export PROJECT_TMP="$PROJECT_ROOT/tmp"
 export PYTHONPATH="$PROJECT_TMP:$PYTHONPATH"
 PATH_add bin
