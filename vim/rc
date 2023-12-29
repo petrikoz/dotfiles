@@ -121,6 +121,10 @@
 
 " Common settings
 
+  " All searches will be case insensitive
+  set ignorecase
+  " Search will be case sensitive if it contains an uppercase letter
+  set smartcase
   " Character encodings considered when starting to edit an existing file
   set fileencodings=utf-8
   " Display invisible characters
