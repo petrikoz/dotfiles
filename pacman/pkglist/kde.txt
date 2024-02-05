@@ -1,5 +1,4 @@
 ark
-clementine
 dolphin
 dolphin-plugins
 gst-plugins-good
@@ -35,4 +34,5 @@ qt5-imageformats
 sddm
 sddm-kcm
 spectacle
+strawberry
 systray-x-kde
