@@ -1,2 +1,24 @@
 [tool.black]
 line-length = 120
+
+[tool.poetry]
+name = "project"
+version = "0.1.0"
+description = "Default config for projects"
+authors = ["Petr Zelenin"]
+
+[tool.poetry.dependencies]
+python = ">=3.8"
+pip = "23.1"
+ipdb = "^0.13"
+ptpython = "^3.0"
+python-lsp-server = "^1.10"
+
+[tool.poetry.group.django.dependencies]
+django = "^4.2"
+django-debug-toolbar = "^4.3"
+django-extensions = "^3.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
