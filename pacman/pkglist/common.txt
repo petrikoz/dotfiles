@@ -28,6 +28,7 @@ python
 rsync
 sudo
 telegram-desktop
+ttf-dejavu-nerd
 thunderbird
 thunderbird-i18n-ru
 veracrypt
