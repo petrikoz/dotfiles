@@ -12,7 +12,6 @@
   # Bundles from the default repo (robbyrussell's oh-my-zsh).
   antigen bundle command-not-found  # suggests package name with relevant command
   antigen bundle direnv
-  antigen bundle docker
   antigen bundle git-flow-avh
   antigen bundle pip
   antigen bundle rsync
