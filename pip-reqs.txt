@@ -1,6 +1,7 @@
 flake8
 httpie
 mypy
+pip==23.1
+poetry
 ptpython
 pydocstyle
-yapf
