@@ -18,7 +18,7 @@ VALUES (
 	'admin',
 	'Super',
 	'Admin',
-	'admin@example.com',
+	'super.admin@example.com',
 	true,
 	true,
 	now()
