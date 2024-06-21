@@ -1,0 +1,4 @@
+#!/bin/bash
+pg-reset -d "test_${PROJECT//-/_}"\
+    && cd "$PROJECT_SRC"\
+    && pytest -s --ds settings --reuse-db --cache-clear --disable-warnings --log-cli-level=ERROR "$@"
