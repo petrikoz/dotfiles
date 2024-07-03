@@ -4,7 +4,7 @@ node_container="$PROJECT-node"
 if [ -z $(podman ps -qf "name=$node_container") ]; then
     echo "NODE: run container"
     podman run --rm --name=$node_container --net=host \
-               -v "$PROJECT_NODE_SRC":/code -w /code -it \
+               -v "$PROJECT_NODE_SRC":/project -w /project -it \
                node:lts \
                "$@"
 else

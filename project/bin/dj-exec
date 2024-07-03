@@ -1,12 +1,12 @@
 #!/bin/bash
 "$PROJECT_SRC/manage.py" "$@"
 
-# old Django's projects run in container
+# run Django in container
 #django_container="$PROJECT-django"
 #if [ -z $(podman ps -qf "name=$django_container") ]; then
 #    echo "DJANGO: run container"
 #    podman run --rm --name="$django_container" --net=host \
-#               -v "$PROJECT_SRC":/code -v "$PROJECT_TMP":/tmp-host -v "$PROJECT_TMP/itcase":/itcase \
+#               -v "$PROJECT_SRC":/project -v "$PROJECT_TMP":/tmp-host -v "$PROJECT_TMP/itcase":/itcase \
 #               -e PROJECT="$PROJECT" -e PROJECT_TMP="/tmp-host" -e PYTHONPATH="/tmp-host:$PYTHONPATH" \
 #               -it "$PROJECT" "$@"
 #else
