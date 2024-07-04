@@ -2,7 +2,7 @@ ccat
 gitflow-avh
 gitstatus
 hunspell-ru-aot
-nekoray-git
+nekoray
 sing-geoip
 sing-geosite
 sshmnt
