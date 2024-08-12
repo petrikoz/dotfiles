@@ -335,6 +335,9 @@ sudo sed -i "/^#Color/c\Color" /etc/pacman.conf
 # comparing versions before updating
 sudo sed -i "/^#VerbosePkgLists/c\VerbosePkgLists" /etc/pacman.conf
 
+# comparing versions before updating
+sudo sed -i "/^#ParallelDownloads = 5/c\ParallelDownloads = 16" /etc/pacman.conf
+
 # add hooks
 sudo cp -r $HOME/dotfiles/pacman/hooks /etc/pacman.d/
 ```
