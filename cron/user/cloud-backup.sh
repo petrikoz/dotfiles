@@ -66,9 +66,9 @@ else
     $rsync "$remote/config/config.php" "$nextcloud_decrypted"
     echo "$(date +'%Y-%m-%d %X')     config/config.php: done"
 
-    echo "$(date +'%Y-%m-%d %X')     data/nextcloud.pg-dump: ..."
-    $rsync "$remote/data/nextcloud.pg-dump" "$nextcloud_decrypted"
-    echo "$(date +'%Y-%m-%d %X')     data/nextcloud.pg-dump: done"
+    echo "$(date +'%Y-%m-%d %X')     data/nextcloud*.pg-dump: ..."
+    $rsync --include="nextcloud*.pg-dump" --exclude="*" "$remote/data/" "$nextcloud_decrypted"
+    echo "$(date +'%Y-%m-%d %X')     data/nextcloud*.pg-dump: done"
 
     echo "$(date +'%Y-%m-%d %X')   to archive: ..."
     nextcloud_backup_file="$cloud_backup_decrypted/nextcloud_$(date +'%Y-%m-%d').tar.zst"
