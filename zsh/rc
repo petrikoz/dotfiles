@@ -83,7 +83,7 @@
       echo "Please install YT-DLP: sudo pacman -Sy yt-dlp"
       return
     fi
-    yt-dlp -f "bestaudio/best" -ciw -o "%(title)s.%(ext)s" -v --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --yes-playlist "$1"
+    yt-dlp -f "bestaudio/best" -ciw -o "%(title)s.%(ext)s" -v --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --yes-playlist "$@"
   }
 
 ################################################################
