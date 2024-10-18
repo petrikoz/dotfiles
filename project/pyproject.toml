@@ -1,3 +1,7 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.black]
 line-length = 120
 
@@ -8,17 +12,12 @@ description = "Default config for projects"
 authors = ["Petr Zelenin"]
 
 [tool.poetry.dependencies]
-python = ">=3.8"
-pip = "23.1"
+python = ">=3.10"
 ipdb = "^0.13"
 ptpython = "^3.0"
-python-lsp-server = "^1.10"
+python-lsp-server = "^1.12"
 
 [tool.poetry.group.django.dependencies]
 django = "^4.2"
-django-debug-toolbar = "^4.3"
+django-debug-toolbar = "^4.4"
 django-extensions = "^3.2"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
