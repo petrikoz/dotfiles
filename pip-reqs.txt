@@ -1,7 +1,7 @@
 flake8
 httpie
 mypy
-pip==23.1
+pip
 poetry
 ptpython
 pydocstyle

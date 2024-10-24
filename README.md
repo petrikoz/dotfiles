@@ -17,16 +17,17 @@ git clone --recursive https://github.com/petrikoz/dotfiles.git
 cp -r $HOME/dotfiles/project PROJECT_PATH/PROJECT_NAME
 cd PROJECT_PATH/PROJECT_NAME
 mv editorconfig .editorconfig
-# 'direnv' part
+mv flake8 .flake8
 mv envrc .envrc && direnv allow
-# / 'direnv' part
 mv sublime-project $(basename $PWD).sublime-project
+poetry install --no-root
 git clone PROJECT_REPO src
 # for ITCase's projects only:
-ln -s ../itcase-dev ./
+mkdir itcase-dev
+cd itcase-dev
+git clone git@github.com:ITCase/itcase-common.git
+pip install -e $PROJECT_ROOT/itcase-dev/itcase-common
 ```
-
-Fix dependencies in `PROJECT_PATH/requirements-local.txt` then run `pip install -r PROJECT_PATH/requirements-local.txt`.
 
 ## Soft
 
@@ -370,8 +371,7 @@ sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 $USER
 
 ```shell
 
-pip3 install --upgrade --user pip setuptools wheel
-pip install --requirement=$HOME/dotfiles/pip-reqs.txt
+pip install --break-system-packages --user --upgrade --requirement=$HOME/dotfiles/pip-reqs.txt
 ```
 
 ### rclone
