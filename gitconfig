@@ -4,7 +4,7 @@
 	c = commit -v
 	co = checkout
 	d = diff
-	fo = fetch -v origin
+	fo = fetch -pv origin
 	foc = !git fetch -v origin "$(git rev-parse --abbrev-ref HEAD)"
 	l = log
 	ll = log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
