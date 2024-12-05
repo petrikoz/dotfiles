@@ -3,7 +3,7 @@
 # ****************************************************************
 # DEFAULTS
 
-dbname="${PROJECT//-/_}"
+dbname="$PROJECT_NAME"
 sql=false
 user="$dbname"
 

@@ -1,5 +1,6 @@
 layout python
 export PROJECT="$(basename $PWD)"
+export PROJECT_NAME="${PROJECT//-/_}"
 export PROJECT_ROOT="$PWD"
 export PROJECT_SRC="$PROJECT_ROOT/src"
 export PROJECT_NODE_PORT="8001"

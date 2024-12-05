@@ -1,5 +1,5 @@
 #!/bin/bash
-pg-reset -d "test_${PROJECT//-/_}" \
+pg-reset -d "test_$PROJECT_NAME" \
     && cd "$PROJECT_SRC" \
     && pytest -s --ds settings --reuse-db --cache-clear --disable-warnings --log-cli-level=ERROR "$@"
 # run tests in container
