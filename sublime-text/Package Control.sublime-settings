@@ -28,7 +28,7 @@
 		"SublimeLinter-json",
 		"SublimeLinter-mypy",
 		"TOML",
-		"Vue Syntax Highlight",
+		"Vue",
 		"WordHighlight",
 	],
 }
