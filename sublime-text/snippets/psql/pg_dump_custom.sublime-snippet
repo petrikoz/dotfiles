@@ -1,6 +1,6 @@
 <snippet>
     <content><![CDATA[
-PROJECT=${1:project}; pg_dump -h ${2:localhost} -U ${3:\$PROJECT} -d ${4:\$PROJECT} -f ${5:/tmp/\$PROJECT} -F c -bcv
+PROJECT=${1:project}; pg_dump -h ${2:localhost} -U ${3:\$PROJECT} -d ${4:\$PROJECT} -f ${5:/tmp/\$PROJECT} -F c -bcv --if-exists
 ]]></content>
     <tabTrigger>pg_dump_custom</tabTrigger>
     <scope>source.shell</scope>
