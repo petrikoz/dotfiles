@@ -1,2 +1,2 @@
 #!/bin/bash
-podman build -t $PROJECT --volume $PROJECT_ROOT/itcase-dev:/itcase:rw .
+podman build -t $PROJECT --volume $PROJECT_ROOT/itcase-dev:/itcase:rw $PROJECT_SRC

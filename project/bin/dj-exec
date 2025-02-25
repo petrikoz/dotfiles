@@ -11,6 +11,7 @@
 #               -v "$ptpython_history":"/root/.ptpython_history" \
 #               -v "$PROJECT_SRC":/project -v "$PROJECT_TMP":/tmp-host -v "$PROJECT_TMP/itcase":/itcase \
 #               -e PROJECT="$PROJECT" -e PROJECT_TMP="/tmp-host" -e PYTHONPATH="/tmp-host:$PYTHONPATH" \
+#               -e DJANGO_DATABASE_HOST=localhost -e DJANGO_REDIS_HOST=localhost -e DJANGO_HOST=localhost \
 #               -it "$PROJECT" "$@"
 #else
 #    echo "DJANGO: alredy runned"
