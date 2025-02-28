@@ -24,7 +24,7 @@ pam_mount
 podman
 podman-docker
 pulseaudio-alsa
-python
+python-pip
 rsync
 sudo
 telegram-desktop
