@@ -1,7 +1,6 @@
 flake8
 httpie
 mypy
-pip
 poetry
 ptpython
 pydocstyle
