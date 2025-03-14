@@ -7,7 +7,7 @@
 #    ptpython_history="$PROJECT_ROOT/.ptpython_history"
 #    touch "$ptpython_history"
 #    echo "DJANGO: run container"
-#    podman run --rm --name="$django_container" --net=host --user "$(id -u):$(id -g)" \
+#    podman run --rm --name="$django_container" --net=host \
 #               -v "$ptpython_history":"/root/.ptpython_history" \
 #               -v "$PROJECT_SRC":/project -v "$PROJECT_TMP":/tmp-host -v "$PROJECT_TMP/itcase":/itcase \
 #               -e PROJECT="$PROJECT" -e PROJECT_TMP="/tmp-host" -e PYTHONPATH="/tmp-host:$PYTHONPATH" \

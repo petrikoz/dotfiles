@@ -16,8 +16,3 @@ python = ">=3.10"
 ipdb = "^0.13"
 ptpython = "^3.0"
 python-lsp-server = "^1.12"
-
-[tool.poetry.group.django.dependencies]
-django = "^4.2"
-django-debug-toolbar = "^4.4"
-django-extensions = "^3.2"
