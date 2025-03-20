@@ -1,8 +1,0 @@
-{
-    "extensions":
-    [
-        "html",
-        "j2",
-        "jinja2",
-    ]
-}

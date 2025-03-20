@@ -6,6 +6,6 @@
 {% endcomment %}
 ]]>	</content>
     <tabTrigger>comment</tabTrigger>
-    <scope>text.html.django</scope>
-    <description>comment</description>
+    <scope>text.html</scope>
+    <description>Django comment block</description>
 </snippet>

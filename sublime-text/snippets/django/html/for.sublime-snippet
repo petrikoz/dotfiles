@@ -6,6 +6,6 @@
 {% endfor %}
 ]]>	</content>
     <tabTrigger>for</tabTrigger>
-    <scope>text.html.django</scope>
-    <description>for</description>
+    <scope>text.html</scope>
+    <description>Django for</description>
 </snippet>

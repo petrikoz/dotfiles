@@ -2,6 +2,6 @@
 <snippet>
 	<content><![CDATA[{% $1 %}]]></content>
     <tabTrigger>tag</tabTrigger>
-    <scope>text.html.django</scope>
-    <description>tag braces</description>
+    <scope>text.html</scope>
+    <description>Django tag braces</description>
 </snippet>

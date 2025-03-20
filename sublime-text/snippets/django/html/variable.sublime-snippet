@@ -2,6 +2,6 @@
 <snippet>
   <content><![CDATA[{{ ${1:$SELECTION} }}]]></content>
   <tabTrigger>{{</tabTrigger>
-  <scope>text.html.django</scope>
-  <description>context variable (var)</description>
+  <scope>text.html</scope>
+  <description>Django context variable (var)</description>
 </snippet>
