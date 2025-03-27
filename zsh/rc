@@ -72,8 +72,7 @@
       echo "Please install ffmpeg"
       return
     fi
-    local filename=$(basename -- "$@")
-    filename="${filename%.*}"
+    local filename="$(f=${@##*/}; echo ${f%.*})"
     ffmpeg -i "$filename.webm" -c:v libx264 -preset slow -crf 22 "$filename.mp4"
   }
 
