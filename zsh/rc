@@ -66,10 +66,21 @@
     history | grep -i $1
   }
 
+  # Convert WEBM to MP4 with FFmpeg
+  function webm-to-mp4() {
+    if ! (type ffmpeg &> /dev/null); then
+      echo "Please install ffmpeg"
+      return
+    fi
+    local filename=$(basename -- "$@")
+    filename="${filename%.*}"
+    ffmpeg -i "$filename.webm" -c:v libx264 -preset slow -crf 22 "$filename.mp4"
+  }
+
   # Extract archives with 7z
   function x() {
     if ! (type 7z &> /dev/null); then
-      echo "Please install 7zip: sudo pacman -Sy p7zip"
+      echo "Please install 7zip"
       return
     fi
     local archive="$1"
@@ -80,7 +91,7 @@
   # Download MP3 audio with YouTube-DL
   function youtube-dl-audio() {
     if ! (type yt-dlp &> /dev/null); then
-      echo "Please install YT-DLP: sudo pacman -Sy yt-dlp"
+      echo "Please install yt-dlp"
       return
     fi
     yt-dlp -f "bestaudio/best" -ciw -o "%(title)s.%(ext)s" -v --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --yes-playlist "$@"
