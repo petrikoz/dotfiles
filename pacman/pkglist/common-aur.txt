@@ -2,9 +2,9 @@ ccat
 gitflow-avh
 gitstatus
 hunspell-ru-aot
-nekoray
-sing-geoip
-sing-geosite
+nekoray-bin
+sing-geoip-db
+sing-geosite-db
 sshmnt
 todotxt
 vi-vim-symlink
