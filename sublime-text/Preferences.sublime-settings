@@ -11,7 +11,7 @@
 	"show_git_status": false,
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
-	"theme": "Default.sublime-theme",
+	"theme": "Adaptive.sublime-theme",
 	"font_size": 11,
 	"ignored_packages":
 	[
