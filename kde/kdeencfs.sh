@@ -37,15 +37,15 @@ if [ "$(mount | grep $DESTINATION)" != "" ]; then
   $(/usr/bin/kdialog --passivepopup "Encfs: $DESTINATION is already mounted")
 else
   # Ensure kwallet is running on KDE startup
-  while [ "$(qdbus org.kde.kwalletd6 /modules/kwalletd6 org.kde.KWallet.isEnabled)" != "true" ]
+  while [ "$(qdbus6 org.kde.kwalletd6 /modules/kwalletd6 org.kde.KWallet.isEnabled)" != "true" ]
   do
     $KWALLETD
   done
 
   #Get the key from KDE Wallet, if nonexisting ask for the key and store it later to KDE Wallet
-  WALLETID=$(qdbus org.kde.kwalletd6 /modules/kwalletd6 org.kde.KWallet.open kdewallet 0 $APPID)
+  WALLETID=$(qdbus6 org.kde.kwalletd6 /modules/kwalletd6 org.kde.KWallet.open kdewallet 0 $APPID)
 
-  PASSWORD=$(qdbus org.kde.kwalletd6 /modules/kwalletd6 org.kde.KWallet.readPassword $WALLETID Passwords $DESTINATION $APPID)
+  PASSWORD=$(qdbus6 org.kde.kwalletd6 /modules/kwalletd6 org.kde.KWallet.readPassword $WALLETID Passwords $DESTINATION $APPID)
   #By default assume that the password was fetched from KDE Wallet
   PASSWORD_FETCHED=0
 
@@ -65,7 +65,7 @@ else
       then
       #If password was asked from the user, save it to KDE Wallet
       if [ "$PASSWORD_FETCHED" = "0" ]; then
-        A=$(qdbus org.kde.kwalletd6 /modules/kwalletd6 org.kde.KWallet.writePassword $WALLETID Passwords $DESTINATION "$PASSWORD" $APPID)
+        A=$(qdbus6 org.kde.kwalletd6 /modules/kwalletd6 org.kde.KWallet.writePassword $WALLETID Passwords $DESTINATION "$PASSWORD" $APPID)
       fi
       /usr/bin/kdialog --passivepopup "Encfs partition $DESTINATION mounted successfully"
     else
@@ -73,7 +73,7 @@ else
       /usr/bin/kdialog --title "Encfs: Failed to mount $DESTINATION" --error "Failed to mount Encfs partition $DESTINATION. \n\nIncorrect password or error."
     fi
     #Close KDE Wallet -- can't seem to make it work with qdbus
-    #qdbus org.kde.kwalletd6 /modules/kwalletd6 org.kde.KWallet.close $WALLETID false $APPID
+    #qdbus6 org.kde.kwalletd6 /modules/kwalletd6 org.kde.KWallet.close $WALLETID false $APPID
     #dbus-send --session --dest=org.kde.kwalletd6 --type=method_call  /modules/kwalletd6 org.kde.KWallet.close int32:$WALLETID boolean:false string:"$APPID"
   fi
 fi
