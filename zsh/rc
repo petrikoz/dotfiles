@@ -1,34 +1,17 @@
 # vim: syntax=zsh
 
 ################################################################
-# Antigen
+# Antidote
 ################################################################
 
-  source "$HOME/.zsh/antigen/antigen.zsh"
+  source "$HOME/.zsh/antidote/antidote.zsh"
 
-  # Load the oh-my-zsh's library.
-  antigen use oh-my-zsh
-
-  # Bundles from the default repo (robbyrussell's oh-my-zsh).
-  antigen bundle command-not-found  # suggests package name with relevant command
-  antigen bundle direnv
-  antigen bundle git-flow-avh
-  antigen bundle pip
-  antigen bundle rsync
-
-  # Bundles from other repos
-  antigen bundle zsh-users/zsh-completions src  # Additional completion definitions for Zsh
-  antigen bundle sdurrheimer/docker-compose-zsh-completion
-
-  # Local repos
-  antigen bundle "$HOME/.zsh/completions" --no-local-clone
-
-  # Load the theme.
+#== romkatv/powerlevel10k ====================
   GITSTATUS_DAEMON=/usr/share/gitstatus/usrbin/gitstatusd
-  antigen theme romkatv/powerlevel10k
+  [[ ! -x $GITSTATUS_DAEMON ]] && unset GITSTATUS_DAEMON
+#======================
 
-  # Tell antigen that you're done.
-  antigen apply
+  antidote load "$HOME/.zsh/antidote.plugins"
 
 ################################################################
 # Set ZSH options
