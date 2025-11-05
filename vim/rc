@@ -1,61 +1,4 @@
 " vim: syntax=vim
-" Vundle. Plugin manager.
-  " Brief help:
-  " :PluginList          - list configured bundles
-  " :PluginInstall(!)    - install(update) bundles
-  " :PluginSearch(!) foo - search(or refresh cache first) for foo
-  " :PluginClean(!)      - confirm(or auto-ap prove) removal of unused bundles
-  " for more details see :h vundle  or https://github.com/gmarik/vundle
-  set nocompatible  " be iMproved, required
-  filetype off  " required
-  " set the runtime path to include Vundle and initialize
-  set rtp+=~/.vim/bundle/Vundle.vim
-  call vundle#begin()
-
-    " let Vundle manage Vundle, required
-    Plugin 'VundleVim/Vundle.vim'
-
-    " Keep Plugin commands between vundle#begin/end.
-
-      " Nginx syntax highlighting
-      Plugin 'chr4/nginx.vim'
-
-      Plugin 'tpope/vim-sensible'
-
-      " Nice start screen
-      Plugin 'mhinz/vim-startify'
-
-      " Pretty and functionality statusline.
-      Plugin 'vim-airline/vim-airline'
-      Plugin 'vim-airline/vim-airline-themes'
-
-      " The best colorscheme.
-      Plugin 'altercation/vim-colors-solarized'
-
-      " Perform all your vim insert mode completions with Tab
-      Plugin 'ervandew/supertab'
-
-      " Shows 'Nth match out of M' at every search
-      Plugin 'vim-scripts/IndexedSearch'
-
-      " NERDTree. A tree explorer plugin
-      Plugin 'scrooloose/nerdtree'
-      Plugin 'jistr/vim-nerdtree-tabs'
-
-      " Show added / changed / deleted rows by Git.
-      Plugin 'airblade/vim-gitgutter'
-
-      " Best syntax checker
-      Plugin 'scrooloose/syntastic'
-
-      " Easy config code style
-      Plugin 'editorconfig/editorconfig-vim'
-
-    " All of your Plugins must be added before the following line
-  call vundle#end()  " required
-  filetype plugin on  " required
-
-" Put your non-Plugin stuff after this line
 
 " Plugins settings
 
@@ -90,34 +33,18 @@
       if bufname('%') !~? 'nerd_tree_*'
         nmap <Bs> :NERDTreeFind<CR>
       else
-        nmap <Bs> :NERDTreeTabsToggle<CR>
+        nmap <Bs> :NERDTreeToggle<CR>
       endif
     endfunction
 
     autocmd BufEnter * call SyncTree()
 
-  " Solarized.
-    let g:solarized_termcolors = 256
-    let g:solarized_termtrans = 1
-    set background=dark
-    colorscheme solarized
-    autocmd ColorScheme * highlight! link SignColumn LineNr
-
-  " Startify
-    let g:startify_change_to_dir = 0
-    let g:startify_files_number = 8
-    let g:startify_bookmarks = ['~/.vimrc',]
-    let g:startify_skiplist = ['vimrc',]
-    let g:startify_list_order = [
-      \ ['   Last recently modified files in the current directory:'],
-      \ 'dir',
-      \ ['   Last recently opened files:'],
-      \ 'files',
-      \ ['   My sessions:'],
-      \ 'sessions',
-      \ ['   My bookmarks:'],
-      \ 'bookmarks',
-    \ ]
+  " NeoSolarized
+    syntax enable
+    set termguicolors
+    "set background=dark
+    let g:neosolarized_termtrans = 1
+    colorscheme NeoSolarized
 
 " Common settings
 
@@ -149,7 +76,7 @@
     " Override default settings by filetype
       " Python
         " Highlighte max column by PEP8
-        autocmd FileType python set colorcolumn=80
+        autocmd FileType python set colorcolumn=120
         " Number of spaces to use for each step of (auto)indent
         autocmd FileType python set shiftwidth=4
         autocmd FileType python set tabstop=4
