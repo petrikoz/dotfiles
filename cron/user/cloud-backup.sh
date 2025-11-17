@@ -89,13 +89,13 @@ else
     cd "$backup_uncompressed" && tar --absolute-names --auto-compress --create --file="$backup_compressed" ./
     echo "$(date +'%Y-%m-%d %X')   to archive: done"
 
-    echo "$(date +'%Y-%m-%d %X')      archive to Mail.ru Cloud: ..."
-    rclone copy "$backup_compressed" mailru:
-    echo "$(date +'%Y-%m-%d %X')      archive to Mail.ru Cloud: done"
-
     echo "$(date +'%Y-%m-%d %X')      archive to Yandex Disk: ..."
     rclone copy "$backup_compressed" yandex:
     echo "$(date +'%Y-%m-%d %X')      archive to Yandex Disk: done"
+
+    echo "$(date +'%Y-%m-%d %X')      archive to Mail.ru Cloud: ..."
+    rclone copy "$backup_compressed" mailru:
+    echo "$(date +'%Y-%m-%d %X')      archive to Mail.ru Cloud: done"
 
     rm -rf "$backup_compressed"
     echo "$(date +'%Y-%m-%d %X')   remove temp archive: done"
