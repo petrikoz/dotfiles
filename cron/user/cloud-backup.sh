@@ -1,4 +1,7 @@
-#!/bin/sh
+#!/bin/bash
+
+env_file="$HOME/dotfiles/cron/user/cloud-backup.env"
+[[ -f "$env_file" ]] && source "$env_file"
 
 ################################################################
 # My data
@@ -16,7 +19,7 @@ else
     echo "$(date +'%Y-%m-%d %X')     .config/rclone"
 
     # Google Drive
-    rclone copy drive:Finances "$cloud_decrypted/fin-reports/drive.google.com"
+    rclone -vv copy drive:Finances "$cloud_decrypted/fin-reports/drive.google.com"
     echo "$(date +'%Y-%m-%d %X')     gdrive:Finances"
 
     echo "$(date +'%Y-%m-%d %X')   to cloud: done"
@@ -27,7 +30,7 @@ else
     echo "$(date +'%Y-%m-%d %X')   to archive: done"
 
     echo "$(date +'%Y-%m-%d %X')   to Dropbox: ..."
-    rclone --quiet copy "$cloud_compressed" dropbox:
+    rclone -vv copy "$cloud_compressed" dropbox:
     echo "$(date +'%Y-%m-%d %X')   to Dropbox: done"
 
     rm -rf "$cloud_compressed"
@@ -90,11 +93,11 @@ else
     echo "$(date +'%Y-%m-%d %X')   to archive: done"
 
     echo "$(date +'%Y-%m-%d %X')      archive to Yandex Disk: ..."
-    rclone copy "$backup_compressed" yandex:
+    rclone -vv copy "$backup_compressed" yandex:
     echo "$(date +'%Y-%m-%d %X')      archive to Yandex Disk: done"
 
     echo "$(date +'%Y-%m-%d %X')      archive to Mail.ru Cloud: ..."
-    rclone copy "$backup_compressed" mailru:
+    rclone -vv copy "$backup_compressed" mailru:
     echo "$(date +'%Y-%m-%d %X')      archive to Mail.ru Cloud: done"
 
     rm -rf "$backup_compressed"

@@ -113,8 +113,22 @@ sudo sh -c "(crontab -l ; echo '0 1 * * 5    /usr/bin/fstrim -av > /var/log/trim
 #### Cloud backup
 
 ```shell
-
 (crontab -l ; echo "0 11 * * 1,3,5,6    $HOME/dotfiles/cron/user/cloud-backup.sh > $HOME/dotfiles/cron/user/cloud-backup.log 2>&1") | sort - | uniq - | crontab -
+```
+
+If need evironment variables for `cloud-backup.sh` (ex. `HTTP_PROXY`) add `cloud-backup.env`:
+
+```shell
+vi $HOME/dotfiles/cron/user/cloud-backup.env
+```
+
+and add some like:
+
+```env
+export http_proxy="socks5h://127.0.0.1:2080"
+export {https,all}_proxy=$http_proxy
+export {HTTP,HTTPS,ALL}_PROXY=$http_proxy
+export no_proxy=".mail.ru,.yandex.ru"
 ```
 
 ### direnv
