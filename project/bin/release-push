@@ -4,8 +4,6 @@
 # DEFAULTS
 
 branch="master"
-branch_from="develop"
-changelog="prepend"
 
 # ****************************************************************
 # PREPARE
@@ -23,7 +21,8 @@ fi
 # ****************************************************************
 # EXECUTION
 
-version="$(git describe --tags $(git rev-list --tags --max-count=1))"
-echo "Пушим тэг \"$version\" в \"$branch\""
-git push --atomic origin "$branch" "$version"
-echo "Запушили тэг \"$version\" в \"$branch\" 🎉"
+echo "Пушим ветку \"$branch\""
+git push origin "$branch"
+echo "Пушим тэги в \"$branch\""
+git push --tags origin "$branch"
+echo "Запушили ветку \"$branch\" и тэги в неё 🎉"
