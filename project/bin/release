@@ -37,11 +37,11 @@ if [[ "$(git rev-parse --abbrev-ref HEAD)" != "$branch_to" ]]; then
     echo "Работаем только в GIT-ветке \"$branch_to\"!"
     exit 1
 fi
-if [[ !$(which bump-my-version > /dev/null 2>&1) ]]; then
+if ! command -v bump-my-version > /dev/null 2>&1 ; then
     echo 'Не установлена утилита "bump-my-version"'
     exit 1
 fi
-if [[ !$(which git-cliff > /dev/null 2>&1) ]]; then
+if ! command -v git-cliff > /dev/null 2>&1 ; then
     echo 'Не установлена утилита "git-cliff"'
     exit 1
 fi
