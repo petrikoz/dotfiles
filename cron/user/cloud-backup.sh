@@ -19,7 +19,7 @@ else
     echo "$(date +'%Y-%m-%d %X')     .config/rclone"
 
     # Google Drive
-    rclone -vv copy drive:Finances "$cloud_decrypted/fin-reports/drive.google.com"
+    rclone -vv copy gdrive:Finances "$cloud_decrypted/fin-reports/drive.google.com"
     echo "$(date +'%Y-%m-%d %X')     gdrive:Finances"
 
     echo "$(date +'%Y-%m-%d %X')   to cloud: done"
