@@ -292,13 +292,13 @@ Mount encfs volumes with passwords from Kwallet:
 
 ```shell
 
-echo '#!/bin/sh
+cat <<EOT > $HOME/dotfiles/kde/autostart/kdeencfs
+#!/bin/bash
 
 kdeencfs="$HOME/dotfiles/kde/kdeencfs.sh"
-
 $kdeencfs /path/of/encrypted/target /path/to/mount/point
-' > $HOME/dotfiles/kde/autostart/kdeencfs
 
+EOT
 cp $HOME/dotfiles/kde/autostart/kdeencfs.desktop $HOME/.config/autostart/
 ```
 
@@ -320,13 +320,19 @@ Add SSH's keys to SSH Agent on logon:
 
 cp $HOME/dotfiles/kde/askpass.sh $HOME/.config/plasma-workspace/env/
 
-echo '#!/bin/sh
+cat <<EOT > $HOME/dotfiles/kde/autostart/ssh-staff
+#!/bin/bash
 
-/usr/bin/ssh-add -q /home/petr/.ssh/id_key1 /home/petr/.ssh/id_key2 < /dev/null
+# Wait for kwallet
+kwallet-query -l kdewallet > /dev/null
 
-# if sshmnt installed on system uncomment bellow
-#sshmnt -m cloud.wormhole
-' >  $HOME/dotfiles/kde/autostart/ssh-staff
+for KEY in $(ls $HOME/.ssh/id_* | grep -v \.pub); do
+  ssh-add -q ${KEY} </dev/null
+done
+
+sshmnt -m cloud.wormhole
+
+EOT
 chmod 700 $HOME/dotfiles/kde/autostart/ssh-staff
 
 cp $HOME/dotfiles/kde/autostart/ssh-staff.desktop $HOME/.config/autostart/
