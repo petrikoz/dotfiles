@@ -19,7 +19,7 @@ else
     echo "$(date +'%Y-%m-%d %X')     .config/rclone"
 
     # Google Drive
-    rclone -vv copy gdrive:Finances "$cloud_decrypted/fin-reports/drive.google.com"
+    rclone -v copy gdrive:Finances "$cloud_decrypted/fin-reports/drive.google.com"
     echo "$(date +'%Y-%m-%d %X')     gdrive:Finances"
 
     echo "$(date +'%Y-%m-%d %X')   to cloud: done"
@@ -30,7 +30,7 @@ else
     echo "$(date +'%Y-%m-%d %X')   to archive: done"
 
     echo "$(date +'%Y-%m-%d %X')   to Dropbox: ..."
-    rclone -vv copy "$cloud_compressed" dropbox:
+    rclone -v copy "$cloud_compressed" dropbox:
     echo "$(date +'%Y-%m-%d %X')   to Dropbox: done"
 
     rm -rf "$cloud_compressed"
@@ -93,11 +93,11 @@ else
     echo "$(date +'%Y-%m-%d %X')   to archive: done"
 
     echo "$(date +'%Y-%m-%d %X')      archive to Yandex Disk: ..."
-    rclone -vv copy "$backup_compressed" yandex:
+    rclone -v copy "$backup_compressed" yandex:
     echo "$(date +'%Y-%m-%d %X')      archive to Yandex Disk: done"
 
     echo "$(date +'%Y-%m-%d %X')      archive to Mail.ru Cloud: ..."
-    rclone -vv copy "$backup_compressed" mailru:
+    rclone -v copy "$backup_compressed" mailru:
     echo "$(date +'%Y-%m-%d %X')      archive to Mail.ru Cloud: done"
 
     rm -rf "$backup_compressed"
