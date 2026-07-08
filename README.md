@@ -416,7 +416,6 @@ sudo pacman -Syu sublime-text
 mkdir -p $HOME/.config/sublime-text/Packages
 git clone git@github.com:shiyanhui/FileHeader.git $HOME/.config/sublime-text/Packages/FileHeader
 ln -sf $HOME/dotfiles/sublime-text  $HOME/.config/sublime-text/Packages/User
-sudo chattr +i $HOME/dotfiles/sublime-text/Markdown.sublime-settings
 ```
 
 ### Sudo
