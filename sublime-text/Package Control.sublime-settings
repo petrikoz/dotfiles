@@ -1,5 +1,6 @@
 {
 	"bootstrapped": true,
+	"http_proxy": "127.0.0.1:2080",
 	"in_process_packages":
 	[
 	],
@@ -11,6 +12,7 @@
 		"Crontab",
 		"Dockerfile Syntax Highlighting",
 		"EditorConfig",
+		"FileDiffs",
 		"FileHeader",
 		"Git",
 		"GitGutter",
