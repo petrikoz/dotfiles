@@ -35,5 +35,6 @@ veracrypt
 vim
 wget
 yt-dlp
+zed
 zsh
 zsh-completions
