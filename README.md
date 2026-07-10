@@ -19,7 +19,6 @@ cd PROJECT_PATH/PROJECT_NAME
 mv editorconfig .editorconfig
 mv flake8 .flake8
 mv envrc .envrc && direnv allow
-mv sublime-project $(basename $PWD).sublime-project
 poetry install --no-root
 git clone PROJECT_REPO src
 # for ITCase's projects only:
@@ -28,6 +27,19 @@ cd itcase-dev
 git clone git@github.com:ITCase/itcase-common.git
 pip install -e $PROJECT_ROOT/itcase-dev/itcase-common
 ```
+
+### Editor
+
+Choose one or both:
+
+* [Sublime Text](https://www.sublimetext.com/)
+  ```shell
+  mv sublime-project $(basename $PWD).sublime-project
+  ```
+* [Zed](https://github.com/zed-industries/zed)
+  ```shell
+  mv zed .zed
+  ```
 
 ## Soft
 
