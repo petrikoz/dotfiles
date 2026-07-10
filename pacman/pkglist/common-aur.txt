@@ -1,4 +1,5 @@
 ccat
+cursor-bin
 gitflow-avh
 gitstatus
 hunspell-ru-aot
