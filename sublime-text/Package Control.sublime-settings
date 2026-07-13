@@ -1,6 +1,6 @@
 {
 	"bootstrapped": true,
-	"http_proxy": "127.0.0.1:2080",
+	"http_proxy": "10.67.67.2:8118",
 	"in_process_packages":
 	[
 	],
