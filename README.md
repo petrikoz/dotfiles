@@ -484,6 +484,14 @@ ln -s $HOME/dotfiles/vim $HOME/.vim
 ln -s $HOME/.vim/rc $HOME/.vimrc
 ```
 
+### Zed
+
+https://github.com/zed-industries/zed
+
+```shell
+ln -sf $HOME/dotfiles/zed  $HOME/.config/zed
+```
+
 ### zsh
 
 ```shell
