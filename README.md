@@ -417,17 +417,32 @@ Add config from cloud backup to `$HOME/.config/rclone/`
 ln -s $HOME/dotfiles/sshmntconfig $HOME/.config/sshmntconfig
 ```
 
-### sublime text
+### Sublime Text
+
+https://www.sublimetext.com/
 
 ```shell
-
 curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --add sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
 echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf
 sudo pacman -Syu sublime-text
+```
 
+После установки:
+1. Открываем Sublime Text
+2. В меню "Tools" выбираем пункт "Install Package Control…"
+3. После завершения установки перезапускаем Sublime Text
+4. Нажимаем `Ctrl+Shift+p`, вводим "Package Control: Upgrade/Overwrite All" и нажимаем `Enter`
+5. После завршения процесса закрываем Sublime Text
+
+```shell
 mkdir -p $HOME/.config/sublime-text/Packages
-git clone git@github.com:shiyanhui/FileHeader.git $HOME/.config/sublime-text/Packages/FileHeader
 ln -sf $HOME/dotfiles/sublime-text  $HOME/.config/sublime-text/Packages/User
+```
+
+Устанавливаем те пакеты, которые недоступны через PackageControl
+```shell
+git clone git@github.com:shiyanhui/FileHeader.git $HOME/.config/sublime-text/Packages/FileHeader
+git clone git@github.com:SublimeText/nginx.git $HOME/.config/sublime-text/Packages/nginx
 ```
 
 ### Sudo
