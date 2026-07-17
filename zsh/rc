@@ -70,8 +70,8 @@
     7z x "$archive" -o"${2:-$output}"
   }
 
-  # Download MP3 audio with YouTube-DL
-  function youtube-dl-audio() {
+  # Download MP3 audio with yt-dlp
+  function yt-dlp-mp3() {
     if ! (type yt-dlp &> /dev/null); then
       echo "Please install yt-dlp"
       return
