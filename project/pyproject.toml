@@ -5,7 +5,7 @@ description = "Default config for projects"
 authors = [
   { name = "Petr Zelenin", email = "po.zelenin@gmail.com" }
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = [
   "ipdb>=0.13",
   "ptpython>=3.0",
