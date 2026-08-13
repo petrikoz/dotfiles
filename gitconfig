@@ -11,6 +11,7 @@
 	m = merge
 	pl = pull
 	plc = !git pull origin "$(git rev-parse --abbrev-ref HEAD)"
+	plct = !git pull --tags origin "$(git rev-parse --abbrev-ref HEAD)"
 	ps = push
 	psa = push --all
 	reb = rebase
