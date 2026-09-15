@@ -143,12 +143,23 @@ export {HTTP,HTTPS,ALL}_PROXY=$http_proxy
 export no_proxy=".mail.ru,.yandex.ru"
 ```
 
+### Cursor
+
+https://cursor.com/
+
+```shell
+
+mkdir -p $HOME/.config/Cursor/User
+ln -s $HOME/dotfiles/Cursor/User/settings.json $HOME/.config/Cursor/User/settings.json
+```
+
 ### direnv
 
 ```shell
 
 ln -s $HOME/dotfiles/direnv $HOME/.config/
 ```
+
 ### firejail
 
 Run applications with security profiles:
@@ -445,7 +456,7 @@ git clone git@github.com:shiyanhui/FileHeader.git $HOME/.config/sublime-text/Pac
 git clone git@github.com:SublimeText/nginx.git $HOME/.config/sublime-text/Packages/nginx
 ```
 
-### Sudo
+### sudo
 
 Allow 'wheel' group use `sudo`:
 
