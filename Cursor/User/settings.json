@@ -1,4 +1,4 @@
 {
-    "window.autoDetectColorScheme": true,
-    "cursor.general.disableHttp2": true
+    "cursor.general.disableHttp2": true,
+    "workbench.colorTheme": "Cursor Dark High Contrast"
 }
