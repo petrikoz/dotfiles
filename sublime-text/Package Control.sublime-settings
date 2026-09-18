@@ -6,6 +6,7 @@
 	],
 	"installed_packages":
 	[
+		"ApacheConf",
 		"AutoDocstring",
 		"Babel",
 		"Color Highlight",
