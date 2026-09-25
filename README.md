@@ -21,6 +21,7 @@ mv flake8 .flake8
 mv envrc .envrc && direnv allow
 poetry install --no-root
 git clone PROJECT_REPO src
+cp -r src src.cursor
 # for ITCase's projects only:
 mkdir itcase-dev
 cd itcase-dev
