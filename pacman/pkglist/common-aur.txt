@@ -3,10 +3,8 @@ cursor-bin
 gitflow-avh
 gitstatus
 hunspell-ru-aot
-nekoray-bin
-sing-geoip-db
-sing-geosite-db
 sshmnt
+throne-bin
 todotxt
 vi-vim-symlink
 yandex-browser
