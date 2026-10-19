@@ -3,6 +3,7 @@ cursor-bin
 gitflow-avh
 gitstatus
 hunspell-ru-aot
+sirikali
 sshmnt
 throne-bin
 todotxt
