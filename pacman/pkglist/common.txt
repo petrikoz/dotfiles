@@ -1,4 +1,5 @@
 base-devel
+cryfs
 cryptsetup
 direnv
 encfs
@@ -26,6 +27,7 @@ podman-docker
 pulseaudio-alsa
 python-pip
 rsync
+sshfs
 sudo
 telegram-desktop
 ttf-dejavu-nerd
