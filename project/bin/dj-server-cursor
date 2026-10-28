@@ -1,3 +1,0 @@
-#!/bin/bash
-
-PROJECT_SRC="$PROJECT_SRC".cursor; dj-server $@
