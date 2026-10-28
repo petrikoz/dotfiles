@@ -2,7 +2,7 @@
 
 session="$PROJECT-cursor"
 
-cd "$PROJECT_SRC".cursor \
+cd "$PROJECT_SRC" \
   && tmux new-session -d -s $session \
   && tmux send-keys -t $session "source $PROJECT_ROOT/cursor-cli.env && cursor --verbose $PROJECT_ROOT" C-m \
   && tmux split-window -t $session \
