@@ -2,7 +2,6 @@ base-devel
 cryfs
 cryptsetup
 direnv
-encfs
 firejail
 fscrypt
 fuse-overlayfs

@@ -310,22 +310,6 @@ EndSection
 
 ### KDE
 
-#### EncFS
-
-Mount encfs volumes with passwords from Kwallet:
-
-```shell
-
-cat <<EOT > $HOME/dotfiles/kde/autostart/kdeencfs
-#!/bin/bash
-
-kdeencfs="$HOME/dotfiles/kde/kdeencfs.sh"
-$kdeencfs /path/of/encrypted/target /path/to/mount/point
-
-EOT
-cp $HOME/dotfiles/kde/autostart/kdeencfs.desktop $HOME/.config/autostart/
-```
-
 #### NetworkManager
 
 Enable WireGuard-connection: copy needed config from cloud backup. Ex.:

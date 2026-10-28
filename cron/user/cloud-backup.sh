@@ -6,7 +6,7 @@ env_file="$HOME/dotfiles/cron/user/cloud-backup.env"
 ################################################################
 # My data
 #########
-cloud_decrypted="$HOME/encfs/cloud"
+cloud_decrypted="$HOME/Vaults/cloud"
 if [[ ! "$(findmnt -M $cloud_decrypted)" ]]; then
     echo "Please mount encrypted volume to '$cloud_decrypted'"
 else
@@ -42,7 +42,7 @@ fi
 ################################################################
 # Backup Nextcloud's data to other clouds
 #########################################
-cloud_backup_decrypted="$HOME/encfs/cloud-backup"
+cloud_backup_decrypted="$HOME/Vaults/cloud-backup"
 if [[ ! "$(findmnt -M $cloud_backup_decrypted)" ]]; then
     echo "Please mount encrypted volume to '$cloud_backup_decrypted'"
 else
