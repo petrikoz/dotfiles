@@ -1,4 +1,4 @@
-FROM python:3.12-slim-bullseye
+FROM python:3.12-slim
 
 # ****************************************************************
 
@@ -6,15 +6,11 @@ LABEL org.opencontainers.image.authors="Petr Zelenin (po.zelenin@gmail.com)"
 
 # ****************************************************************
 
-ARG PG_VERSION=18
-
-# ****************************************************************
-# POSTGRESQL CLIENT
-
-RUN apt-get update
-RUN apt-get install --no-install-recommends -y postgresql-common gnupg
+# psql
+RUN apt-get update && apt-get install --no-install-recommends -y postgresql-common gnupg
 RUN /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
-RUN apt-get install --no-install-recommends -y postgresql-client-${PG_VERSION}
+ARG PG_VERSION=18
+RUN apt-get update && apt-get install --no-install-recommends -y postgresql-client-${PG_VERSION}
 
 # ****************************************************************
 
@@ -23,8 +19,18 @@ ENV PYTHONUNBUFFERED=1
 
 # ****************************************************************
 
+# HOME, доступный на запись любому пользователю (ptpython, ipython, кэши)
+ENV HOME=/home/user
+RUN mkdir -m 777 "$HOME"
+
+# ****************************************************************
+
 # устанавливаем Poetry
+# зависимости ставим в системный Python без venv,
+# чтобы они были доступны при запуске с произвольным UID (--user)
+ENV POETRY_VIRTUALENVS_CREATE=false
 RUN pip install poetry
+RUN pip install ipdb ptpython
 
 # создаём рабочий каталог
 RUN mkdir /project
@@ -32,21 +38,15 @@ WORKDIR /project/
 
 # копируем необходимые для сборки файлы
 COPY poetry.lock pyproject.toml ./
-# если ITCase Common не в проекте
-#COPY docker-compose/django/itcase/itcase-common /itcase/itcase-common
-
-# создаём пользователя для работы в контейнере
-RUN useradd --create-home --user-group --shell /bin/bash project
-RUN chown -R project:project /project /itcase
-USER project
 
 # устанавливаем зависимости
 RUN poetry install --no-root #--without=itcase  # если ITCase Common не в проекте
-RUN poetry run pip install ipdb ptpython
+
 # если ITCase Common не в проекте
-#RUN poetry run pip install -e /itcase/itcase-common
+#COPY --from=itcase tcase-common /itcase/itcase-common
+#RUN pip install /itcase/itcase-common
 
 # ****************************************************************
 
-ENTRYPOINT ["poetry", "run", "python", "manage.py"]
+ENTRYPOINT ["python", "manage.py"]
 

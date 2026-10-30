@@ -1,6 +1,2 @@
 #!/bin/bash
-pg-reset -d "test_$PROJECT_NAME" \
-    && cd "$PROJECT_SRC" \
-    && pytest -s --ds settings --reuse-db --cache-clear --disable-warnings --log-cli-level=ERROR "$@"
-# run tests in container
-    #&& podman exec -w /project -it "$PROJECT-django" poetry run pytest -s --ds settings --reuse-db --disable-warnings --log-cli-level=ERROR --cache-clear "$@"
+pg-reset -d "test_$PROJECT_NAME" && docker exec -w /project -it "$PROJECT-django" pytest "$@"

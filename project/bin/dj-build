@@ -1,2 +1,7 @@
 #!/bin/bash
-podman build -t $PROJECT --volume $PROJECT_ROOT/itcase-dev:/itcase:rw $PROJECT_SRC
+docker build -t $PROJECT --file $PROJECT_ROOT/Dockerfile $PROJECT_SRC
+
+# если ITCase Common не в проекте
+#docker build -t $PROJECT --file $PROJECT_ROOT/Dockerfile \
+#             --build-context itcase="$PROJECT_ROOT/itcase" \
+#       $PROJECT_SRC

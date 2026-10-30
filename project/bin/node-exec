@@ -1,13 +1,20 @@
 #!/bin/bash
 
 node_container="$PROJECT-node"
-if [ -z $(podman ps -qf "name=$node_container") ]; then
+if [ -z "$(docker ps -qf "name=^${node_container}$")" ]; then
+    # HOME для npm (кэш, конфиг) берём с хоста, чтобы он сохранялся между запусками;
+    # создаём заранее, иначе Docker создаст каталог от root
+    node_home="$PROJECT_ROOT/.node"
+    mkdir -p "$node_home"
     echo "NODE: run container"
-    podman run --rm --name=$node_container --net=host \
+    # запускаем от UID/GID хоста, чтобы файлы в смонтированных каталогах не принадлежали root
+    docker run --rm --name="$node_container" --net=host \
+               --user "$(id -u):$(id -g)" \
+               -v "$node_home":/home/user -e HOME=/home/user \
                -v "$PROJECT_NODE_SRC":/project -w /project -it \
                node:lts \
                "$@"
 else
     echo "NODE: alredy runned"
-    podman exec -it "$node_container" "$@"
+    docker exec -it "$node_container" "$@"
 fi
