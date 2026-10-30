@@ -386,14 +386,6 @@ Example (replace all variables with `<>` around):
 
 [Enable `pam_mount` in login manager](https://wiki.archlinux.org/title/Pam_mount#Login_manager_configuration)
 
-### podman
-
-```shell
-
-sudo touch /etc/subuid /etc/subgid
-sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 $USER
-```
-
 ### python
 
 ```shell

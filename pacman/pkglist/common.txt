@@ -2,6 +2,9 @@ base-devel
 cryfs
 cryptsetup
 direnv
+docker
+docker-buildx
+docker-compose
 firejail
 fscrypt
 fuse-overlayfs
@@ -21,8 +24,6 @@ openssh
 p7zip
 pacman-contrib
 pam_mount
-podman
-podman-docker
 pulseaudio-alsa
 python-pip
 rsync
