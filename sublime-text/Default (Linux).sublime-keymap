@@ -3,6 +3,7 @@
         Sublime Text
     ****************************************************************/
     { "keys": ["ctrl+shift+o"], "command": "prompt_add_folder" },
+    { "keys": ["ctrl+k", "ctrl+f"], "command": "reveal_in_side_bar" },
 
     /****************************************************************
         LSP
