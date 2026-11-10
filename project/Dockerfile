@@ -6,6 +6,17 @@ LABEL org.opencontainers.image.authors="Petr Zelenin (po.zelenin@gmail.com)"
 
 # ****************************************************************
 
+ARG HTTP_PROXY
+ARG NO_PROXY
+ENV HTTP_PROXY="$HTTP_PROXY" \
+    HTTPS_PROXY="$HTTP_PROXY" \
+    NO_PROXY="$NO_PROXY" \
+    http_proxy="$HTTP_PROXY" \
+    https_proxy="$HTTP_PROXY" \
+    no_proxy="$NO_PROXY"
+
+# ****************************************************************
+
 # psql
 RUN apt-get update && apt-get install --no-install-recommends -y postgresql-common gnupg
 RUN /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
@@ -45,6 +56,10 @@ RUN poetry install --no-root #--without=itcase  # если ITCase Common не в
 # если ITCase Common не в проекте
 #COPY --from=itcase tcase-common /itcase/itcase-common
 #RUN pip install /itcase/itcase-common
+
+# ****************************************************************
+
+ENV HTTP_PROXY= HTTPS_PROXY= NO_PROXY= http_proxy= https_proxy= no_proxy=
 
 # ****************************************************************
 
