@@ -1,4 +1,7 @@
 #!/bin/bash
+set -euo pipefail
+
+: "${PROJECT_NAME:?PROJECT_NAME is not set}"
 
 # ****************************************************************
 # DEFAULTS
@@ -6,26 +9,26 @@
 dbname="$PROJECT_NAME"
 user="$dbname"
 
-args=""
+args=()
 
 # ****************************************************************
 # OPTIONS
 
-while getopts ":d:F:f:u:" opt; do
-   case $opt in
-      d) dbname="$OPTARG"   ;;
-      u) user="$OPTARG"     ;;
-
-      # Option error handling
-      ?) shift "$(($#-1))" # читаем все аргументы, начиная с неверного
-         args="$@" ;;
-   esac
+while getopts ":d:u:" opt; do
+    case $opt in
+        d) dbname="$OPTARG" ;;
+        u) user="$OPTARG"   ;;
+        ?)
+            echo "Invalid option: -$OPTARG" >&2
+            exit 1
+            ;;
+    esac
 done
 
-# если никаких опций не было послано, то читаем всё
-if [ $OPTIND -eq 1 ]; then args="$@"; fi
+shift $((OPTIND - 1))
+args=("$@")
 
 # ****************************************************************
 # EXECUTION
 
-psql -U "$user" -d "$dbname" $args
+psql -U "$user" -d "$dbname" "${args[@]}"

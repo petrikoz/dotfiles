@@ -1,2 +1,7 @@
 #!/bin/bash
+set -euo pipefail
+
+: "${PROJECT:?PROJECT is not set}"
+: "${PROJECT_NAME:?PROJECT_NAME is not set}"
+
 pg-reset -d "test_$PROJECT_NAME" && docker exec -w /project -it "$PROJECT-django" pytest "$@"

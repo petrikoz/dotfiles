@@ -1,7 +1,16 @@
 #!/bin/bash
-docker build -t $PROJECT --file $PROJECT_ROOT/Dockerfile $PROJECT_SRC
+set -euo pipefail
+
+: "${PROJECT:?PROJECT is not set}"
+: "${PROJECT_ROOT:?PROJECT_ROOT is not set}"
+: "${PROJECT_SRC:?PROJECT_SRC is not set}"
+
+docker build -t "$PROJECT" --file "$PROJECT_ROOT/Dockerfile" "$@" "$PROJECT_SRC"
+
+# запуск с HTTP_PROXY
+# dj-build --build-arg HTTP_PROXY="$PROXY_HTTP"
 
 # если ITCase Common не в проекте
-#docker build -t $PROJECT --file $PROJECT_ROOT/Dockerfile \
+#docker build -t "$PROJECT" --file "$PROJECT_ROOT/Dockerfile" \
 #             --build-context itcase="$PROJECT_ROOT/itcase" \
-#       $PROJECT_SRC
+#       "$PROJECT_SRC"

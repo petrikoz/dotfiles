@@ -1,17 +1,25 @@
 #!/bin/bash
+set -euo pipefail
+
+: "${PROJECT:?PROJECT is not set}"
+: "${PROJECT_NAME:?PROJECT_NAME is not set}"
+: "${PROJECT_ROOT:?PROJECT_ROOT is not set}"
+: "${PROJECT_SRC:?PROJECT_SRC is not set}"
+: "${PROJECT_TMP:?PROJECT_TMP is not set}"
+
 django_container="$PROJECT-django"
 if [ -z "$(docker ps -qf "name=^${django_container}$")" ]; then
-   ptpython_history="$PROJECT_ROOT/.ptpython_history"
-   touch "$ptpython_history"
-   echo "DJANGO: run container"
-   # запускаем от UID/GID хоста, чтобы файлы в смонтированных каталогах не принадлежали root
-   docker run --rm --name="$django_container" --net=host \
-              --user "$(id -u):$(id -g)" \
-              -v "$ptpython_history":"/home/user/.ptpython_history" \
-              -v "$PROJECT_SRC":/project -v "$PROJECT_TMP":/tmp-host \
-              -e PROJECT_NAME="$PROJECT_NAME" -e PROJECT_TMP="/tmp-host" -e PYTHONPATH="/tmp-host:$PYTHONPATH" \
-              -it "$PROJECT" "$@"
+    ptpython_history="$PROJECT_ROOT/.ptpython_history"
+    touch "$ptpython_history"
+    echo "DJANGO: starting container"
+    # запускаем от UID/GID хоста, чтобы файлы в смонтированных каталогах не принадлежали root
+    docker run --rm --name="$django_container" --net=host \
+               --user "$(id -u):$(id -g)" \
+               -v "$ptpython_history":"/home/user/.ptpython_history" \
+               -v "$PROJECT_SRC":/project -v "$PROJECT_TMP":/tmp-host \
+               -e PROJECT_NAME="$PROJECT_NAME" -e PROJECT_TMP="/tmp-host" -e PYTHONPATH="/tmp-host:${PYTHONPATH:-}" \
+               -it "$PROJECT" "$@"
 else
-   echo "DJANGO: alredy runned"
-   docker exec -it "$django_container" python manage.py "$@"
+    echo "DJANGO: already running"
+    docker exec -it "$django_container" python manage.py "$@"
 fi
