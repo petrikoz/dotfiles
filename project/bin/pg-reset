@@ -50,13 +50,19 @@ done
 # reset
 
 dbname_sql=$(pg_quote_ident "$dbname")
+owner_literal=$(pg_quote_literal "$owner")
 owner_sql=$(pg_quote_ident "$owner")
 password_sql=$(pg_quote_literal "$password")
 
 queries=(
     "DROP DATABASE IF EXISTS ${dbname_sql};"
-    "DROP ROLE IF EXISTS ${owner_sql};"
-    "CREATE ROLE ${owner_sql} WITH LOGIN PASSWORD ${password_sql};"
+    "DO \$\$ BEGIN
+        IF EXISTS (SELECT FROM pg_roles WHERE rolname = ${owner_literal}) THEN
+            ALTER ROLE ${owner_sql} WITH LOGIN PASSWORD ${password_sql};
+        ELSE
+            CREATE ROLE ${owner_sql} WITH LOGIN PASSWORD ${password_sql};
+        END IF;
+    END \$\$;"
     "CREATE DATABASE ${dbname_sql} WITH OWNER ${owner_sql};"
     "GRANT ALL ON DATABASE ${dbname_sql} TO ${owner_sql};"
 )
