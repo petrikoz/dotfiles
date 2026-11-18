@@ -88,20 +88,23 @@ else
     backup_uncompressed="$HOME/cloud-backup"
     chown -R "$USER":"$USER" "$backup_uncompressed"
 
-    backup_compressed="$HOME/Documents/cloud-backup.tar.zst"
+    backup_archive_name="cloud-backup.tar.zst"
+    backup_compressed="$HOME/Documents/$backup_archive_name"
     cd "$backup_uncompressed" && tar --absolute-names --auto-compress --create --file="$backup_compressed" ./
     echo "$(date +'%Y-%m-%d %X')   to archive: done"
 
+    backup_to_uisi="$HOME/Nextcloud-Uisi/$backup_archive_name"
+    echo "$(date +'%Y-%m-%d %X')      archive to Uisi: ..."
+    mv "$backup_compressed" "$backup_to_uisi"
+    echo "$(date +'%Y-%m-%d %X')      archive to Uisi: done"
+
     echo "$(date +'%Y-%m-%d %X')      archive to Yandex Disk: ..."
-    rclone -v copy "$backup_compressed" yandex:
+    rclone -v copy "$backup_to_uisi" yandex:
     echo "$(date +'%Y-%m-%d %X')      archive to Yandex Disk: done"
 
     echo "$(date +'%Y-%m-%d %X')      archive to Mail.ru Cloud: ..."
-    rclone -v copy "$backup_compressed" mailru:
+    rclone -v copy "$backup_to_uisi" mailru:
     echo "$(date +'%Y-%m-%d %X')      archive to Mail.ru Cloud: done"
-
-    rm -rf "$backup_compressed"
-    echo "$(date +'%Y-%m-%d %X')   remove temp archive: done"
 
     echo "$(date +'%Y-%m-%d %X') Cloud backup: done"
 fi
