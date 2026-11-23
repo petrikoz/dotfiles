@@ -9,6 +9,7 @@ env_file="$HOME/dotfiles/cron/user/cloud-backup.env"
 cloud_decrypted="$HOME/Vaults/cloud"
 if [[ ! "$(findmnt -M $cloud_decrypted)" ]]; then
     echo "Please mount encrypted volume to '$cloud_decrypted'"
+    exit 1
 else
     echo "$(date +'%Y-%m-%d %X') My data: ..."
 
@@ -46,13 +47,9 @@ cloud_backup_decrypted="$HOME/Vaults/cloud-backup"
 if [[ ! "$(findmnt -M $cloud_backup_decrypted)" ]]; then
     echo "Please mount encrypted volume to '$cloud_backup_decrypted'"
 else
-    remote_name="cloud.wormhole"
-    remote="/run/user/1000/sshmnt/$remote_name"
+    remote="/run/user/1000/sshmnt/cloud.wormhole"
     if [[ ! "$(findmnt -M $remote)" ]]; then
-      sshmnt -m "$remote_name"
-    fi
-    if [[ ! "$(findmnt -M $remote)" ]]; then
-      echo "$(date +'%Y-%m-%d %X') can not mount $remote_name"
+      echo "Please mount encrypted volume to '$remote'"
       exit 1
     fi
 

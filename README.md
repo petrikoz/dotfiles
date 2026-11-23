@@ -337,8 +337,6 @@ for KEY in $(ls $HOME/.ssh/id_* | grep -v \.pub); do
   ssh-add -q ${KEY} </dev/null
 done
 
-sshmnt -m cloud.wormhole
-
 EOT
 chmod 700 $HOME/dotfiles/kde/autostart/ssh-staff
 
@@ -396,13 +394,6 @@ pip install --break-system-packages --user --upgrade --requirement=$HOME/dotfile
 ### rclone
 
 Add config from cloud backup to `$HOME/.config/rclone/`
-
-### sshmnt
-
-```shell
-
-ln -s $HOME/dotfiles/sshmntconfig $HOME/.config/sshmntconfig
-```
 
 ### Sublime Text
 

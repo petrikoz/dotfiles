@@ -4,7 +4,6 @@ gitflow-avh
 gitstatus
 hunspell-ru-aot
 sirikali
-sshmnt
 throne-bin
 todotxt
 vi-vim-symlink
